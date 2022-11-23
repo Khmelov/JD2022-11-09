@@ -3,11 +3,13 @@ package by.it.han.jd01_05;
 import java.util.Arrays;
 
 import static java.lang.Math.pow;
+import static java.lang.Math.random;
 
 public class TaskC {
 
     public static void main(String[] args) {
-        step1();
+//        step1();
+        step2();
     }
 
     public static void step1() {
@@ -30,7 +32,7 @@ public class TaskC {
         double minX = 5.33;
         int count = 0;
         while (count < 20 || count > 40) {
-            n = Math.random() * 0.3;
+            n = random() * 0.3;
             count = (int) ((maxX - minX) / n);
         }
         double[] array = new double[count];
@@ -66,5 +68,55 @@ public class TaskC {
             }
         }
         System.out.println();
+    }
+
+    public static void step2() {
+        int[] a = getArrayA();
+        int[] b = getArrayB(a);
+        printArrA(a);
+        printArrB(b);
+    }
+
+    public static int[] getArrayA() {
+        int[] a = new int[31];
+        Arrays.setAll(a, i -> (int) (random() * 347) + 103);
+        return a;
+    }
+
+    public static int[] getArrayB(int[] array) {
+        int[] c = Arrays.stream(array).sorted().toArray();
+        int count = 0;
+        for (int i = 0; i < c.length; i++) {
+            if (c[i] * 0.1 > i) {
+                count++;
+            }
+        }
+        int[] b = new int[count];
+        for (int i = 0, i1 = 0; i < c.length; i++) {
+            if (c[i] * 0.1 > i) {
+                b[i1] = c[i];
+                i1++;
+            }
+        }
+        return b;
+    }
+
+    public static void printArrA(int[] array) {
+        int countElementsRow = 0;
+        for (int i = 0; i < array.length; i++) {
+            countElementsRow++;
+            System.out.printf("%s[%2d] = %-5d", "A", i, array[i]);
+            if (countElementsRow == 5) {
+                System.out.println();
+                countElementsRow = 0;
+            }
+        }
+        System.out.println();
+    }
+
+    public static void printArrB(int[] array) {
+        for (int i = 0; i < 8; i++) {
+
+        }
     }
 }
