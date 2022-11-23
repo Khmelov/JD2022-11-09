@@ -2,7 +2,7 @@ package by.it.han.jd01_05;
 
 import static java.lang.Math.*;
 
-public class TaskA {
+public class TaskA1 {
 
     public static final double A = 756.13;
     public static final double X = 0.3;
