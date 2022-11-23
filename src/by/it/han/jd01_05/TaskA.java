@@ -8,7 +8,7 @@ public class TaskA {
     public static void main(String[] args) {
         step1();
         step2();
-//        step3();
+        step3();
     }
 
     public static void step1() {
@@ -34,5 +34,15 @@ public class TaskA {
         double b = 0.371;
         double result = tan(pow((a + b), 2)) - pow(a + 1.5, 1.0 / 3) + a * pow(b, 5) - b / log(pow(a, 2));
         System.out.println(result);
+    }
+
+    public static void step3() {
+        double x = 12.1;
+        double deltaA = 3.75;
+        System.out.println("x:" + x);
+        for (double a = -5; a <= 12; a += deltaA) {
+            double f = exp(a * x) - 3.45 * a;
+            System.out.println("a:" + a + ", f:" + f);
+        }
     }
 }
