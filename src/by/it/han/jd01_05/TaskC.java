@@ -21,16 +21,16 @@ public class TaskC {
         double[] secondArray = Arrays.stream(firstArray).filter(value -> value > min).toArray();
         System.out.printf("Массив %s[] из элементов массива %s > %.1f%n", secondArrayName, firstArrayName, min);
         printArray(secondArray, secondArrayName);
-        System.out.println("Среднее значение: " + getGeometryAverage(secondArray));
+        System.out.printf("Среднее значение: %.5f", getGeometryAverage(secondArray));
     }
 
-
     public static double[] getArray(String arrayName) {
-        double n = Math.random() * 0.3;
+        double n = 0;
         double maxX = 9;
         double minX = 5.33;
-        int count = (int) ((maxX - minX) / n);
-        while (count > 19 && count < 41) {
+        int count = 0;
+        while (count < 20 || count > 40) {
+            n = Math.random() * 0.3;
             count = (int) ((maxX - minX) / n);
         }
         double[] array = new double[count];
