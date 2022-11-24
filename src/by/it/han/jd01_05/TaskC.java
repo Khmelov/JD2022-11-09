@@ -115,8 +115,33 @@ public class TaskC {
     }
 
     public static void printArrB(int[] array) {
-        for (int i = 0; i < 8; i++) {
-
+        int startPos = 0;
+        int col = 7;
+        int row = array.length / col;
+        int countNumberLastArray = array.length - (col * row);
+        int[][] arr2D = new int[row + 1][col];
+        for (int i = 0; i < row + 1; i++) {
+            if (i == row) {
+                System.arraycopy(array, startPos, arr2D[i], 0, countNumberLastArray);
+            } else {
+                System.arraycopy(array, startPos, arr2D[i], 0, 7);
+                startPos += arr2D[i].length;
+            }
+        }
+        int[][] newArr = new int[col][row + 1];
+        for (int i = 0; i < arr2D.length; i++) {
+            for (int j = 0; j < arr2D[i].length; j++) {
+                newArr[j][i] = arr2D[i][j];
+            }
+        }
+        int count = 0;
+        for (int i = 0; i < newArr.length; i++) {
+            for (int j = 0; j < newArr[i].length; j++) {
+                if (newArr[i][j] != 0) {
+                    System.out.print(i + " " + newArr[i][j] + " ");
+                }
+            }
+            System.out.println();
         }
     }
 }
