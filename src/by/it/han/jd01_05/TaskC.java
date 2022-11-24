@@ -115,8 +115,22 @@ public class TaskC {
     }
 
     public static void printArrB(int[] array) {
-        int startPos = 0;
         int col = 7;
+        int[][] newArr = get2DArray(array, col);
+        for (int i = 0; i < newArr.length; i++) {
+            int count = i;
+            for (int j = 0; j < newArr[i].length; j++) {
+                if (newArr[i][j] != 0) {
+                    System.out.printf("%s[%2d] = %-5d", "B", count, newArr[i][j]);
+                }
+                count += col;
+            }
+            System.out.println();
+        }
+    }
+
+    public static int[][] get2DArray(int[] array, int col) {
+        int startPos = 0;
         int row = array.length / col;
         int countNumberLastArray = array.length - (col * row);
         int[][] arr2D = new int[row + 1][col];
@@ -124,7 +138,7 @@ public class TaskC {
             if (i == row) {
                 System.arraycopy(array, startPos, arr2D[i], 0, countNumberLastArray);
             } else {
-                System.arraycopy(array, startPos, arr2D[i], 0, 7);
+                System.arraycopy(array, startPos, arr2D[i], 0, col);
                 startPos += arr2D[i].length;
             }
         }
@@ -134,14 +148,6 @@ public class TaskC {
                 newArr[j][i] = arr2D[i][j];
             }
         }
-        int count = 0;
-        for (int i = 0; i < newArr.length; i++) {
-            for (int j = 0; j < newArr[i].length; j++) {
-                if (newArr[i][j] != 0) {
-                    System.out.print(i + " " + newArr[i][j] + " ");
-                }
-            }
-            System.out.println();
-        }
+        return newArr;
     }
 }
