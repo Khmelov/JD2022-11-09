@@ -135,7 +135,6 @@ public class TaskC {
                 System.out.printf("%s%s%s%n", "╔", SEPARATOR_FIRST, "╗");
             }
             for (int j = 0; j < newArr[i].length; j++) {
-
                 if (newArr[i][j] != 0) {
                     System.out.printf("%s %s[%2d] = %d ", "║", "B", count, newArr[i][j]);
                 }
