@@ -7,8 +7,12 @@ import static java.lang.Math.random;
 
 public class TaskC {
 
+    private static final String SEPARATOR_FIRST = "═════════════╦═════════════╦═════════════╦═════════════╦═════════════";
+    private static final String SEPARATOR_MIDDLE = "═════════════╬═════════════╬═════════════╬═════════════╬═════════════";
+    private static final String SEPARATOR_LAST = "═════════════╩═════════════╩═════════════╩═════════════╩═════════════";
+
     public static void main(String[] args) {
-//        step1();
+        step1();
         step2();
     }
 
@@ -23,7 +27,7 @@ public class TaskC {
         double[] secondArray = Arrays.stream(firstArray).filter(value -> value > min).toArray();
         System.out.printf("Массив %s[] из элементов массива %s > %.1f%n", secondArrayName, firstArrayName, min);
         printArray(secondArray, secondArrayName);
-        System.out.printf("Среднее значение: %.5f", getGeometryAverage(secondArray));
+        System.out.printf("Среднее значение: %.5f%n", getGeometryAverage(secondArray));
     }
 
     public static double[] getArray(String arrayName) {
@@ -105,13 +109,21 @@ public class TaskC {
         int countElementsRow = 0;
         for (int i = 0; i < array.length; i++) {
             countElementsRow++;
-            System.out.printf("%s[%2d] = %-5d", "A", i, array[i]);
+            if (i == 0) {
+                System.out.printf("%s%s%s%n", "╔", SEPARATOR_FIRST, "╗");
+            }
+            System.out.printf("%s", "║");
+            System.out.printf(" %s[%2d] = %d ", "A", i, array[i]);
             if (countElementsRow == 5) {
-                System.out.println();
+                System.out.printf("%s", "║");
+                System.out.printf("%n%s%s%s%n", "╠", SEPARATOR_MIDDLE, "╣");
                 countElementsRow = 0;
             }
+            if (i == array.length - 1) {
+                System.out.printf("%s", "║");
+            }
         }
-        System.out.println();
+        System.out.printf("%n%s%s%s%n", "╚", SEPARATOR_LAST, "╝");
     }
 
     public static void printArrB(int[] array) {
@@ -119,13 +131,21 @@ public class TaskC {
         int[][] newArr = get2DArray(array, col);
         for (int i = 0; i < newArr.length; i++) {
             int count = i;
+            if (i == 0) {
+                System.out.printf("%s%s%s%n", "╔", SEPARATOR_FIRST, "╗");
+            }
             for (int j = 0; j < newArr[i].length; j++) {
+
                 if (newArr[i][j] != 0) {
-                    System.out.printf("%s[%2d] = %-5d", "B", count, newArr[i][j]);
+                    System.out.printf("%s %s[%2d] = %d ", "║", "B", count, newArr[i][j]);
                 }
                 count += col;
             }
-            System.out.println();
+            if (i == newArr.length - 1) {
+                System.out.printf("%n%s%s%s%n", "╚", SEPARATOR_LAST, "╝");
+            } else {
+                System.out.printf("%n%s%s%s%n", "╠", SEPARATOR_MIDDLE, "╣");
+            }
         }
     }
 
