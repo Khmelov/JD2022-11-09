@@ -1,13 +1,12 @@
 package by.it.yaroshevich.jd01_04;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class TaskB {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-
+        int sum=0;
         String[] arraySurname = new String[n];
 
         for (int i = 0; i < arraySurname.length; i++) {
@@ -21,13 +20,18 @@ public class TaskB {
                 arraySalaries[i][j] = sc.nextInt();
             }
         }
-        String [] [] arrayMerg = new String [arraySalaries.length] [arraySurname.length];
-        for (int i = 0; i < arraySalaries.length; i++) {
-            for (int j = 0; j < arraySurname.length; j++) {
-                System.out.println(arrayMerg[i][j]);
+        for (int i = 0; i < arraySurname.length; i++) {
+            System.out.print(arraySurname[i] + " ");
 
+                for (int j = 0; j < arraySalaries[i].length; j++) {
+                    System.out.print(arraySalaries[i][j] + " ");
+                    }
+
+                for (int j = 0; j < arraySalaries[i].length; j++) {
+                    sum += arraySalaries[i][j];
             }
-
+            System.out.print(sum);
+            System.out.println();
         }
     }
 }
