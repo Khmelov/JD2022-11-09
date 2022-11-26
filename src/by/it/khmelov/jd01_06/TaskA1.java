@@ -9,6 +9,7 @@ public class TaskA1 {
         StringBuilder text = new StringBuilder(Poem.text);
         Matcher matcher = pattern.matcher(text);
         while (matcher.find()) {
+
             int start = matcher.start();
             text.setCharAt(start + 3, '#');
             if (matcher.end() - start > 6) {
