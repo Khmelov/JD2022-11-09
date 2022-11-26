@@ -15,21 +15,21 @@ import static org.junit.Assert.*;
 
 @SuppressWarnings("all")
 
-//поставьте курсор на следующую строку и нажмите Ctrl+Shift+F10
+//РїРѕСЃС‚Р°РІСЊС‚Рµ РєСѓСЂСЃРѕСЂ РЅР° СЃР»РµРґСѓСЋС‰СѓСЋ СЃС‚СЂРѕРєСѓ Рё РЅР°Р¶РјРёС‚Рµ Ctrl+Shift+F10
 public class Test_jd01_02 {
 
     @Test(timeout = 5000)
     public void testTaskA() throws Exception {
-        System.out.println("\n\nПроверка на минимум и максимум");
+        System.out.println("\n\nРџСЂРѕРІРµСЂРєР° РЅР° РјРёРЅРёРјСѓРј Рё РјР°РєСЃРёРјСѓРј");
         checkMethod("TaskA", "static step1", int[].class);
         run("-1 2 3 4 567 567 4 3 2 -1 4 4").include("-1 567");
 
-        System.out.println("\n\nПроверка на вывод значений меньше среднего");
+        System.out.println("\n\nРџСЂРѕРІРµСЂРєР° РЅР° РІС‹РІРѕРґ Р·РЅР°С‡РµРЅРёР№ РјРµРЅСЊС€Рµ СЃСЂРµРґРЅРµРіРѕ");
         checkMethod("TaskA", "static step2", int[].class);
         run("-1 22 33 44 567 567 44 33 22 -1 4 4")
                 .include("-1").include("22").include("33").include("44");
 
-        System.out.println("\n\nПроверка на индексы минимума");
+        System.out.println("\n\nРџСЂРѕРІРµСЂРєР° РЅР° РёРЅРґРµРєСЃС‹ РјРёРЅРёРјСѓРјР°");
         checkMethod("TaskA", "static step3", int[].class);
         run("-1 22 33 44 567 567 44 33 22 -1 4 4").include("9 0");
     }
@@ -38,7 +38,7 @@ public class Test_jd01_02 {
     public void testTaskAstep1_MinMax__TaskA() throws Exception {
         Test_jd01_02 ok = run("", false);
         Method m = checkMethod(ok.aClass.getSimpleName(), "static step1", int[].class);
-        System.out.println("Проверка на массиве -1, 2, 3, 4, 567, 567, 4, 3, 2, -1, 4, 4");
+        System.out.println("РџСЂРѕРІРµСЂРєР° РЅР° РјР°СЃСЃРёРІРµ -1, 2, 3, 4, 567, 567, 4, 3, 2, -1, 4, 4");
         m.invoke(null, new int[]{-1, 2, 3, 4, 567, 567, 4, 3, 2, -1, 4, 4});
         ok.include("").include("-1 567");
     }
@@ -47,7 +47,7 @@ public class Test_jd01_02 {
     public void testTaskAstep2_Avg__TaskA() throws Exception {
         Test_jd01_02 ok = run("", false);
         Method m = checkMethod(ok.aClass.getSimpleName(), "static step2", int[].class);
-        System.out.println("Проверка на массиве -1, 22, 30+3, 44, 500+67, 500+67, 44, 30+3, 22, -1, 4, 4");
+        System.out.println("РџСЂРѕРІРµСЂРєР° РЅР° РјР°СЃСЃРёРІРµ -1, 22, 30+3, 44, 500+67, 500+67, 44, 30+3, 22, -1, 4, 4");
         m.invoke(null, new int[]{-1, 22, 33, 44, 567, 567, 44, 33, 22, -1, 4, 4});
         ok.include("").include("-1")
                 .include("1").include("2").include("3").include("4")
@@ -58,41 +58,41 @@ public class Test_jd01_02 {
     public void testTaskAstep3_IndexMinMax__TaskA() throws Exception {
         Test_jd01_02 ok = run("", false);
         Method m = checkMethod(ok.aClass.getSimpleName(), "static step3", int[].class);
-        System.out.println("Проверка на массиве -1, 22, 33, 44, 567, 567, 44, 33, 22, -1, 4, 4");
+        System.out.println("РџСЂРѕРІРµСЂРєР° РЅР° РјР°СЃСЃРёРІРµ -1, 22, 33, 44, 567, 567, 44, 33, 22, -1, 4, 4");
         m.invoke(null, new int[]{-1, 22, 33, 44, 567, 567, 44, 33, 22, -1, 4, 4});
         ok.include("").include("9 0");
     }
 
     @Test(timeout = 5000)
     public void testTaskB() throws Exception {
-        System.out.println("\n\nПроверка на вывод матрицы 5 x 5");
+        System.out.println("\n\nРџСЂРѕРІРµСЂРєР° РЅР° РІС‹РІРѕРґ РјР°С‚СЂРёС†С‹ 5 x 5");
         checkMethod("TaskB", "step1");
         run("0 1 2 3")
                 .include("11 12 13 14 15").include("16 17 18 19 20")
                 .include("21 22 23 24 25");
         ;
-        System.out.println("\n\nПроверка на ввод номера месяца");
+        System.out.println("\n\nРџСЂРѕРІРµСЂРєР° РЅР° РІРІРѕРґ РЅРѕРјРµСЂР° РјРµСЃСЏС†Р°");
         checkMethod("TaskB", "step2", int.class);
-        run("0 2 3 4").include("нет такого месяца");
-        run("1 2 3 4").include("январь");
-        run("2 2 3 4").include("февраль");
-        run("3 2 3 4").include("март");
-        run("4 2 3 4").include("апрель");
-        run("5 2 3 4").include("май");
-        run("6 2 3 4").include("июнь");
-        run("7 2 3 4").include("июль");
-        run("8 2 3 4").include("август");
-        run("9 2 3 4").include("сентябрь");
-        run("10 2 3 4").include("октябрь");
-        run("11 2 3 4").include("ноябрь");
-        run("12 2 3 4").include("декабрь");
-        run("13 2 3 4").include("нет такого месяца");
+        run("0 2 3 4").include("РЅРµС‚ С‚Р°РєРѕРіРѕ РјРµСЃСЏС†Р°");
+        run("1 2 3 4").include("СЏРЅРІР°СЂСЊ");
+        run("2 2 3 4").include("С„РµРІСЂР°Р»СЊ");
+        run("3 2 3 4").include("РјР°СЂС‚");
+        run("4 2 3 4").include("Р°РїСЂРµР»СЊ");
+        run("5 2 3 4").include("РјР°Р№");
+        run("6 2 3 4").include("РёСЋРЅСЊ");
+        run("7 2 3 4").include("РёСЋР»СЊ");
+        run("8 2 3 4").include("Р°РІРіСѓСЃС‚");
+        run("9 2 3 4").include("СЃРµРЅС‚СЏР±СЂСЊ");
+        run("10 2 3 4").include("РѕРєС‚СЏР±СЂСЊ");
+        run("11 2 3 4").include("РЅРѕСЏР±СЂСЊ");
+        run("12 2 3 4").include("РґРµРєР°Р±СЂСЊ");
+        run("13 2 3 4").include("РЅРµС‚ С‚Р°РєРѕРіРѕ РјРµСЃСЏС†Р°");
 
-        System.out.println("\n\nПроверка на решение квадратного уравнения");
+        System.out.println("\n\nРџСЂРѕРІРµСЂРєР° РЅР° СЂРµС€РµРЅРёРµ РєРІР°РґСЂР°С‚РЅРѕРіРѕ СѓСЂР°РІРЅРµРЅРёСЏ");
         checkMethod("TaskB", "step3", double.class, double.class, double.class);
         run("0 2 4 2").include("-1");
         run("0 2 4 0").include("0.0").include("-2.0");
-        run("0 2 4 4").include("корней нет");
+        run("0 2 4 4").include("РєРѕСЂРЅРµР№ РЅРµС‚");
     }
 
     @Test(timeout = 5000)
@@ -108,33 +108,33 @@ public class Test_jd01_02 {
         Test_jd01_02 ok = run("", false);
         Method m = checkMethod(ok.aClass.getSimpleName(), "static step2", int.class);
         m.invoke(null, 0);
-        ok.include("нет такого месяца");
+        ok.include("РЅРµС‚ С‚Р°РєРѕРіРѕ РјРµСЃСЏС†Р°");
         m.invoke(null, 1);
-        ok.include("январь");
+        ok.include("СЏРЅРІР°СЂСЊ");
         m.invoke(null, 2);
-        ok.include("февраль");
+        ok.include("С„РµРІСЂР°Р»СЊ");
         m.invoke(null, 3);
-        ok.include("март");
+        ok.include("РјР°СЂС‚");
         m.invoke(null, 4);
-        ok.include("апрель");
+        ok.include("Р°РїСЂРµР»СЊ");
         m.invoke(null, 5);
-        ok.include("май");
+        ok.include("РјР°Р№");
         m.invoke(null, 6);
-        ok.include("июнь");
+        ok.include("РёСЋРЅСЊ");
         m.invoke(null, 7);
-        ok.include("июль");
+        ok.include("РёСЋР»СЊ");
         m.invoke(null, 8);
-        ok.include("август");
+        ok.include("Р°РІРіСѓСЃС‚");
         m.invoke(null, 9);
-        ok.include("сентябрь");
+        ok.include("СЃРµРЅС‚СЏР±СЂСЊ");
         m.invoke(null, 10);
-        ok.include("октябрь");
+        ok.include("РѕРєС‚СЏР±СЂСЊ");
         m.invoke(null, 11);
-        ok.include("ноябрь");
+        ok.include("РЅРѕСЏР±СЂСЊ");
         m.invoke(null, 12);
-        ok.include("декабрь");
+        ok.include("РґРµРєР°Р±СЂСЊ");
         m.invoke(null, 13);
-        ok.include("нет такого месяца");
+        ok.include("РЅРµС‚ С‚Р°РєРѕРіРѕ РјРµСЃСЏС†Р°");
     }
 
 
@@ -143,40 +143,40 @@ public class Test_jd01_02 {
         Test_jd01_02 ok = run("", false);
         Method m = checkMethod(ok.aClass.getSimpleName(), "static step3",
                 double.class, double.class, double.class);
-        System.out.println("Квадратное уравление:");
-        System.out.println("для a=2, для b=4, для c=2, ожидается один корень: минус 1");
+        System.out.println("РљРІР°РґСЂР°С‚РЅРѕРµ СѓСЂР°РІР»РµРЅРёРµ:");
+        System.out.println("РґР»СЏ a=2, РґР»СЏ b=4, РґР»СЏ c=2, РѕР¶РёРґР°РµС‚СЃСЏ РѕРґРёРЅ РєРѕСЂРµРЅСЊ: РјРёРЅСѓСЃ 1");
         m.invoke(null, 2, 4, 2);
         ok.include("-1");
-        System.out.println("для a=1, для b=-1, для c=-2, ожидается два корня: минус один и два ");
+        System.out.println("РґР»СЏ a=1, РґР»СЏ b=-1, РґР»СЏ c=-2, РѕР¶РёРґР°РµС‚СЃСЏ РґРІР° РєРѕСЂРЅСЏ: РјРёРЅСѓСЃ РѕРґРёРЅ Рё РґРІР° ");
         m.invoke(null, 1, -1, -2);
         ok.include("-1").include("2");
-        System.out.println("для a=2, для b=4, для c=4, ожидается решение без корней");
+        System.out.println("РґР»СЏ a=2, РґР»СЏ b=4, РґР»СЏ c=4, РѕР¶РёРґР°РµС‚СЃСЏ СЂРµС€РµРЅРёРµ Р±РµР· РєРѕСЂРЅРµР№");
         m.invoke(null, 2, 4, 4);
-        ok.include("корней нет");
+        ok.include("РєРѕСЂРЅРµР№ РЅРµС‚");
     }
 
     @Test(timeout = 5000)
     public void testTaskC() throws Exception {
-        System.out.println("\n\nПроверка на создание массива TaskC.step1");
+        System.out.println("\n\nРџСЂРѕРІРµСЂРєР° РЅР° СЃРѕР·РґР°РЅРёРµ РјР°СЃСЃРёРІР° TaskC.step1");
         checkMethod("TaskC", "step1", int.class);
         run("3").include("-3").include("3");
         run("4").include("-4").include("4");
         Test_jd01_02 ok = run("5").include("-5").include("5");
 
-        System.out.println("\nПроверка на сумму элементов TaskC.step2");
+        System.out.println("\nРџСЂРѕРІРµСЂРєР° РЅР° СЃСѓРјРјСѓ СЌР»РµРјРµРЅС‚РѕРІ TaskC.step2");
         checkMethod("TaskC", "step2", int[][].class);
         int[][] m4 = {{1, -2, -2, 6}, {-1, 2, -2, 2}, {-2, -2, -6, -2}, {1, 2, -2, 6}};
         Method m = ok.aClass.getDeclaredMethod("step2", m4.getClass());
         int sum = (int) ok.invoke(m, null, new Object[]{m4});
-        assertEquals("Неверная сумма в step2", -6, sum);
+        assertEquals("РќРµРІРµСЂРЅР°СЏ СЃСѓРјРјР° РІ step2", -6, sum);
 
-        System.out.println("\nПроверка на удаление максимума TaskC.step3");
+        System.out.println("\nРџСЂРѕРІРµСЂРєР° РЅР° СѓРґР°Р»РµРЅРёРµ РјР°РєСЃРёРјСѓРјР° TaskC.step3");
         checkMethod("TaskC", "step3", int[][].class);
 
         m = ok.aClass.getDeclaredMethod("step3", int[][].class);
         int[][] res = (int[][]) ok.invoke(m, null, new Object[]{m4});
         int[][] expectmas = {{-1, 2, -2}, {-2, -2, -6}};
-        assertArrayEquals("Не найден ожидаемый массив {{-1,2,-2},{-2,-2,-6}}", expectmas, res);
+        assertArrayEquals("РќРµ РЅР°Р№РґРµРЅ РѕР¶РёРґР°РµРјС‹Р№ РјР°СЃСЃРёРІ {{-1,2,-2},{-2,-2,-6}}", expectmas, res);
     }
 
     @Test(timeout = 5000)
@@ -192,7 +192,7 @@ public class Test_jd01_02 {
                 if (i == 5) max = true;
             }
         if (!max || !min) {
-            fail("В массиве нет максимума 5 или минимума -5");
+            fail("Р’ РјР°СЃСЃРёРІРµ РЅРµС‚ РјР°РєСЃРёРјСѓРјР° 5 РёР»Рё РјРёРЅРёРјСѓРјР° -5");
         }
 
     }
@@ -204,7 +204,7 @@ public class Test_jd01_02 {
         int[][] m4 = {{1, -2, -2, 6}, {-1, 2, -2, 2}, {-2, -2, -6, -2}, {1, 2, -2, 6}};
         Method m = checkMethod(ok.aClass.getSimpleName(), "static step2", int[][].class);
         int sum = (int) ok.invoke(m, null, new Object[]{m4});
-        assertEquals("Неверная сумма в step2", -6, sum);
+        assertEquals("РќРµРІРµСЂРЅР°СЏ СЃСѓРјРјР° РІ step2", -6, sum);
     }
 
     @Test(timeout = 5000)
@@ -215,30 +215,30 @@ public class Test_jd01_02 {
         int[][] actualmas = (int[][]) ok.invoke(m, null, new Object[]{m4});
         int[][] expectmas = {{-1, 2, -2}, {-2, -2, -6}};
         for (int i = 0; i < actualmas.length; i++) {
-            System.out.println("Проверка строки " + i);
-            System.out.println("         Ожидается: " + Arrays.toString(expectmas[i]));
-            System.out.println("Из метода получено: " + Arrays.toString(actualmas[i]));
-            assertArrayEquals("Метод работает некорректно", expectmas[i], actualmas[i]);
+            System.out.println("РџСЂРѕРІРµСЂРєР° СЃС‚СЂРѕРєРё " + i);
+            System.out.println("         РћР¶РёРґР°РµС‚СЃСЏ: " + Arrays.toString(expectmas[i]));
+            System.out.println("РР· РјРµС‚РѕРґР° РїРѕР»СѓС‡РµРЅРѕ: " + Arrays.toString(actualmas[i]));
+            assertArrayEquals("РњРµС‚РѕРґ СЂР°Р±РѕС‚Р°РµС‚ РЅРµРєРѕСЂСЂРµРєС‚РЅРѕ", expectmas[i], actualmas[i]);
         }
-        System.out.println("Проверка завершена успешно!");
+        System.out.println("РџСЂРѕРІРµСЂРєР° Р·Р°РІРµСЂС€РµРЅР° СѓСЃРїРµС€РЅРѕ!");
     }
 
 
 /*
 ===========================================================================================================
-НИЖЕ ВСПОМОГАТЕЛЬНЫЙ КОД ТЕСТОВ. НЕ МЕНЯЙТЕ В ЭТОМ ФАЙЛЕ НИЧЕГО.
-Но изучить как он работает - можно, это всегда будет полезно.
+РќРР–Р• Р’РЎРџРћРњРћР“РђРўР•Р›Р¬РќР«Р™ РљРћР” РўР•РЎРўРћР’. РќР• РњР•РќРЇР™РўР• Р’ Р­РўРћРњ Р¤РђР™Р›Р• РќРР§Р•Р“Рћ.
+РќРѕ РёР·СѓС‡РёС‚СЊ РєР°Рє РѕРЅ СЂР°Р±РѕС‚Р°РµС‚ - РјРѕР¶РЅРѕ, СЌС‚Рѕ РІСЃРµРіРґР° Р±СѓРґРµС‚ РїРѕР»РµР·РЅРѕ.
 ===========================================================================================================
  */
 
-    //-------------------------------  методы ----------------------------------------------------------
+    //-------------------------------  РјРµС‚РѕРґС‹ ----------------------------------------------------------
     private Class<?> findClass(String SimpleName) {
         String full = this.getClass().getName();
         String dogPath = full.replace(this.getClass().getSimpleName(), SimpleName);
         try {
             return Class.forName(dogPath);
         } catch (ClassNotFoundException e) {
-            fail("\nERROR:Тест не пройден. Класс " + SimpleName + " не найден.");
+            fail("\nERROR:РўРµСЃС‚ РЅРµ РїСЂРѕР№РґРµРЅ. РљР»Р°СЃСЃ " + SimpleName + " РЅРµ РЅР°Р№РґРµРЅ.");
         }
         return null;
     }
@@ -253,7 +253,7 @@ public class Test_jd01_02 {
                 methodName = methodName.replace("static", "").trim();
                 m = aClass.getDeclaredMethod(methodName, parameters);
                 if (!Modifier.isStatic(m.getModifiers())) {
-                    fail("\nERROR:Метод " + m.getName() + " должен быть статическим");
+                    fail("\nERROR:РњРµС‚РѕРґ " + m.getName() + " РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЃС‚Р°С‚РёС‡РµСЃРєРёРј");
                 }
             } else {
                 m = aClass.getDeclaredMethod(methodName, parameters);
@@ -262,9 +262,9 @@ public class Test_jd01_02 {
             return m;
 
         } catch (NoSuchMethodException e) {
-            System.err.println("\nERROR:Не найден метод " + methodName + " либо у него неверная сигнатура");
-            System.err.println("ERROR:Ожидаемый класс: " + className);
-            System.err.println("ERROR:Ожидаемый метод: " + methodName);
+            System.err.println("\nERROR:РќРµ РЅР°Р№РґРµРЅ РјРµС‚РѕРґ " + methodName + " Р»РёР±Рѕ Сѓ РЅРµРіРѕ РЅРµРІРµСЂРЅР°СЏ СЃРёРіРЅР°С‚СѓСЂР°");
+            System.err.println("ERROR:РћР¶РёРґР°РµРјС‹Р№ РєР»Р°СЃСЃ: " + className);
+            System.err.println("ERROR:РћР¶РёРґР°РµРјС‹Р№ РјРµС‚РѕРґ: " + methodName);
             throw new RuntimeException(e);
         }
     }
@@ -273,7 +273,7 @@ public class Test_jd01_02 {
         try {
             return cl.getDeclaredMethod(name, param);
         } catch (NoSuchMethodException e) {
-            fail("\nERROR:Тест не пройден. Метод " + cl.getName() + "." + name + " не найден\n");
+            fail("\nERROR:РўРµСЃС‚ РЅРµ РїСЂРѕР№РґРµРЅ. РњРµС‚РѕРґ " + cl.getName() + "." + name + " РЅРµ РЅР°Р№РґРµРЅ\n");
         }
         return null;
     }
@@ -284,14 +284,14 @@ public class Test_jd01_02 {
             return method.invoke(o, value);
         } catch (Exception e) {
             System.out.println(e.toString());
-            fail("\nERROR:Не удалось вызвать метод " + method.getName() + "\n");
+            fail("\nERROR:РќРµ СѓРґР°Р»РѕСЃСЊ РІС‹Р·РІР°С‚СЊ РјРµС‚РѕРґ " + method.getName() + "\n");
         }
         return null;
     }
 
 
-    //метод находит и создает класс для тестирования
-    //по имени вызывающего его метода, testTaskA1 будет работать с TaskA1
+    //РјРµС‚РѕРґ РЅР°С…РѕРґРёС‚ Рё СЃРѕР·РґР°РµС‚ РєР»Р°СЃСЃ РґР»СЏ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ
+    //РїРѕ РёРјРµРЅРё РІС‹Р·С‹РІР°СЋС‰РµРіРѕ РµРіРѕ РјРµС‚РѕРґР°, testTaskA1 Р±СѓРґРµС‚ СЂР°Р±РѕС‚Р°С‚СЊ СЃ TaskA1
     protected Test_jd01_02 run(String in) {
         return run(in, true);
     }
@@ -308,83 +308,83 @@ public class Test_jd01_02 {
         clName = clName.replaceFirst(".+__", "");
         clName = element.getClassName().replace(path[path.length - 1], clName);
         System.out.println("\n---------------------------------------------");
-        System.out.println("Старт теста для " + clName);
+        System.out.println("РЎС‚Р°СЂС‚ С‚РµСЃС‚Р° РґР»СЏ " + clName);
         if (!in.isEmpty()) System.out.println("input:" + in);
         System.out.println("---------------------------------------------");
         return new Test_jd01_02(clName, in, runMain);
     }
 
-    //-------------------------------  тест ----------------------------------------------------------
+    //-------------------------------  С‚РµСЃС‚ ----------------------------------------------------------
     public Test_jd01_02() {
     }
 
-    //переменные теста
-    public Class<?> aClass; //тестируемый класс
-    private final PrintStream oldOut = System.out; //исходный поток вывода
-    private final PrintStream newOut; //поле для перехвата потока вывода
-    private final StringWriter strOut = new StringWriter(); //накопитель строки вывода
+    //РїРµСЂРµРјРµРЅРЅС‹Рµ С‚РµСЃС‚Р°
+    public Class<?> aClass; //С‚РµСЃС‚РёСЂСѓРµРјС‹Р№ РєР»Р°СЃСЃ
+    private final PrintStream oldOut = System.out; //РёСЃС…РѕРґРЅС‹Р№ РїРѕС‚РѕРє РІС‹РІРѕРґР°
+    private final PrintStream newOut; //РїРѕР»Рµ РґР»СЏ РїРµСЂРµС…РІР°С‚Р° РїРѕС‚РѕРєР° РІС‹РІРѕРґР°
+    private final StringWriter strOut = new StringWriter(); //РЅР°РєРѕРїРёС‚РµР»СЊ СЃС‚СЂРѕРєРё РІС‹РІРѕРґР°
 
-    //Основной конструктор тестов
+    //РћСЃРЅРѕРІРЅРѕР№ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ С‚РµСЃС‚РѕРІ
     private Test_jd01_02(String className, String in, boolean runMain) {
         aClass = null;
         try {
             aClass = Class.forName(className);
         } catch (ClassNotFoundException e) {
-            fail("ERROR:Не найден класс " + className + "\n");
+            fail("ERROR:РќРµ РЅР°Р№РґРµРЅ РєР»Р°СЃСЃ " + className + "\n");
         }
         InputStream reader = new ByteArrayInputStream(in.getBytes());
-        System.setIn(reader);   //перехват стандартного ввода
-        System.setOut(newOut);  //перехват стандартного вывода
+        System.setIn(reader);   //РїРµСЂРµС…РІР°С‚ СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ РІРІРѕРґР°
+        System.setOut(newOut);  //РїРµСЂРµС…РІР°С‚ СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ РІС‹РІРѕРґР°
 
-        if (runMain) //если нужно запускать, то запустим, иначе оставим только вывод
+        if (runMain) //РµСЃР»Рё РЅСѓР¶РЅРѕ Р·Р°РїСѓСЃРєР°С‚СЊ, С‚Рѕ Р·Р°РїСѓСЃС‚РёРј, РёРЅР°С‡Рµ РѕСЃС‚Р°РІРёРј С‚РѕР»СЊРєРѕ РІС‹РІРѕРґ
             try {
                 Class<?>[] argTypes = new Class[]{String[].class};
                 Method main = aClass.getDeclaredMethod("main", argTypes);
                 main.invoke(null, (Object) new String[]{});
-                System.setOut(oldOut); //возврат вывода, нужен, только если был запуск
+                System.setOut(oldOut); //РІРѕР·РІСЂР°С‚ РІС‹РІРѕРґР°, РЅСѓР¶РµРЅ, С‚РѕР»СЊРєРѕ РµСЃР»Рё Р±С‹Р» Р·Р°РїСѓСЃРє
             } catch (NoSuchMethodException e) {
-                fail("ERROR:В классе " + aClass.getSimpleName() + " нет метода \"public static void main\"");
+                fail("ERROR:Р’ РєР»Р°СЃСЃРµ " + aClass.getSimpleName() + " РЅРµС‚ РјРµС‚РѕРґР° \"public static void main\"");
             } catch (IllegalAccessException | InvocationTargetException e) {
-                fail("ERROR:В классе " + aClass.getSimpleName() + "не удалось выполнить метод \"public static void main\"");
+                fail("ERROR:Р’ РєР»Р°СЃСЃРµ " + aClass.getSimpleName() + "РЅРµ СѓРґР°Р»РѕСЃСЊ РІС‹РїРѕР»РЅРёС‚СЊ РјРµС‚РѕРґ \"public static void main\"");
             }
     }
 
 
-    //проверка вывода
+    //РїСЂРѕРІРµСЂРєР° РІС‹РІРѕРґР°
     private Test_jd01_02 is(String str) {
-        assertEquals("ERROR:Ожидается такой вывод:\n<---начало---->\n" + str + "<---конец--->",
+        assertEquals("ERROR:РћР¶РёРґР°РµС‚СЃСЏ С‚Р°РєРѕР№ РІС‹РІРѕРґ:\n<---РЅР°С‡Р°Р»Рѕ---->\n" + str + "<---РєРѕРЅРµС†--->",
                 strOut.toString(),
                 str);
         return this;
     }
 
     public Test_jd01_02 include(String str) {
-        assertTrue("ERROR:Строка не найдена: " + str + "\n",
+        assertTrue("ERROR:РЎС‚СЂРѕРєР° РЅРµ РЅР°Р№РґРµРЅР°: " + str + "\n",
                 strOut.toString().contains(str));
         return this;
     }
 
     private Test_jd01_02 exclude(String str) {
-        assertFalse("ERROR:Лишние данные в выводе: " + str + "\n",
+        assertFalse("ERROR:Р›РёС€РЅРёРµ РґР°РЅРЅС‹Рµ РІ РІС‹РІРѕРґРµ: " + str + "\n",
                 strOut.toString().contains(str));
         return this;
     }
 
     private Test_jd01_02 matches(String regexp) {
-        assertTrue("ERROR:вывод не соответствует паттерну: " + regexp + "\n",
+        assertTrue("ERROR:РІС‹РІРѕРґ РЅРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ РїР°С‚С‚РµСЂРЅСѓ: " + regexp + "\n",
                 strOut.toString().matches(regexp));
         return this;
     }
 
     private Test_jd01_02 find(String regexp) {
         Matcher matcher = Pattern.compile(regexp).matcher(strOut.toString());
-        assertTrue("ERROR:вывод не содержит паттерн: " + regexp + "\n",
+        assertTrue("ERROR:РІС‹РІРѕРґ РЅРµ СЃРѕРґРµСЂР¶РёС‚ РїР°С‚С‚РµСЂРЅ: " + regexp + "\n",
                 matcher.find());
         return this;
     }
 
 
-    //логический блок перехвата вывода
+    //Р»РѕРіРёС‡РµСЃРєРёР№ Р±Р»РѕРє РїРµСЂРµС…РІР°С‚Р° РІС‹РІРѕРґР°
     {
         newOut = new PrintStream(new OutputStream() {
             private byte[] bytes = new byte[1];
@@ -392,20 +392,20 @@ public class Test_jd01_02 {
 
             @Override
             public void write(int b) {
-                if (pos == 0 && b == '\r') //пропуск \r (чтобы win mac и linux одинаково работали
+                if (pos == 0 && b == '\r') //РїСЂРѕРїСѓСЃРє \r (С‡С‚РѕР±С‹ win mac Рё linux РѕРґРёРЅР°РєРѕРІРѕ СЂР°Р±РѕС‚Р°Р»Рё
                     return;
-                if (pos == 0) { //определим кодировку https://ru.wikipedia.org/wiki/UTF-8
+                if (pos == 0) { //РѕРїСЂРµРґРµР»РёРј РєРѕРґРёСЂРѕРІРєСѓ https://ru.wikipedia.org/wiki/UTF-8
                     if ((b & 0b11110000) == 0b11110000) bytes = new byte[4];
                     else if ((b & 0b11100000) == 0b11100000) bytes = new byte[3];
                     else if ((b & 0b11000000) == 0b11000000) bytes = new byte[2];
                     else bytes = new byte[1];
                 }
                 bytes[pos++] = (byte) b;
-                if (pos == bytes.length) { //символ готов
-                    String s = new String(bytes); //соберем весь символ
-                    strOut.append(s); //запомним вывод для теста
-                    oldOut.append(s); //копию в обычный вывод
-                    pos = 0; //готовим новый символ
+                if (pos == bytes.length) { //СЃРёРјРІРѕР» РіРѕС‚РѕРІ
+                    String s = new String(bytes); //СЃРѕР±РµСЂРµРј РІРµСЃСЊ СЃРёРјРІРѕР»
+                    strOut.append(s); //Р·Р°РїРѕРјРЅРёРј РІС‹РІРѕРґ РґР»СЏ С‚РµСЃС‚Р°
+                    oldOut.append(s); //РєРѕРїРёСЋ РІ РѕР±С‹С‡РЅС‹Р№ РІС‹РІРѕРґ
+                    pos = 0; //РіРѕС‚РѕРІРёРј РЅРѕРІС‹Р№ СЃРёРјРІРѕР»
                 }
 
             }
