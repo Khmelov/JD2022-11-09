@@ -4,8 +4,8 @@ import by.it.HomeWork;
 import org.junit.Test;
 
 import java.lang.reflect.Method;
-
 import static org.junit.Assert.assertEquals;
+
 
 //поставьте курсор на следующую строку и нажмите Ctrl+Shift+F10
 public class Test_jd01_01 extends HomeWork {
