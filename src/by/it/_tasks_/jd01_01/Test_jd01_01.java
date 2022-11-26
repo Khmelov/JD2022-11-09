@@ -4,8 +4,8 @@ import by.it.HomeWork;
 import org.junit.Test;
 
 import java.lang.reflect.Method;
-
 import static org.junit.Assert.assertEquals;
+
 
 //поставьте курсор на следующую строку и нажмите Ctrl+Shift+F10
 public class Test_jd01_01 extends HomeWork {
@@ -54,11 +54,12 @@ public class Test_jd01_01 extends HomeWork {
 
     @Test(timeout = 1500)
     public void testTaskC2() {
-        run("34\n26\n").include(
-                "DEC:34+26=60\n" +
-                        "BIN:100010+11010=111100\n" +
-                        "HEX:22+1a=3c\n" +
-                        "OCT:42+32=74\n");
+        run("34\n26\n").include("""
+                        DEC:34+26=60
+                        BIN:100010+11010=111100
+                        HEX:22+1a=3c
+                        OCT:42+32=74
+                        """);
     }
 
     @Test(timeout = 1500)
