@@ -12,24 +12,24 @@ public class TaskB {
             surname[i] = secondName;
         }
         String[][] salary = new String[countGuys + 6][6];
-        salary[0][0] = "-------";
-        salary[0][1] = "-------";
-        salary[0][2] = "-------";
-        salary[0][3] = "-------";
-        salary[0][4] = "-------";
-        salary[0][5] = "-------";
+        salary[0][0] = "--------";
+        salary[0][1] = "--------";
+        salary[0][2] = "--------";
+        salary[0][3] = "--------";
+        salary[0][4] = "--------";
+        salary[0][5] = "--------";
         salary[1][0] = "Фамилия:";
         salary[1][1] = "Квартал1";
         salary[1][2] = "Квартал2";
         salary[1][3] = "Квартал3";
         salary[1][4] = "Квартал4";
         salary[1][5] = "Итого";
-        salary[2][0] = "-------";
-        salary[2][1] = "-------";
-        salary[2][2] = "-------";
-        salary[2][3] = "-------";
-        salary[2][4] = "-------";
-        salary[2][5] = "-------";
+        salary[2][0] = "--------";
+        salary[2][1] = "--------";
+        salary[2][2] = "--------";
+        salary[2][3] = "--------";
+        salary[2][4] = "--------";
+        salary[2][5] = "--------";
 
         int allSum = 0;
 
@@ -48,32 +48,31 @@ public class TaskB {
             System.out.println();
             int quarter4 = sc.nextInt();
             int sumQuarters = quarter1 + quarter2 + quarter3 + quarter4;
-            salary[line][1] = "        " + Integer.toString(quarter1);
-            salary[line][2] = "        " + Integer.toString(quarter2);
-            salary[line][3] = "        " + Integer.toString(quarter3);
-            salary[line][4] = "        " + Integer.toString(quarter4);
-            salary[line][5] = "     " + Integer.toString(sumQuarters);
+            salary[line][1] = "\t" + Integer.toString(quarter1);
+            salary[line][2] = "\t" + Integer.toString(quarter2);
+            salary[line][3] = "\t" + Integer.toString(quarter3);
+            salary[line][4] = "\t" + Integer.toString(quarter4);
+            salary[line][5] = "\t" + Integer.toString(sumQuarters);
             allSum += sumQuarters;
         }
-        salary[countGuys + 3][0] = "-------";
-        salary[countGuys + 3][1] = "-------";
-        salary[countGuys + 3][2] = "-------";
-        salary[countGuys + 3][3] = "-------";
-        salary[countGuys + 3][4] = "-------";
-        salary[countGuys + 3][5] = "-------";
+        salary[countGuys + 3][0] = "--------";
+        salary[countGuys + 3][1] = "--------";
+        salary[countGuys + 3][2] = "--------";
+        salary[countGuys + 3][3] = "--------";
+        salary[countGuys + 3][4] = "--------";
+        salary[countGuys + 3][5] = "--------";
         salary[countGuys + 4][0] = "Итого";
         salary[countGuys + 4][1] = Integer.toString(allSum);
-        salary[countGuys + 4][2] = "";
-        salary[countGuys + 4][3] = "";
-        salary[countGuys + 4][4] = "";
-        salary[countGuys + 4][5] = "";
+        salary[countGuys + 4][2] = "\t";
+        salary[countGuys + 4][3] = "\t";
+        salary[countGuys + 4][4] = "\t";
+        salary[countGuys + 4][5] = "\t";
         salary[countGuys + 5][0] = "Средняя";
         salary[countGuys + 5][1] = Double.toString(allSum/countGuys);
-        salary[countGuys + 5][2] = "";
-        salary[countGuys + 5][3] = "";
-        salary[countGuys + 5][4] = "";
-        salary[countGuys + 5][5] = "";
-
+        salary[countGuys + 5][2] = "\t";
+        salary[countGuys + 5][3] = "\t";
+        salary[countGuys + 5][4] = "\t";
+        salary[countGuys + 5][5] = "\t";
 
         for (int i = 0; i < salary.length; i++) {
             for (int j = 0; j < salary[i].length; j++) {
@@ -81,19 +80,5 @@ public class TaskB {
             }
             System.out.println();
         }
-
-
-
-//        int [][] array = new int[2][2];
-//        array[0][0] = 1;
-//        array[0][1] = 2;
-//        array[1][0] = 3;
-//        array[1][1] = 4;
-//        for (int i = 0; i < array.length; i++) {
-//            for (int j = 0; j < array[i].length; j++) {
-//                System.out.print(array[i][j] + "\t");
-//            }
-//            System.out.println();
-//        }
     }
 }
