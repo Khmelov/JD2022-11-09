@@ -7,12 +7,18 @@ public class TaskB {
         step1();
     }
 
-    private static void step1() {
-        for (double x = 1; x <= 6; x++) {
-        for (double a = 0; a <= 2; a=a+0.2){
-            double y = (x * x) * pow(7, a) - cos(x);
-            System.out.printf("При a=%-3.2f Сумма y=%f", a,y);
+    public static void step1() {
+        double x = 0;
+        double y = 0;
+        double a = 0;
+        for (double i = 1; i <= 6; i++) {
+            for (double j = 0; j < 2; j+=0.2) {
+                x=x+i;
+                a=a+0.2;
+                y = x * (pow(7, a) - cos(x));
+
         }
+            System.out.printf("При a=%-3.2f Сумма y = %f%n", a,y);
         }
     }
 }
