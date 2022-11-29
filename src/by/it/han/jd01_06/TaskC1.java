@@ -1,8 +1,5 @@
 package by.it.han.jd01_06;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class TaskC1 {
     public static void main(String[] args) {
         printText();
@@ -25,82 +22,48 @@ public class TaskC1 {
         return max;
     }
 
-    private static String formattedText(String text, int maxSentencesLength) {
+    private static void formattedText(String text, int maxSentencesLength) {
         String[] split = text.split("\n");
-        for (String s : split) {
-            if (s.length() < maxSentencesLength) {
-                s = getNewString(s, maxSentencesLength);
-                s = addSpace(s);
-//                System.out.println(s + " " + s.length());
-            } else {
-                System.out.println(s + " " + s.length());
+        for (String sentences : split) {
+            if (sentences.length() < maxSentencesLength) {
+                sentences = addSpace(sentences, maxSentencesLength);
             }
+            System.out.println(sentences);
         }
-        return text;
     }
 
-    private static String getNewString(String s, int maxSentencesLength) {
-        String[] split = s.split("\n");
-        StringBuilder newString = new StringBuilder(s);
-        int lengthString = 0;
-        for (String str : split) {
-            lengthString += str.length();
-        }
-        Pattern pattern = Pattern.compile("[А-Яа-яЁё]+");
-        Matcher matcher = pattern.matcher(s);
-        int countWords = getCountWords(matcher);
-        while (lengthString < maxSentencesLength) {
-            for (int i = 0; i < countWords; i++) {
-                if (lengthString < maxSentencesLength) {
-                    newString.append(" ");
-                } else {
+    private static String addSpace(String sentences, int maxSentencesLength) {
+        String[] arr = sentences.split(" ");
+        String[] newArr = new String[arr.length];
+        int lengthSentences = sentences.toCharArray().length;
+        int needSpace = maxSentencesLength - lengthSentences;
+        boolean isFirstRepeat = true;
+        newArr[arr.length - 1] = arr[arr.length - 1];
+        while (needSpace > 0) {
+            for (int i = 0; i < arr.length - 1; i++) {
+                if (needSpace == 0 && !isFirstRepeat) {
                     break;
                 }
-                lengthString++;
+                if (isFirstRepeat && needSpace > 0) {
+                    newArr[i] = arr[i] + "  ";
+                } else if (isFirstRepeat) {
+                    newArr[i] = arr[i] + " ";
+                } else {
+                    newArr[i] = newArr[i] + " ";
+                }
+                needSpace--;
             }
+            isFirstRepeat = false;
         }
-        return newString.toString();
+        return getText(newArr).toString();
     }
 
-    private static int getCountWords(Matcher matcher) {
-        int countWords = 0;
-        while (matcher.find()) {
-            countWords++;
-        }
-        return countWords;
-    }
-
-    private static String addSpace(String text) {
-        char[] arr = text.toCharArray();
-        char[] newArr = new char[arr.length];
-        Pattern pattern = Pattern.compile("[А-Яа-яЁё]+");
-        Matcher matcher = pattern.matcher(text);
-        int countWords = getCountWords(matcher);
-        int count = newArr.length;
-        for (int i = 0, j = 0; j < newArr.length; i++) {
-            if (arr[i] != ' ') {
-                newArr[j] = arr[i];
-                j++;
-                count--;
-            } else {
-                j += countWords - 1;
-            }
-        }
-        System.out.println(newArr);
-        return "";
-    }
-
-    private static String mergeArrayStrings(String[] arr) {
+    private static StringBuilder getText(String[] newArr) {
         StringBuilder text = new StringBuilder();
-        for (String s : arr) {
-            if (s == null) {
-                text.append(" ");
-            } else {
-                text.append(s);
-            }
+        for (String str : newArr) {
+            text.append(str);
         }
-        System.out.println(text);
-        return text.toString();
+        return text;
     }
 }
 
