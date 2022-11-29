@@ -15,14 +15,14 @@ public class TaskB2 {
     }
 
     private static String[] getSortStrings() {
-        String[] words = getModifiedArray();
+        String[] words = getModifiedArray(Poem.text);
         Arrays.sort(words, new StringLengthComparator());
         return words;
     }
 
 
-    private static String[] getModifiedArray() {
-        return Poem.text
+    public static String[] getModifiedArray(String text) {
+        return text
                 .replace("...", "")
                 .replaceAll("[-,:]", "")
                 .replaceAll("\\s+", " ")
