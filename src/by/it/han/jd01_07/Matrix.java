@@ -16,7 +16,7 @@ public class Matrix extends Var {
         this.value = convertToMatrix(strMatrix);
     }
 
-    private double[][] convertToMatrix(String strMatrix) {
+    public static double[][] convertToMatrix(String strMatrix) {
         String[] matrixArray = strMatrix
                 .replace("{", "")
                 .replace("\s", "")
@@ -42,6 +42,10 @@ public class Matrix extends Var {
 
     @Override
     public String toString() {
+        return getString(value);
+    }
+
+    public static String getString(double[][] value) {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
         for (int i = 0; i < value.length; i++) {
