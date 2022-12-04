@@ -7,7 +7,7 @@ import java.util.Comparator;
 public class TaskB2 {
     public static void main(String[] args) {
         String textReplaced=Poem.text.replaceAll("\\.{3}", " ").replaceAll("[-,:\\n]"," ").replaceAll("( {2,})"," ");
-        String[] textSplitted=textReplaced.split("\\.");
+        String[] textSplitted=textReplaced.split("[\\.!]");
         String[] textTrimmed=new String[textSplitted.length];
         for (int i = 0; i < textSplitted.length; i++) {
             textTrimmed[i]=textSplitted[i].trim();
