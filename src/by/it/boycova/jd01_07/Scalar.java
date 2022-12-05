@@ -20,9 +20,9 @@ public class Scalar extends Var {
 
 
 
-    ////@Override
-   ///// public String toString() {
-        ///return String.valueOf(value);
-    //}
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
 }
 
