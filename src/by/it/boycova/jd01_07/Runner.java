@@ -6,6 +6,7 @@ public class Runner {
         Var var2= new Scalar(var1);
         Var var3= new Scalar ("3.1415");
 
+
         System.out.println(var1);
         System.out.println(var2);
         System.out.println(var3);
