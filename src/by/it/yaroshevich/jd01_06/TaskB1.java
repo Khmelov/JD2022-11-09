@@ -10,13 +10,11 @@ public class TaskB1 {
     }
 
     private static void resultWord() {
-        String letters1 = "БбВвГгДдЖжЗзЙйКкЛлМмНнПпРрСсТтФфХхЦцЧчШшЩщ";
-        String [] wordArray = Poem.text.split("[\\s,.:!?]+");
+      //  String letters1 = "БбВвГгДдЖжЗзЙйКкЛлМмНнПпРрСсТтФфХхЦцЧчШшЩщ";
+        String text = Poem.text.replaceAll("[,!:.-]", "").trim();
+        String [] wordArray = text.split(" ");
         for (String word: wordArray){
-            if (letters1.contains(word.substring(0,1))){
-                    System.out.println(word);
-
-            }
+            System.out.println(word);
         }
     }
 }
