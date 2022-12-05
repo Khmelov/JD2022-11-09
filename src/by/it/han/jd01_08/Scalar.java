@@ -38,6 +38,8 @@ public class Scalar extends Var {
             return new Scalar(this.value - scalar.value);
         } else if (other instanceof Vector vector) {
             vector.sub(this);
+        } else if (other instanceof Matrix matrix) {
+            matrix.sub(this);
         }
         return super.sub(other);
     }

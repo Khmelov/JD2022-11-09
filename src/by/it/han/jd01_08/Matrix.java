@@ -1,5 +1,6 @@
 package by.it.han.jd01_08;
 
+import static by.it.han.jd01_03.Helper.multiply;
 import static by.it.han.jd01_07.Matrix.convertToMatrix;
 import static by.it.han.jd01_07.Matrix.getString;
 
@@ -63,6 +64,26 @@ public class Matrix extends Var {
 
     @Override
     public Var mul(Var other) {
+        double[][] result = new double[this.value.length][this.value[0].length];
+        if (other instanceof Matrix matrix && matrix.value.length == this.value.length) {
+            result = multiply(this.value, matrix.value);
+            return new Matrix(result);
+        } else if (other instanceof Scalar scalar) {
+            for (int i = 0; i < this.value.length; i++) {
+                for (int j = 0; j < this.value[i].length; j++) {
+                    result[i][j] = this.value[i][j] * scalar.getValue();
+                }
+            }
+            return new Matrix(result);
+        } else if (other instanceof Vector vector) {
+            double[] resultVector = new double[vector.getValue().length];
+            for (int i = 0; i < this.value.length; i++) {
+                for (int j = 0; j < this.value[i].length; j++) {
+                    resultVector[i] += this.value[i][j] * vector.getValue()[j];
+                }
+            }
+            return new Vector(resultVector);
+        }
         return super.mul(other);
     }
 

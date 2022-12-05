@@ -19,6 +19,10 @@ public class Vector extends Var {
         this.value = convertToVector(strVector);
     }
 
+    public double[] getValue() {
+        return value;
+    }
+
     @Override
     public Var add(Var other) {
         double[] cloneValue = this.value.clone();
