@@ -22,7 +22,7 @@ public class Matrix extends Var {
     @Override
     public Var add(Var other) {
         double[][] result = new double[this.value.length][this.value[0].length];
-        if (other instanceof Matrix matrix) {
+        if (other instanceof Matrix matrix && matrix.value.length == this.value.length) {
             for (int i = 0; i < this.value.length; i++) {
                 for (int j = 0; j < this.value[i].length; j++) {
                     result[i][j] = matrix.value[i][j] + this.value[i][j];
@@ -48,11 +48,6 @@ public class Matrix extends Var {
     @Override
     public Var mul(Var other) {
         return super.mul(other);
-    }
-
-    @Override
-    public Var div(Var other) {
-        return super.div(other);
     }
 
     @Override
