@@ -20,6 +20,42 @@ public class Matrix extends Var {
     }
 
     @Override
+    public Var add(Var other) {
+        double[][] result = new double[this.value.length][this.value[0].length];
+        if (other instanceof Matrix matrix) {
+            for (int i = 0; i < this.value.length; i++) {
+                for (int j = 0; j < this.value[i].length; j++) {
+                    result[i][j] = matrix.value[i][j] + this.value[i][j];
+                }
+            }
+            return new Matrix(result);
+        } else if (other instanceof Scalar scalar) {
+            for (int i = 0; i < this.value.length; i++) {
+                for (int j = 0; j < this.value[i].length; j++) {
+                    result[i][j] = scalar.getValue() + this.value[i][j];
+                }
+            }
+            return new Matrix(result);
+        }
+        return super.add(other);
+    }
+
+    @Override
+    public Var sub(Var other) {
+        return super.sub(other);
+    }
+
+    @Override
+    public Var mul(Var other) {
+        return super.mul(other);
+    }
+
+    @Override
+    public Var div(Var other) {
+        return super.div(other);
+    }
+
+    @Override
     public String toString() {
         return getString(value);
     }

@@ -53,12 +53,12 @@ public class Matrix extends Var {
             for (int j = 0; j < value[i].length; j++) {
                 sb.append(value[i][j]);
                 if (j != value[i].length - 1) {
-                    sb.append(",");
+                    sb.append(", ");
                 }
             }
             sb.append("}");
             if (i != value.length - 1) {
-                sb.append(",");
+                sb.append(", ");
             }
         }
         sb.append("}");
