@@ -25,6 +25,8 @@ public class Runner {
     }
 
     private static void print(Var var) {
-        System.out.println(var);
+        if (var != null) {
+            System.out.println(var);
+        }
     }
 }

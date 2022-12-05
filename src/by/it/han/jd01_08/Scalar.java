@@ -37,9 +37,19 @@ public class Scalar extends Var {
         if (other instanceof Scalar scalar) {
             return new Scalar(this.value - scalar.value);
         } else if (other instanceof Vector vector) {
-            vector.sub(this);
+            double[] result = new double[vector.getValue().length];
+            for (int i = 0; i < vector.getValue().length; i++) {
+                result[i] = this.value - vector.getValue()[i];
+            }
+            return new Vector(result);
         } else if (other instanceof Matrix matrix) {
-            matrix.sub(this);
+            double[][] result = new double[matrix.getValue().length][matrix.getValue()[0].length];
+            for (int i = 0; i < result.length; i++) {
+                for (int j = 0; j < result[i].length; j++) {
+                    result[i][j] = this.value - matrix.getValue()[i][j];
+                }
+            }
+            return new Matrix(matrix);
         }
         return super.sub(other);
     }

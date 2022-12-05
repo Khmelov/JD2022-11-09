@@ -20,6 +20,10 @@ public class Matrix extends Var {
         this.value = convertToMatrix(strMatrix);
     }
 
+    public double[][] getValue() {
+        return value;
+    }
+
     @Override
     public Var add(Var other) {
         double[][] result = new double[this.value.length][this.value[0].length];
@@ -75,7 +79,7 @@ public class Matrix extends Var {
                 }
             }
             return new Matrix(result);
-        } else if (other instanceof Vector vector) {
+        } else if (other instanceof Vector vector && this.value[0].length == vector.getValue().length) {
             double[] resultVector = new double[vector.getValue().length];
             for (int i = 0; i < this.value.length; i++) {
                 for (int j = 0; j < this.value[i].length; j++) {
