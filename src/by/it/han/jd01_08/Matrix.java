@@ -51,6 +51,20 @@ public class Matrix extends Var {
     }
 
     @Override
+    public Var div(Var other) {
+        double[][] result = new double[this.value.length][this.value[0].length];
+        if (other instanceof Scalar scalar && scalar.getValue() != 0) {
+            for (int i = 0; i < this.value.length; i++) {
+                for (int j = 0; j < this.value[i].length; j++) {
+                    result[i][j] = this.value[i][j] / scalar.getValue();
+                }
+            }
+            return new Matrix(result);
+        }
+        return super.div(other);
+    }
+
+    @Override
     public String toString() {
         return getString(value);
     }
