@@ -20,6 +20,6 @@ public class Runner {
 //        Helper.multiply(3.3, 3.2);
         double[][] d={{1,2,3},{4,5,6}};
         double[] t ={1.2, 2.3};
-        Helper.multiply(d,t);
+        Helper.mul(d,t);
     }
 }

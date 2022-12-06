@@ -40,7 +40,7 @@ public class Helper {
         System.out.println(Arrays.toString(array));
     }
 
-    public static double[] multiply(double[][] matrix, double[] vector){
+    public static double[] mul(double[][] matrix, double[] vector){
 //        double[] result=new double[matrix[0].length];
 //        for (int i = 0; i < vector.length; i++) {
 //            for (int j = 0; j < matrix[i].length; j++) {
@@ -58,7 +58,7 @@ public class Helper {
 //        return result;
     }
 
-    public static double[][] multiply(double[][] matrixLeft, double[][] matrixRight){
+    public static double[][] mul(double[][] matrixLeft, double[][] matrixRight){
         double[][] result = new double[matrixLeft.length][matrixRight[0].length];
 
         for (int i = 0; i < matrixLeft.length; i++) {
