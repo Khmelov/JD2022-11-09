@@ -41,7 +41,9 @@ public class Scalar extends Var {
     @Override
     public Var div(Var other) {
         if (other instanceof Scalar second){
-            return new Scalar(this.value / second.value);
+            if (second.value != 0){
+                return new Scalar(this.value / second.value);
+            }
         }
         // smth wrong
         return super.div(other);

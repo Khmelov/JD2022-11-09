@@ -13,7 +13,6 @@ public class Vector extends Var {
     public Vector(Vector values){
         this.values = values.values.clone();
     }
-
     public Vector(String strings){
         String[] array = strings
                 .replaceAll("[{}\\s]+","")
@@ -34,25 +33,84 @@ public class Vector extends Var {
             return new Vector(temp);
         }
         if (other instanceof Vector vector){
-            for (int i = 0; i < temp.length; i++) {
-                temp[i]+=vector.values[i];
+            if (temp.length == vector.values.length){
+                for (int i = 0; i < temp.length; i++) {
+                    temp[i]+=vector.values[i];
+                }
+                return new Vector(temp);
             }
-            return new Vector(temp);
         }
-        return super.add(other);
+        return other.add(this);
     }
 
     @Override
-//    public String toString() {
-//        String string = Arrays.toString(values);
-//        string = string.substring(1, string.length() - 1);
-//        return "{" + string + '}';
-//    }
+    public Var sub(Var other) {
+        double[] temp = values.clone();
+        if (other instanceof Scalar scalar){
+            for (int i = 0; i < temp.length; i++) {
+                temp[i]-=scalar.getValue();
+            }
+            return new Vector(temp);
+        }
+        if (other instanceof Vector vector){
+            if (temp.length == vector.values.length){
+                for (int i = 0; i < temp.length; i++) {
+                    temp[i]-=vector.values[i];
+                }
+                return new Vector(temp);
+            }
+        }
+        return other.sub(this);
+    }
+
+    @Override
+    public Var mul(Var other) {
+        double[] temp = values.clone();
+        if (other instanceof Scalar scalar){
+            for (int i = 0; i < temp.length; i++) {
+                temp[i]*=scalar.getValue();
+            }
+            return new Vector(temp);
+        }
+        if (other instanceof Vector vector){
+            if (temp.length == vector.values.length){
+                for (int i = 0; i < temp.length; i++) {
+                    temp[i]*=vector.values[i];
+                }
+                double sum = 0;
+                for (int i = 0; i < temp.length; i++) {
+                    sum+=temp[i];
+                }
+                return new Vector(String.valueOf(sum));
+            }
+        }
+        return super.mul(other);
+    }
+
+    @Override
+    public Var div(Var other) {
+        double[] temp = values.clone();
+        if (other instanceof Scalar scalar){
+            for (int i = 0; i < temp.length; i++) {
+                temp[i]/=scalar.getValue();
+            }
+            return new Vector(temp);
+        }
+        return super.div(other);
+    }
+
+    public double[] getValues() {
+        return values;
+    }
+
     public String toString(){
         StringJoiner out = new StringJoiner(", ", "{", "}");
-        for (double value : values) {
-            out.add(String.valueOf(value));
+        if (values.length>1){
+            for (double value : values) {
+                out.add(String.valueOf(value));
+            }
+            return out.toString();
         }
-        return out.toString();
+        return String.valueOf(values[0]).replaceAll("[{}]","");
     }
 }
