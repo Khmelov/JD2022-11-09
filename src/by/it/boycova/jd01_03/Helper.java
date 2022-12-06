@@ -1,4 +1,3 @@
-package by.it.boycova.jd01_03;/*
 package by.it.boycova.jd01_03;
 
 public class Helper {
@@ -38,28 +37,7 @@ public class Helper {
             }
         }
     }
-
-    public static void multiply(double[][] matrix, double[] vector) {
-        int x=0;
-        for (int i = 0; i < matrix[0].length;) {
-            for (int j = 0; j < matrix.length; j++) {
-                vector[x]= matrix[0][j];
-                x++;
-            }
-        }
-        double[][] result=new double[][];
-        double res= vector*matrix;
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix.length; j++) {
-                if(j==x){
-                    vector[x]*matrix[i][j];
-                }
-            }
-        }
-    }
-
 }
 
 
 
- */

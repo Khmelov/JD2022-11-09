@@ -18,8 +18,6 @@ public class Scalar extends Var {
          this.value=var1.value;
     }
 
-
-
     @Override
     public String toString() {
         return String.valueOf(value);
