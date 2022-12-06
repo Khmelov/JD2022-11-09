@@ -1,4 +1,4 @@
-package by.it._tasks_.jd01_07;
+package by.it.bolshakov.jd01_07;
 
 
 import by.it.HomeWork;
