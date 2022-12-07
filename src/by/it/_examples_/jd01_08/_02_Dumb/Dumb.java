@@ -1,7 +1,7 @@
 package by.it._examples_.jd01_08._02_Dumb;
 
 class Dumb {
-    { this.id = 6; }
+    { this.id = 6; } //logical block
     int id;
     Dumb() {
         System.out.println("конструктор класса Dumb ");
