@@ -21,10 +21,10 @@ public class Runner {
         print(s.sub(v));
         print(v.sub(s));
         /* Уровень сложности B (векторные операции) закомментируйте, если не реализовали */
-        System.out.println("jfjfjf");
+
         print(s.div(s2));
         print(v.div(s2));
-        System.out.println("jfjfjf");
+
         print((v.sub(v2)));
         print(v.add(v)); //выведет в консоль {2.0, 4.0, 6.0}
         print(v.sub(v)); //выведет в консоль {0.0, 0.0, 0.0}
