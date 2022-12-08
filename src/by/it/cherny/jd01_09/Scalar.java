@@ -1,6 +1,6 @@
-package by.it.cherny.jd01_08;
+package by.it.cherny.jd01_09;
 
-public class Scalar extends Var {
+class Scalar extends Var {
     private final double value;
 
     public Scalar(double value) {
