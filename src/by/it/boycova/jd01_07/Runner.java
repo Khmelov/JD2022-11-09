@@ -10,12 +10,8 @@ public class Runner {
         Var var5=new Vector(var4);
         Var var6=new Vector("{1.0, 2.0, 4.0}");
 
-        System.out.println(var1);
-        System.out.println(var2);
-        System.out.println(var3);
-        System.out.println(var4);
-        System.out.println(var5);
-        System.out.println(var6);
-
+        Matrix var7=new Matrix(new double[][]{{1.0,2.0},{3.0,4.0}});
+        Var var8= new Matrix(var7);
+        Var var9= new Matrix("{{1.0,2.0},{3.0,4.0}}");
     }
 }
