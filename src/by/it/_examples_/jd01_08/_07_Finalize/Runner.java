@@ -9,6 +9,7 @@ public class Runner {
             // Object d3 = new Manager (3); // 2
             d2 = d1;
             // просьба выполнить "сборку мусора"
+            System.runFinalization();
             System.gc();
         }
     }

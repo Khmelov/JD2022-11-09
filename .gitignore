@@ -6,6 +6,7 @@ out/
 /*.xml
 /*/*.xml
 *.iml
+HW.java
 
 ### VS Code ###
 .vscode/
