@@ -15,5 +15,7 @@ public class Runner {
         System.out.println(var4);
         System.out.println(var5);
         System.out.println(var6);
+
+        Var var7 = new Matrix("{{1.0,2.0}, {3.0,4.0}}");
     }
 }
