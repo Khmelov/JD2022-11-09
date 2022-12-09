@@ -1,6 +1,5 @@
 package by.it.yaroshevich.jd01_08;
 
-import java.util.Arrays;
 import java.util.StringJoiner;
 
 public class Vector extends Var {
@@ -16,6 +15,27 @@ public class Vector extends Var {
 
         this.values = vector.values.clone();
     }
+
+
+    @Override
+    public Var add(Var other) {
+        double[] temp = values.clone();
+        if (other instanceof Scalar scalar) {
+            for (int i = 0; i < temp.length; i++) {
+                temp[i] += scalar.getValue();
+            }
+                return new Vector(temp);
+            }
+
+        if (other instanceof Vector vector) {
+            for (int i = 0; i < temp.length; i++) {
+                temp[i] += vector.values[i];
+            }
+            return new Vector(temp);
+        }
+            return super.add(other);
+        }
+
 
     public Vector(String string){
         String [] array = string
