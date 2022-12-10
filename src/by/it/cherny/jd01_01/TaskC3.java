@@ -1,4 +1,7 @@
 package by.it.cherny.jd01_01;
+
+import java.util.Scanner;
+
 /*
 Ускорение свободного падения на Земле и Марсе таково:
 Марс   3.86
@@ -31,5 +34,20 @@ package by.it.cherny.jd01_01;
 
 */
 class TaskC3 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int weight = scanner.nextInt();
+        System.out.println(getWeight(weight));
+    }
 
+    public static double getWeight(int weight) {
+        double gMars = 3.86;
+        double gEarth = 9.81;
+        double result = (weight / gEarth) * gMars;
+        if ((result * 100) % 1 < 0.5) {
+            return (int) (result * 100) * 0.01;
+        } else {
+            return (int) (result * 100 + 1) * 0.01;
+        }
+    }
 }
