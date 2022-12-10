@@ -13,7 +13,11 @@ public class Scalar extends Var {
     }
 
     public Scalar(Scalar otherScalar) {
-        this.value=otherScalar.value + 1;
+        this.value=otherScalar.value;
+    }
+
+    public double getValue(){
+        return value;
     }
 
     @Override
