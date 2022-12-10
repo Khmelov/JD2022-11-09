@@ -7,5 +7,4 @@ public class Runner {
         System.out.println(v1);
         System.out.println(v2);
     }
-
 }
