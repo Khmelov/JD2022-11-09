@@ -5,7 +5,11 @@ import java.lang.reflect.Method;
 public class BeanTester {
 
     public static void main(String[] args) throws Exception {
-        Class<?> beenClass = Class.forName("by.it.han.jd01_10.Bean");
+        Class<?> beenClass = Bean.class;
+        printAnnotationMethods(beenClass);
+    }
+
+    private static void printAnnotationMethods(Class<?> beenClass) throws Exception {
         for (Method method : beenClass.getDeclaredMethods()) {
             if (method.isAnnotationPresent(Param.class)) {
                 int a = method.getDeclaredAnnotation(Param.class).a();
