@@ -4,7 +4,7 @@ import java.util.*;
 
 public class ListA<T> implements List<T> {
 
-    private T[] elements = (T[]) new Object[10];
+    private T[] elements = (T[]) new Object[0];
     private int size = 0;
 
     @Override
@@ -25,18 +25,15 @@ public class ListA<T> implements List<T> {
     public T remove(int index) {
         T element = elements[index];
         System.arraycopy(elements, index + 1, elements, index, size - index - 1);
-        elements[--size] = null;
+        elements[size--] = null;
         return element;
     }
 
     @Override
     public String toString() {
         StringJoiner joiner = new StringJoiner(", ", "[", "]");
-        for (T element : elements) {
-            if (element == null) {
-                break;
-            }
-            joiner.add(element.toString());
+        for (int i = 0; i < size; i++) {
+            joiner.add(elements[i].toString());
         }
         return joiner.toString();
     }
