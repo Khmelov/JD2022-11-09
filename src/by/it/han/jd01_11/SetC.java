@@ -1,41 +1,62 @@
 package by.it.han.jd01_11;
 
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
 public class SetC<T> implements Set<T> {
 
-    private final HashMap<T, Object> map;
+    private T[] elements = (T[]) new Object[0];
 
     private int size = 0;
 
-    public SetC() {
-        this.map = new HashMap<>();
-    }
-
-    private static final Object PRESENT = new Object();
+    private boolean haveNull = false;
 
     @Override
     public boolean add(T t) {
-        size++;
-        return map.put(t, PRESENT) == null;
+        if (size == elements.length) {
+            elements = Arrays.copyOf(elements, size * 3 / 2 + 1);
+        }
+        for (T element : elements) {
+            if (t == null && !haveNull) {
+                haveNull = true;
+                break;
+            } else if (t == null) {
+                return true;
+            } else if (t.equals(element)) {
+                return true;
+            }
+        }
+        elements[size++] = t;
+        return true;
     }
 
     @Override
     public boolean remove(Object o) {
-        return map.remove(o) == PRESENT;
+        for (int i = 0; i < elements.length; i++) {
+            if (elements[i] == (o)) {
+                System.arraycopy(elements, i + 1, elements, i, size - i);
+                elements[size--] = null;
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public boolean contains(Object o) {
-        return map.containsKey(o);
+        for (T element : elements) {
+            if (element == o) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public int size() {
-        return map.size();
+        return size;
     }
 
     @Override
@@ -61,20 +82,41 @@ public class SetC<T> implements Set<T> {
 
     @Override
     public boolean removeAll(Collection<?> collection) {
-        for (Object o : collection) {
-            remove(o);
+        boolean[] isRemove = new boolean[size];
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < collection.size(); j++) {
+                if (elements[i] == collection.toArray()[j]) {
+                    isRemove[i] = true;
+                    break;
+                }
+            }
+        }
+        for (int i = 0; i < size; i++) {
+            if (isRemove[i]) {
+                System.arraycopy(elements, i + 1, elements, i, size - i);
+                elements[size--] = null;
+            }
         }
         return true;
     }
 
     @Override
     public void clear() {
-        map.clear();
+
     }
 
     @Override
     public String toString() {
-        return map.keySet().toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("[");
+        for (int i = 0; i < size; i++) {
+            stringBuilder.append(elements[i]);
+            if (i != size - 1) {
+                stringBuilder.append(", ");
+            }
+        }
+        stringBuilder.append("]");
+        return stringBuilder.toString();
     }
 
     //-----------------------------------------------------
