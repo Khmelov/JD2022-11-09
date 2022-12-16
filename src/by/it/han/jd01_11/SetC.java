@@ -11,7 +11,7 @@ public class SetC<T> implements Set<T> {
 
     private int size = 0;
 
-    private boolean haveNull = false;
+    private boolean setHasNull = false;
 
     @Override
     public boolean add(T t) {
@@ -19,8 +19,8 @@ public class SetC<T> implements Set<T> {
             elements = Arrays.copyOf(elements, size * 3 / 2 + 1);
         }
         for (T element : elements) {
-            if (t == null && !haveNull) {
-                haveNull = true;
+            if (t == null && !setHasNull) {
+                setHasNull = true;
                 break;
             } else if (t == null) {
                 return true;
@@ -37,7 +37,7 @@ public class SetC<T> implements Set<T> {
         for (int i = 0; i < elements.length; i++) {
             if (elements[i] == (o)) {
                 System.arraycopy(elements, i + 1, elements, i, size - i);
-                elements[size--] = null;
+                elements[--size] = null;
                 return true;
             }
         }
@@ -74,35 +74,25 @@ public class SetC<T> implements Set<T> {
 
     @Override
     public boolean containsAll(Collection<?> collection) {
+        boolean isContains = false;
         for (Object o : collection) {
-            contains(o);
+            isContains = contains(o);
         }
-        return true;
+        return isContains;
     }
 
     @Override
     public boolean removeAll(Collection<?> collection) {
-        boolean[] isRemove = new boolean[size];
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < collection.size(); j++) {
-                if (elements[i] == collection.toArray()[j]) {
-                    isRemove[i] = true;
-                    break;
-                }
-            }
-        }
-        for (int i = 0; i < size; i++) {
-            if (isRemove[i]) {
-                System.arraycopy(elements, i + 1, elements, i, size - i);
-                elements[size--] = null;
-            }
+        for (Object o : collection) {
+            remove(o);
         }
         return true;
     }
 
     @Override
     public void clear() {
-
+        elements = (T[]) new Object[0];
+        size = 0;
     }
 
     @Override
