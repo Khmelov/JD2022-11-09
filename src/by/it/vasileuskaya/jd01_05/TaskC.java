@@ -4,7 +4,28 @@ import static java.lang.Math.*;
 
 public class TaskC {
     public static void main(String[] args) {
-        taskC1();
+
+        //taskC1();
+        taskC2();
+    }
+
+    private static void taskC2() {
+        int[] a = createArrayA();
+        printArrayA(a);
+
+    }
+
+    private static int[] createArrayA() {
+        int[] arrayA = new int[31];
+        for (int i = 0; i < arrayA.length; i++) {
+            arrayA[i] = (int) (random() * 348) + 103;
+            System.out.println(arrayA[i]);
+        }
+        return arrayA;
+    }
+
+    private static void printArrayA(int[] a) {
+
     }
 
     static void taskC1() {
@@ -68,8 +89,7 @@ public class TaskC {
         for (int i = 0; i < array.length; i++) {
             proizvedenie *= array[i];
         }
-        double sredneeGeometrich = pow(proizvedenie, 1.0 / countOfElements);
-        return sredneeGeometrich;
+        return pow(proizvedenie, 1.0 / countOfElements);
     }
 }
 
