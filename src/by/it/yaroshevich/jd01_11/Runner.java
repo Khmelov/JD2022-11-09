@@ -1,6 +1,5 @@
 package by.it.yaroshevich.jd01_11;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Runner {
@@ -15,5 +14,7 @@ public class Runner {
         list.remove(3);
         System.out.println(list);
         System.out.printf("element[1] = %s%n",list.get(1));
+        list.add(1, "six");
+        System.out.println(list);
     }
 }
