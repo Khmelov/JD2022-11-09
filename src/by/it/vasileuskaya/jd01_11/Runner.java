@@ -38,6 +38,9 @@ public class Runner {
         System.out.println(listB.size());
         listB.addAll(listC);
         System.out.println("Array 2 in 1: " + listB);
+        System.out.println(listB.indexOf("white"));
+        System.out.println(listB.contains("knife"));
+
     }
 
 }
