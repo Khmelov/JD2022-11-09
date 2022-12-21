@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class Parser {
     @SuppressWarnings("ConstantConditions")
-    public Var calc(String expression) {
+    public Var calc(String expression) throws CalcException {
         //1+2  4+5  6*9  9-{1,2,3} 3 A=9
         String[] parts = expression.split(Patterns.OPERATION, 2);
         if (parts.length == 1) {

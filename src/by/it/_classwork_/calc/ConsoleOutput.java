@@ -6,4 +6,9 @@ public class ConsoleOutput implements Output {
     public void showResult(Var var) {
         System.out.println(var);
     }
+
+    @Override
+    public void showCalcException(CalcException e) {
+        System.out.println(e.getMessage());
+    }
 }

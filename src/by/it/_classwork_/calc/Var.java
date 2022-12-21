@@ -7,17 +7,21 @@ abstract class Var implements Operation {
 
     private static final Map<String, Var> vars = new HashMap<>();
 
-    public static Var create(String stringValue) {
-        if (stringValue.matches(Patterns.SCALAR)) {
-            return new Scalar(stringValue);
+    public static Var create(String varName) throws CalcException {
+        if (varName.matches(Patterns.SCALAR)) {
+            return new Scalar(varName);
         }
-        if (stringValue.matches(Patterns.VECTOR)) {
-            return new Vector(stringValue);
+        if (varName.matches(Patterns.VECTOR)) {
+            return new Vector(varName);
         }
-        if (stringValue.matches(Patterns.MATRIX)) {
-            return new Matrix(stringValue);
+        if (varName.matches(Patterns.MATRIX)) {
+            return new Matrix(varName);
         }
-        return vars.get(stringValue);
+        Var var = vars.get(varName);
+        if (var==null){
+            throw new CalcException("Variable %s not found".formatted(varName));
+        }
+        return var;
     }
 
     public static Var save(String name, Var value) {
@@ -32,27 +36,23 @@ abstract class Var implements Operation {
     }
 
     @Override
-    public Var add(Var other) {
-        System.out.printf("Operation %s + %s is impossible%n", this, other);
-        return null;
+    public Var add(Var other) throws CalcException {
+        throw new CalcException(String.format("Operation %s + %s is impossible%n", this, other));
     }
 
     @Override
-    public Var sub(Var other) {
-        System.out.printf("Operation %s - %s is impossible%n", this, other);
-        return null;
+    public Var sub(Var other)  throws CalcException {
+        throw new CalcException(String.format("Operation %s - %s is impossible%n", this, other));
     }
 
     @Override
-    public Var mul(Var other) {
-        System.out.printf("Operation %s * %s is impossible%n", this, other);
-        return null;
+    public Var mul(Var other)  throws CalcException {
+        throw new CalcException(String.format("Operation %s * %s is impossible%n", this, other));
     }
 
     @Override
-    public Var div(Var other) {
-        System.out.printf("Operation %s / %s is impossible%n", this, other);
-        return null;
+    public Var div(Var other) throws CalcException {
+        throw new CalcException(String.format("Operation %s / %s is impossible%n", this, other));
     }
 
     @Override

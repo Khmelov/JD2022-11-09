@@ -15,21 +15,24 @@ class Vector extends Var {
     }
 
     @Override
-    public Var add(Var other) {
+    public Var add(Var other) throws CalcException {
         double[] temp = values.clone();
-        if (other instanceof Scalar scalar){
+        if (other instanceof Scalar scalar) {
             for (int i = 0; i < temp.length; i++) {
-                temp[i]+=scalar.getValue();
+                temp[i] += scalar.getValue();
             }
-            Vector res = new Vector(temp);
-            return res;
+            return new Vector(temp);
         }
-        if (other instanceof Vector vector){
-            for (int i = 0; i < temp.length; i++) {
-                temp[i]+=vector.values[i];
+        if (other instanceof Vector vector) {
+            if (temp.length != vector.values.length) {
+                throw new CalcException("incorrect size %s or %s"
+                        .formatted(this, vector)
+                );
             }
-            Vector res = new Vector(temp);
-            return res;
+            for (int i = 0; i < temp.length; i++) {
+                temp[i] += vector.values[i];
+            }
+            return new Vector(temp);
         }
         return super.add(other);
     }
