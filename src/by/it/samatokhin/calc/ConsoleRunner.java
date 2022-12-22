@@ -12,8 +12,16 @@ class ConsoleRunner {
         for (; ; ) {
             String expression = input.getCommand();
             if (expression != null) {
-                Var result = parser.calc(expression);
-                output.showResult(result);
+                try {
+                    if (!expression.equals("printvar")) {
+                        Var result = parser.calc(expression);
+                        output.showResult(result);
+                    } else {
+                        Var.print();
+                    }
+                } catch (CalcException e) {
+                    output.showCalcExeption(e);
+                }
             } else {
                 break;
             }
