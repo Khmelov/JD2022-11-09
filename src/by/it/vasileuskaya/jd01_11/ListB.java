@@ -11,7 +11,11 @@ public class ListB<T> implements List<T> {
     public String toString() {
         StringJoiner stringOut = new StringJoiner(", ", "[", "]");
         for (int i = 0; i < size; i++) {
-            stringOut.add(elements[i].toString());
+            if (elements[i] != null) {
+                stringOut.add(elements[i].toString());
+            } else {
+                stringOut.add("null");
+            }
         }
         return stringOut.toString();
     }
@@ -28,7 +32,7 @@ public class ListB<T> implements List<T> {
 
     @Override
     public boolean contains(Object o) {
-        return false;
+        return indexOf(o) >= 0;
     }
 
     @Override
@@ -38,7 +42,7 @@ public class ListB<T> implements List<T> {
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return elements;
     }
 
     @Override
@@ -73,7 +77,7 @@ public class ListB<T> implements List<T> {
             elements = Arrays.copyOf(elements, (elements.length + (arrayNew.length - (elements.length - size))));
         }
         System.arraycopy(arrayNew, 0, elements, size, arrayNew.length);
-        size += arrayNew.length;
+        size += c.size();
         return true;
     }
 
@@ -135,7 +139,20 @@ public class ListB<T> implements List<T> {
 
     @Override
     public int indexOf(Object o) {
-        return 0;
+        if (o == null) {
+            for (int i = 0; i < elements.length; i++) {
+                if (elements[i] == null) {
+                    return i;
+                }
+            }
+        } else {
+            for (int i = 0; i < elements.length; i++) {
+                if (o.equals(elements[i])) {
+                    return i;
+                }
+            }
+        }
+        return -1;
     }
 
     @Override
