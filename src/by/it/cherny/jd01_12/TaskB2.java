@@ -3,6 +3,7 @@ package by.it.cherny.jd01_12;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 
 public class TaskB2 {
     public static void main(String[] args) {
@@ -24,35 +25,26 @@ public class TaskB2 {
     }
 
     static String process(ArrayList<String> peoples){
-        Iterator<String> iterator = peoples.iterator();
-        int i=0;
-        do {
-            if (iterator.hasNext()){
-                iterator.next();
-                if (i%2==0 && i!=0){
-                    iterator.remove();
-                }
-                i++;
-            }else {
-                iterator= peoples.iterator();
-            }
-        } while(peoples.size()!=1);
-        return peoples.get(0);
+        return getLast(peoples);
     }
     static String process(LinkedList<String> peoples){
-        int k=2;
-        int size = peoples.size();
-        do {
-            for (int i = k; i < peoples.size(); i++) {
-                peoples.remove(peoples.get(i));
+        return getLast(peoples);
+    }
+
+    private static String getLast(List<String> peoples) {
+        Boolean removeIt=false;
+        while (peoples.size()>1){
+            Iterator<String> iterator = peoples.iterator();
+            while (iterator.hasNext()){
+                iterator.next();
+                if (removeIt){
+                    iterator.remove();
+                    removeIt=false;
+                    continue;
+                }
+                removeIt=true;
             }
-            if (peoples.size()%2==0){
-                k=0;
-            } else {
-                k=1;
-            }
-            size = peoples.size();
-        } while(peoples.size()!=1);
+        }
         return peoples.get(0);
     }
 }

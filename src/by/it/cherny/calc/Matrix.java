@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 class Matrix extends Var {
     private double[][] values;
-
     public Matrix(double[][] values) {
         this.values = values.clone();
     }

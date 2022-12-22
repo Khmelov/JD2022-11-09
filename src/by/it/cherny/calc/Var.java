@@ -1,6 +1,12 @@
 package by.it.cherny.calc;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+
 abstract class Var implements Operation {
+    static final Map<String, Var> vars = new HashMap<>();
+
     public static Var create(String stringValue) {
         if (stringValue.matches(Patterns.SCALAR)){
             return new Scalar(stringValue);
@@ -11,7 +17,12 @@ abstract class Var implements Operation {
         if (stringValue.matches(Patterns.MATRIX)){
             return new Matrix(stringValue);
         }
-        return null;
+        return vars.get(stringValue);
+    }
+
+    public static Var save(String name, Var value) {
+        vars.put(name, value);
+        return value;
     }
 
     @Override

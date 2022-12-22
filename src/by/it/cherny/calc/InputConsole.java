@@ -3,9 +3,7 @@ package by.it.cherny.calc;
 import java.util.Scanner;
 
 public class InputConsole implements Input {
-
     private final Scanner scanner;
-
     public InputConsole(Scanner scanner) {
         this.scanner = scanner;
     }
