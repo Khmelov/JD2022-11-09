@@ -41,7 +41,7 @@ class Vector extends Var {
     }
 
     @Override
-    public Var add(Var other) {
+    public Var add(Var other) throws CalcException {
         double[] temporary = values.clone();
         if (other instanceof Scalar) {
             Scalar scalarTemp = (Scalar) other;
@@ -52,6 +52,9 @@ class Vector extends Var {
         }
         if (other instanceof Vector) {//проверка на размерость
             Vector vectorTemp = (Vector) other;
+            if (temporary.length != vectorTemp.values.length) {
+                throw new CalcException("Incorrect size %s or %s".formatted(this, vectorTemp));
+            }
             for (int i = 0; i < temporary.length; i++) {
                 temporary[i] += vectorTemp.values[i];
             }
@@ -61,7 +64,7 @@ class Vector extends Var {
     }
 
     @Override
-    public Var sub(Var other) {
+    public Var sub(Var other) throws CalcException {
         double[] temporary = values.clone();
         if (other instanceof Scalar) {
             Scalar scalarTemp = (Scalar) other;
@@ -81,7 +84,7 @@ class Vector extends Var {
     }
 
     @Override
-    public Var mul(Var other) { //проверка на размерость
+    public Var mul(Var other) throws CalcException { //проверка на размерость
         double[] temporary = values.clone();
         if (other instanceof Scalar) {
             Scalar scalarTemp = (Scalar) other;
@@ -104,7 +107,7 @@ class Vector extends Var {
     }
 
     @Override
-    public Var div(Var other) {//проверка скаляр=0?
+    public Var div(Var other) throws CalcException {//проверка скаляр=0?
         double[] temporary = values.clone();
         Var resultDiv = new Vector("0");
         if (other instanceof Scalar) {
