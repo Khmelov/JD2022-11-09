@@ -32,15 +32,13 @@ public class ListB<T> implements List<T> {
 
     @Override
     public T set(int index, T element) {
-        T settedElem = element;
+        T element1 = elements[index];
         elements[index]=element;
-        return settedElem;
+        return element1;
     }
 
     @Override
     public void add(int index, T element) {
-        T[] elem = (T[]) new Object[1];
-        elem[0]=element;
         T[] newArray = (T[]) new Object[elements.length+1];
         System.arraycopy(elements, 0,newArray,0, index);
         newArray[index]=element;
@@ -49,18 +47,24 @@ public class ListB<T> implements List<T> {
         elements = Arrays.copyOf(newArray, newArray.length);
     }
 
-//    @Override
-//    public boolean addAll(Collection<? extends T> c) {
-//        int size = c.size();
-//        System.out.println(Arrays.toString(c.toArray()));
-//        System.arraycopy(size, elements.length,elements,elements.length+1, size);
-//        return true;
-//    }
+    @Override
+    public boolean addAll(Collection<? extends T> c) {
+        T[] newArray = (T[]) new Object[elements.length+c.size()];
+        System.arraycopy(c.toArray(), 0,newArray,size, c.size());
+        System.arraycopy(elements, 0,newArray,0, size);
+        size+=c.size();
+        elements = Arrays.copyOf(newArray, newArray.length);
+        return true;
+    }
 
     @Override
     public String toString() {
         StringJoiner out = new StringJoiner(", ", "[", "]");
         for (int i = 0; i < size; i++) {
+            if (elements[i]==null){
+                out.add("null");
+                continue;
+            }
             out.add(elements[i].toString());
         }
         return out.toString();
@@ -107,10 +111,10 @@ public class ListB<T> implements List<T> {
         return false;
     }
 
-    @Override
-    public boolean addAll(Collection<? extends T> c) {
-        return false;
-    }
+//    @Override
+//    public boolean addAll(Collection<? extends T> c) {
+//        return false;
+//    }
 
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
