@@ -1,27 +1,81 @@
 package by.it.cherny.jd01_11;
 
-import java.util.Collection;
-
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
 public class SetC<T> implements Set<T> {
-    private T[] elements = (T[]) new Set[20];
-
+    private TreeSet elements = new TreeSet();
+    int size = elements.size();
     @Override
-    public int size() {
-        return 0;
+    public boolean add(T element) {
+        elements.add(element);
+        return true;
     }
 
     @Override
-    public boolean isEmpty() {
+    public boolean remove(Object o) {
+        if (elements.contains(o.toString())){
+            elements.remove(o);
+            return true;
+        }
         return false;
     }
 
     @Override
     public boolean contains(Object o) {
+        if (elements.contains(0)){
+            return true;
+        }
         return false;
     }
+
+    @Override
+    public int size() {
+        return size;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        if (size>0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean containsAll(Collection<?> c) {
+        return elements.containsAll(c);
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends T> c) {
+        elements.addAll(c);
+        return true;
+    }
+
+    @Override
+    public boolean removeAll(Collection<?> c) {
+        elements.removeAll(c);
+        return true;
+    }
+
+    @Override
+    public String toString() {
+//        StringBuilder out = new StringBuilder();
+//        Object[] array = elements.toArray();
+//        out.append("[");
+//        for (int i = 0; i < size; i++) {
+//            if (i != size-1){
+//                out.append(array[i]).append(", ");
+//            } else {
+//                out.append(array[i]);
+//            }
+//        }
+//        out.append("]");
+//        return out.toString();
+        return elements.toString();
+    }
+
+    //----------------------------------
 
     @Override
     public Iterator<T> iterator() {
@@ -39,32 +93,7 @@ public class SetC<T> implements Set<T> {
     }
 
     @Override
-    public boolean add(T t) {
-        return false;
-    }
-
-    @Override
-    public boolean remove(Object o) {
-        return false;
-    }
-
-    @Override
-    public boolean containsAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends T> c) {
-        return false;
-    }
-
-    @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public boolean removeAll(Collection<?> c) {
         return false;
     }
 

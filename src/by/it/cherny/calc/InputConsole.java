@@ -1,11 +1,9 @@
-package by.it.vasileuskaya.calc;
+package by.it.cherny.calc;
 
 import java.util.Scanner;
 
 public class InputConsole implements Input {
-
-    public final Scanner scanner;
-
+    private final Scanner scanner;
     public InputConsole(Scanner scanner) {
         this.scanner = scanner;
     }
@@ -14,9 +12,8 @@ public class InputConsole implements Input {
     public String getCommand() {
         String line = scanner.nextLine();
         line = line.replaceAll("\\s+", "");
-
         return line.equalsIgnoreCase("end")
-                ? null
+                ? null // TODO change with Optional
                 : line;
     }
 }
