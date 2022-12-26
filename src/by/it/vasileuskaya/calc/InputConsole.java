@@ -15,7 +15,7 @@ public class InputConsole implements Input {
         String line = scanner.nextLine();
         line = line.replaceAll("\\s+", "");
 
-        return line.equals("end")
+        return line.equalsIgnoreCase("end")
                 ? null
                 : line;
     }
