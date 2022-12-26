@@ -4,12 +4,13 @@ import java.util.*;
 
 public class TaskC {
     private static int count=0;
+    private static Scanner sc;
     public static void main(String[] args) throws InterruptedException {
-        Scanner sc = new Scanner(System.in);
-        readData(sc);
+        sc = new Scanner(System.in);
+        readData();
     }
 
-    private static void readData(Scanner sc) throws InterruptedException {
+    private static void readData() throws InterruptedException {
         List<Object> list = new LinkedList<>();
         while (true){
             try {
