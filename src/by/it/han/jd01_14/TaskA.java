@@ -72,7 +72,7 @@ public class TaskA {
         }
     }
 
-    private static String getFilePath(String fileName) {
+    public static String getFilePath(String fileName) {
         String projectRoot = System.getProperty("user.dir");
         Class<?> taskAClass = TaskA.class;
         String name = taskAClass.getName();
