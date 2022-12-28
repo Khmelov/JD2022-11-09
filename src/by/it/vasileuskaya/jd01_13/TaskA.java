@@ -11,8 +11,6 @@ public class TaskA {
                 Integer.parseInt("привет");
             }
         } catch (NumberFormatException | NullPointerException e) {
-
-
             Class<TaskA> taskAClass = TaskA.class;
             String taskAClassName = taskAClass.getName();
             StackTraceElement[] stackTrace = e.getStackTrace();
