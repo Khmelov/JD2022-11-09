@@ -11,14 +11,18 @@ class ConsoleRunner {
         for(;;){
             String expression = input.getCommand();
             if (expression!=null){
-                if (!expression.equals("printvar")&&!expression.equals("sortvar")){
-                    Var result=parser.calc(expression);
-                    output.showResult(result);
-                } else if (expression.equals("sortvar")) {
-                    output.printSortedVar();
-                } else {
-//                Var.print();
-                    output.printVars();
+                try {
+                    if (!expression.equals("printvar")&&!expression.equals("sortvar")){
+                        Var result=parser.calc(expression);
+                        output.showResult(result);
+                    } else if (expression.equals("sortvar")) {
+                        output.printSortedVar();
+                    } else {
+    //                Var.print();
+                        output.printVars();
+                    }
+                } catch (CalcException e){
+                    output.showCalcException(e);
                 }
             } else {
                 break;
