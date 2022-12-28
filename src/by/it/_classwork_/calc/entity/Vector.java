@@ -1,8 +1,10 @@
-package by.it._classwork_.calc;
+package by.it._classwork_.calc.entity;
+
+import by.it._classwork_.calc.exception.CalcException;
 
 import java.util.StringJoiner;
 
-class Vector extends Var {
+public class Vector extends Var {
 
     private final double[] values;
 

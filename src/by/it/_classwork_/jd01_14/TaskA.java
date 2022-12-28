@@ -1,5 +1,7 @@
 package by.it._classwork_.jd01_14;
 
+import by.it._classwork_.jd01_15.PathFinder;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,15 +11,13 @@ public class TaskA {
 
     public static final String FILENAME = "dataTaskA.bin";
     public static final String RESULT_TXT = "resultTaskA.txt";
-    public static final String USER_DIR = "user.dir";
-    public static final String SRC = "src";
 
     public static void main(String[] args) {
-        String path = getFilePath(FILENAME);
+        String path = PathFinder.getFilePath(FILENAME,TaskA.class);
         writeToBinaryFile(path);
         List<Integer> list = readFromBinaryFile(path);
         writeToConsole(list);
-        path = getFilePath(RESULT_TXT);
+        path = PathFinder.getFilePath(RESULT_TXT,TaskA.class);
         printToTxtFile(path, list);
     }
 
@@ -69,14 +69,5 @@ public class TaskA {
         }
     }
 
-    private static String getFilePath(String filename) {
-        String projectRoot = System.getProperty(USER_DIR);
-        Class<TaskA> taskAClass = TaskA.class;
-        String name = taskAClass.getName();
-        String path = name
-                .replace(taskAClass.getSimpleName(), "")
-                .replace(".", File.separator);
-        path = projectRoot + File.separator + SRC + File.separator + path;
-        return path + filename;
-    }
+
 }
