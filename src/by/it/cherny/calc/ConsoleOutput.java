@@ -10,6 +10,11 @@ public class ConsoleOutput implements Output {
     }
 
     @Override
+    public void showCalcException(CalcException e) {
+        System.out.println(e.getMessage());
+    }
+
+    @Override
     public void printVars() {
         for (Map.Entry<String, Var> entry : Var.vars.entrySet()) {
             System.out.printf("%s=%s%n", entry.getKey(), entry.getValue());

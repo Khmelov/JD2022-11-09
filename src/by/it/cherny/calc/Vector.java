@@ -23,7 +23,7 @@ class Vector extends Var {
     }
 
     @Override
-    public Var add(Var other) {
+    public Var add(Var other) throws CalcException {
         double[] temp = values.clone();
         if (other instanceof Scalar scalar){
             for (int i = 0; i < temp.length; i++) {
@@ -38,12 +38,14 @@ class Vector extends Var {
                 }
                 return new Vector(temp);
             }
+            throw new CalcException("Incorrect size %s or %s"
+                    .formatted(this, vector));
         }
         return other.add(this);
     }
 
     @Override
-    public Var sub(Var other) {
+    public Var sub(Var other) throws CalcException {
         double[] temp = values.clone();
         if (other instanceof Scalar scalar){
             for (int i = 0; i < temp.length; i++) {
@@ -58,12 +60,13 @@ class Vector extends Var {
                 }
                 return new Vector(temp);
             }
+            throw new CalcException("Incorrect size %s or %s".formatted(temp, vector));
         }
         return other.sub(this);
     }
 
     @Override
-    public Var mul(Var other) {
+    public Var mul(Var other) throws CalcException {
         double[] temp = values.clone();
         if (other instanceof Scalar scalar){
             for (int i = 0; i < temp.length; i++) {
@@ -88,7 +91,7 @@ class Vector extends Var {
     }
 
     @Override
-    public Var div(Var other) {
+    public Var div(Var other) throws CalcException {
         double[] temp = values.clone();
         if (other instanceof Scalar scalar){
             for (int i = 0; i < temp.length; i++) {
