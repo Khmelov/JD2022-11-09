@@ -62,7 +62,7 @@ public class TaskB {
                 System.out.println(line);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return list;
     }
