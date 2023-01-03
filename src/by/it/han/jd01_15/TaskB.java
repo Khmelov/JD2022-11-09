@@ -21,12 +21,7 @@ public class TaskB {
         String resultFilePath = PatchFinder.getFilePath(RESULT_FILE_NAME, TaskB.class);
         StringBuilder programText = new StringBuilder();
         addProgramTextToStringBuilder(filePath, programText);
-
-        try (PrintWriter out = new PrintWriter(resultFilePath)) {
-            out.println(programText);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        saveToFile(resultFilePath, programText);
         System.out.println(programText);
         /*
         save file
@@ -35,6 +30,14 @@ public class TaskB {
         /*
         asdqw
          */
+    }
+
+    private static void saveToFile(String resultFilePath, StringBuilder programText) {
+        try (PrintWriter out = new PrintWriter(resultFilePath)) {
+            out.println(programText);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private static void addProgramTextToStringBuilder(String filePath, StringBuilder programText) {
