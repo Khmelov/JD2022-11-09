@@ -19,8 +19,7 @@ public class TaskB {
         //search File in Path
         String filePath = PatchFinder.getFilePath(FILE_NAME, TaskB.class);
         String resultFilePath = PatchFinder.getFilePath(RESULT_FILE_NAME, TaskB.class);
-        StringBuilder programText = new StringBuilder();
-        addProgramTextToStringBuilder(filePath, programText);
+        StringBuilder programText = addProgramTextToStringBuilder(filePath);
         saveToFile(resultFilePath, programText);
         System.out.println(programText);
         /*
@@ -40,7 +39,8 @@ public class TaskB {
         }
     }
 
-    private static void addProgramTextToStringBuilder(String filePath, StringBuilder programText) {
+    private static StringBuilder addProgramTextToStringBuilder(String filePath) {
+        StringBuilder programText = new StringBuilder();
         try (BufferedReader bufferedReader =
                      new BufferedReader(
                              new InputStreamReader(
@@ -53,6 +53,7 @@ public class TaskB {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        return programText;
     }
 
     private static String getProgramLine(BufferedReader bufferedReader) throws IOException {
