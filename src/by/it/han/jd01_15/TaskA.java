@@ -22,7 +22,7 @@ public class TaskA {
         printFileToConsole(filePath);
     }
 
-    private static void printFileToConsole(String filePath) {
+    public static void printFileToConsole(String filePath) {
         try {
             List<String> list = Files.readAllLines(Path.of(filePath));
             for (String s : list) {
@@ -33,7 +33,7 @@ public class TaskA {
         }
     }
 
-    private static void saveMatrixToFile(String filePath, int[][] matrix) {
+    public static void saveMatrixToFile(String filePath, int[][] matrix) {
         try (PrintWriter out = new PrintWriter(filePath)) {
             for (int[] rows : matrix) {
                 for (int val : rows) {
@@ -46,7 +46,7 @@ public class TaskA {
         }
     }
 
-    private static int[][] getRandomMatrix() {
+    public static int[][] getRandomMatrix() {
         int[][] matrix = new int[ROW_COUNT][COL_COUNT];
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
