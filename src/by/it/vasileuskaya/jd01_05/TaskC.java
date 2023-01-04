@@ -15,7 +15,7 @@ public class TaskC {
 
     public static void main(String[] args) {
 
-        //taskC1();
+        taskC1();
         taskC2();
     }
 
