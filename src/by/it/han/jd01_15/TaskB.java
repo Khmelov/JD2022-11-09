@@ -1,30 +1,34 @@
-package by.it.han.jd01_15;
+/*ыфвфыasdw*/
+package by.it.han.jd01_15; //myClass /*
+// sadsdqwqwdqwd*/
 
 import java.io.*;
 
 /**
- * @author "Han"
- * @version 9
+ * asadsa
+ * weq/
+ * ////
  */
 public class TaskB {
-
-    private static final String RESULT_FILE_NAME = "TaskB.txt";
+    private static /*sadsdqwqwdqwd*/ final String RESULT_FILE_NAME = "TaskB.txt";/*sadsdqwqwdqwd*/
     private static final String FILE_NAME = "TaskB.java";
-    private static boolean isManyLineComment = false;
+    private static boolean skipManyLine = false;
     private static final char SLASH = '/';
     private static final char STAR = '*';
 
     //it's the main method
-    public static void main(String[] args) {
+    public static/*sadsdqwqwdqwd*/ void main(String[] args) {
         //search File in Path
         String filePath = PatchFinder.getFilePath(FILE_NAME, TaskB.class);
         String resultFilePath = PatchFinder.getFilePath(RESULT_FILE_NAME, TaskB.class);
-        StringBuilder programText = addProgramTextToStringBuilder(filePath);
-        saveToFile(resultFilePath, programText);
+        StringBuilder programText = getProgramText(filePath);
         System.out.println(programText);
-        /*
-        save file
+        saveToFile(resultFilePath, programText);/* save file
+         asdasd
+         adw
+         a
          */
+
 
         /*
         asdqw
@@ -39,16 +43,17 @@ public class TaskB {
         }
     }
 
-    private static StringBuilder addProgramTextToStringBuilder(String filePath) {
+    private static StringBuilder getProgramText(String filePath) {
         StringBuilder programText = new StringBuilder();
         try (BufferedReader bufferedReader =
                      new BufferedReader(
                              new InputStreamReader(
                                      new FileInputStream(filePath)))) {
             while (bufferedReader.ready()) {
-                String programLine = getProgramLine(bufferedReader);
-                if (programLine == null) continue;
-                programText.append(programLine).append("\n");
+                StringBuilder programLine = getProgramLine(bufferedReader);
+                programText.append(programLine);
+//                if (!programLine.equals(""))
+                programText.append("\n");
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -56,27 +61,31 @@ public class TaskB {
         return programText;
     }
 
-    private static String getProgramLine(BufferedReader bufferedReader) throws IOException {
+    private static StringBuilder getProgramLine(BufferedReader bufferedReader) throws IOException {
         String readLine = bufferedReader.readLine();
-        boolean isEmptyString = getCondition(readLine, 0, ' ');
-        boolean isFirstCharSlash = getCondition(readLine, 0, SLASH);
-        boolean isSecondCharSlash = getCondition(readLine, 1, SLASH);
-        boolean isSecondCharStar = getCondition(readLine, 1, STAR);
-        boolean isLastCharSlash = getCondition(readLine, readLine.trim().length() - 1, SLASH);
-        boolean isPreLastCharStar = getCondition(readLine, readLine.trim().length() - 2, STAR);
-        if (!isEmptyString && isFirstCharSlash && isSecondCharSlash) {
-            return null;
-        } else if ((isManyLineComment || !isEmptyString && isFirstCharSlash && isSecondCharStar)) {
-            isManyLineComment = !isPreLastCharStar || !isLastCharSlash;
-            return null;
+        StringBuilder programLine = new StringBuilder();
+        byte[] symbols = readLine.getBytes();//asd
+        if (symbols.length > 0) {
+            for (int i = 0; i < symbols.length - 1; i++) {
+                boolean isOneLineComment = symbols[i] == SLASH && symbols[i + 1] == SLASH;
+                boolean isStartManyLineComment = symbols[i] == SLASH && symbols[i + 1] == STAR;
+                boolean isEndManyLineComment = symbols[i] == STAR && symbols[i + 1] == SLASH;
+                if (isOneLineComment) {
+                    return programLine;
+                }
+                if (isStartManyLineComment) {
+                    skipManyLine = true;
+                } else if (isEndManyLineComment) {
+                    skipManyLine = false;
+                    continue;
+                } else if (!skipManyLine && symbols[i] != SLASH) {
+                    programLine.append((char) symbols[i]);
+                }
+                if (i == symbols.length - 2 && !skipManyLine) {
+                    programLine.append((char) symbols[i + 1]);
+                }
+            }
         }
-        return readLine;
-    }
-
-    private static boolean getCondition(String str, int number, char symbol) {
-        if (str.trim().length() < 2) {
-            return false;
-        }
-        return str.trim().getBytes()[number] == symbol;
+        return programLine;
     }
 }
