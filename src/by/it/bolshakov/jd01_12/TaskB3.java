@@ -22,19 +22,16 @@ public class TaskB3 {
         }
         return peoples.get(0);
     }
-
+    //Удаление из списка занимает O(1), тогда как в обычном листе - линейное время O(n)
     static String process(LinkedList<String> peoples){
         int counter = 0;
         while (peoples.size()!=1) {
-            ListIterator iterator = peoples.listIterator(0);
-            while (iterator.hasNext()) {
-                iterator.next();
-                if (counter % 2 == 1) {
-                    iterator.remove();
-                    counter=0;
-                } else
-                    counter++;
+            if (counter%2==1) {
+                peoples.poll();
+            } else {
+                peoples.add(peoples.poll());
             }
+            counter++;
         }
         return peoples.get(0);
     }
@@ -49,8 +46,6 @@ public class TaskB3 {
         }
         System.out.println(people);
         System.out.println(peopleL);
-        System.out.println(process(people));
-        System.out.println(process(peopleL));
     }
 
 }
