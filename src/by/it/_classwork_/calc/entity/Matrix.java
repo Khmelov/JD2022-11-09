@@ -1,6 +1,6 @@
-package by.it._classwork_.calc;
+package by.it._classwork_.calc.entity;
 
-class Matrix extends Var {
+public class Matrix extends Var {
 
     private double[][] values;
 
