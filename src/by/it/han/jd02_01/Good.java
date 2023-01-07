@@ -3,12 +3,13 @@ package by.it.han.jd02_01;
 public class Good {
 
     public static final int MAX_PRICE = 1000;
+    public static final int MIN_PRICE = 100;
     private final String name;
-    private final double price;
+    private final int price;
 
     public Good() {
-        this.name = String.valueOf(RandomUtils.get(100, 1000));
-        this.price = RandomUtils.get(MAX_PRICE);
+        this.name = String.valueOf(RandomUtils.get(MIN_PRICE, MAX_PRICE));
+        this.price = RandomUtils.get(MIN_PRICE, MAX_PRICE);
     }
 
     public Good(String name, int price) {
@@ -20,7 +21,7 @@ public class Good {
         return name;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 

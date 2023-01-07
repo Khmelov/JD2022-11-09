@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Customer implements PriceListRepo {
     private final String name;
-    private final Map<Good, Double> goods = new HashMap<>();
+    private final Map<Good, Integer> goods = new HashMap<>();
 
     public Customer(int number) {
         this.name = "Customer #" + number;
