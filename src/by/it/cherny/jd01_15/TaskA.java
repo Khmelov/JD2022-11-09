@@ -1,7 +1,5 @@
 package by.it.cherny.jd01_15;
 
-import by.it._classwork_.jd01_15.PathFinder;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
