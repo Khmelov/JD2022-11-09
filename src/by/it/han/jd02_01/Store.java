@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Store extends Thread {
-    public static final int WORK_TIME = 5;
+    public static final int WORK_TIME = 120;
     public static final String _OPENED_STRING = " opened";
     public static final String _CLOSE_STRING = " close";
     private final String name;
-    private static final int ONE_SEC = 1;
+    private static final double SLEEP_BETWEEN_BYERS = 1;
 
     public Store(String name) {
         this.name = name;
@@ -22,11 +22,13 @@ public class Store extends Thread {
         for (int i = 0; i < WORK_TIME; i++) {
             int countCustomer = RandomUtils.get(2);
             for (int j = 0; j < countCustomer; j++) {
-                CustomerWorker worker = new CustomerWorker(this, new Customer(++indexCustomer));
-                worker.start();
+                Customer customer = new Customer(++indexCustomer);
+                CustomerWorker worker = new CustomerWorker(this, customer);
+                SleeperUtils.getSleep(SLEEP_BETWEEN_BYERS);
                 workers.add(worker);
+                worker.start();
             }
-            SleeperUtils.getSleep(ONE_SEC);
+            SleeperUtils.getSleep(SLEEP_BETWEEN_BYERS);
         }
         for (Thread worker : workers) {
             try {
