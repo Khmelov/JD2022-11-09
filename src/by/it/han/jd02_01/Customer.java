@@ -1,20 +1,23 @@
 package by.it.han.jd02_01;
 
-public class Customer {
+import java.util.HashMap;
+import java.util.Map;
+
+public class Customer implements PriceListRepo {
     private final String name;
-    private int countGoods;
+    private final Map<Good, Double> goods = new HashMap<>();
 
     public Customer(int number) {
         this.name = "Customer #" + number;
-        this.countGoods = 0;
     }
 
-    public void addGood() {
-        this.countGoods += 1;
+    @Override
+    public void addGood(Good good) {
+        this.goods.put(good, good.getPrice());
     }
 
     public int getCountGoods() {
-        return countGoods;
+        return goods.size();
     }
 
     @Override

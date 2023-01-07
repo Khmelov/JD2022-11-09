@@ -30,6 +30,11 @@ public class Store extends Thread {
             }
             SleeperUtils.getSleep(SLEEP_BETWEEN_BYERS);
         }
+        addToThreadList(workers);
+        System.out.println(this + _CLOSE_STRING);
+    }
+
+    private static void addToThreadList(List<Thread> workers) {
         for (Thread worker : workers) {
             try {
                 worker.join();
@@ -37,7 +42,6 @@ public class Store extends Thread {
                 throw new RuntimeException(e);
             }
         }
-        System.out.println(this + _CLOSE_STRING);
     }
 
     @Override
