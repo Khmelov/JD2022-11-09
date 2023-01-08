@@ -3,17 +3,22 @@ package by.it.han.jd02_01;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Customer implements PriceListRepo {
+public class Customer {
     private final String name;
-    private final Map<Good, Integer> goods = new HashMap<>();
+    private final PriceListRepo priceListRepo;
+    private final Map<String, Integer> goods = new HashMap<>();
 
-    public Customer(int number) {
+    public Customer(int number, PriceListRepo priceListRepo) {
         this.name = "Customer #" + number;
+        this.priceListRepo = priceListRepo;
     }
 
-    @Override
-    public void addGood(Good good) {
-        this.goods.put(good, good.getPrice());
+    public void addGood(int number) {
+        for (Map.Entry<String, Integer> entry : priceListRepo.getGoods().entrySet()) {
+            if (entry.getKey().equals(String.valueOf(number))) {
+                goods.put(entry.getKey(), entry.getValue());
+            }
+        }
     }
 
     public int getCountGoods() {

@@ -20,10 +20,10 @@ public class CustomerWorker extends Thread implements CustomerAction {
         enteredStore();
         shoppingCard.takeCart();
         chooseGood();
-        int countGoods = RandomUtils.get(MIN_GOOD_COUNT, MAX_GOOD_COUNT);
-        int indexGood = 0;
-        for (int i = 0; i < countGoods; i++) {
-            shoppingCard.putToCart(new Good(), ++indexGood);
+        int count = RandomUtils.get(MIN_GOOD_COUNT, MAX_GOOD_COUNT);
+        int num = 0;
+        for (int i = 0; i < count; i++) {
+            shoppingCard.putToCart(new Good(), ++num);
         }
         goOut();
     }

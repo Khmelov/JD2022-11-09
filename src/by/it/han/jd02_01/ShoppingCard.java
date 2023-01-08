@@ -17,9 +17,10 @@ public class ShoppingCard implements ShoppingCardAction {
     }
 
     @Override
-    public int putToCart(Good good, int indexGood) {
-        System.out.printf("%s put %d good with name: %s, price: %d to Cart in store %s%n", customer, indexGood, good.getName(), good.getPrice(), store);
-        customer.addGood(good);
+    public int putToCart(Good good, int num) {
+        customer.addGood(num);
+        System.out.printf("%s put good №%d with name: %s, price: %d to Cart in store %s%n", customer, num,
+                good.getName(), good.getPrice(), store);
         SleeperUtils.getSleep(MIN_TIME_BETWEEN_ADD_TO_CARD, MAX_TIME_BETWEEN_ADD_TO_CARD);
         return customer.getCountGoods();
     }
