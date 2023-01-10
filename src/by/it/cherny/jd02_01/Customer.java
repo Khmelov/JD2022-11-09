@@ -5,7 +5,17 @@ public class Customer {
     private final String name;
 
     public Customer(int number) {
-        this.name = "Customer #"+number;
+        if (number%4==0){
+            this.name = "Pensioner #"+number;
+        } else if (number%2==0) {
+            this.name = "Student #"+number;
+        } else {
+            this.name = "Customer #"+number;
+        }
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

@@ -12,6 +12,8 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
     public static final Map<String, Double> PRICE_LIST = PriceListRepo.getList();
     public static final int MIN_CART_GOODS = 2;
     public static final int MAX_CART_GOODS = 5;
+    public static final int MIN_OPERATION_TIMEOUT = 100;
+    public static final int MAX_OPERATION_TIMEOUT = 300;
     private final Customer customer;
     private final Store store;
     private int countOfGoods=0;
@@ -39,8 +41,23 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
         System.out.println(customer+" has started choosing the product ");
         int timeout=RandomGenerator.get(MIN_TIMEOUT, MAX_TIMEOUT);
         Sleeper.sleep(timeout);
-        int choosingTimeout=RandomGenerator.get(100, 300);
+        int choosingTimeout=RandomGenerator.get(MIN_OPERATION_TIMEOUT, MAX_OPERATION_TIMEOUT);
         int countOfGoods=RandomGenerator.get(MIN_CART_GOODS, MAX_CART_GOODS);
+
+        /**
+         * set timeout by customer
+         * */
+        if (customer.getName().contains("Pensioner")){
+            timeout*=1.5;
+            choosingTimeout*=1.5;
+        } else if (customer.getName().contains("Student")) {
+            countOfGoods=RandomGenerator.get(2);
+            if (countOfGoods==0){
+                System.out.println(customer+" has finished choosing the product ");
+                return null;
+            }
+        }
+
         for (int i = 0; i < countOfGoods; i++) {
             int goodsCount = putToCart(getRandomGood());
             System.out.println("There is "+goodsCount+" goods in the "+customer+" cart");
