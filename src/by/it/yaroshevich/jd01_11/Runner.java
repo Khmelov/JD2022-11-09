@@ -13,8 +13,6 @@ public class Runner {
         System.out.println(list);
         list.remove(3);
         System.out.println(list);
-        System.out.printf("element[1] = %s%n",list.get(1));
-        list.add(1, "six");
-        System.out.println(list);
+        System.out.printf("element[1] = %s%n", list.get(1));
     }
 }
