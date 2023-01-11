@@ -1,31 +1,90 @@
 package by.it.vasileuskaya.jd01_05;
 
+import java.util.Arrays;
+
 import static java.lang.Math.*;
 
 public class TaskC {
+
+    public static final String NAME_FIRST_MASSIVE = "Massive A <index to rows>";
+    public static final String NAME_RESULT_MASSIVE = "Massive B <index to cols>";
+    public static final String FIRST_ROW = "╔═══════════╦═══════════╦═══════════╦═══════════╦═══════════╗";
+    public static final String MIDDLE_ROW = "╠═══════════╬═══════════╬═══════════╬═══════════╬═══════════╣";
+    public static final String LAST_ROW = "╚═══════════╩═══════════╩═══════════╩═══════════╩═══════════╝";
+    public static final String SEPARATOR = "║";
+
     public static void main(String[] args) {
 
-        //taskC1();
+        taskC1();
         taskC2();
     }
 
     private static void taskC2() {
-        int[] a = createArrayA();
-        printArrayA(a);
+        int[] arrayA = createArrayA();
+        printArrayA(arrayA);
+        int[] arrayB = createArrayB(arrayA);
+        printArrayB(arrayB);
+    }
 
+    private static void printArrayB(int[] array) {
+        System.out.println(NAME_RESULT_MASSIVE);
+        System.out.println(FIRST_ROW);
+        int countCols = 5;
+        int countRows = 0;
+        if (array.length > 0) {
+            countRows = array.length / 5;
+        }
+        for (int i = 0, j = 0; i < array.length; i += countRows, j++) {
+            countCols++;
+            System.out.printf(SEPARATOR + " B[%2d]=%d ", i, array[i]);
+            if (countCols == 5) {
+                System.out.print(SEPARATOR + "\n");
+                System.out.println(MIDDLE_ROW);
+                countCols = 0;
+            }
+        }
+        System.out.println("\n" + LAST_ROW);
+    }
+
+    private static int[] createArrayB(int[] array) {
+
+        int countElementsToArray = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] * 0.1 > i) {
+                countElementsToArray++;
+            }
+        }
+        int[] arrayB = new int[countElementsToArray];
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] * 0.1 > i) {
+                Arrays.fill(arrayB, array[i]);
+            }
+        }
+        return Arrays.stream(arrayB).sorted().toArray();
     }
 
     private static int[] createArrayA() {
         int[] arrayA = new int[31];
         for (int i = 0; i < arrayA.length; i++) {
             arrayA[i] = (int) (random() * 348) + 103;
-            System.out.println(arrayA[i]);
         }
         return arrayA;
     }
 
-    private static void printArrayA(int[] a) {
-
+    private static void printArrayA(int[] array) {
+        System.out.println(NAME_FIRST_MASSIVE);
+        System.out.println(FIRST_ROW);
+        int countCols = 0;
+        for (int i = 0; i < array.length; i++) {
+            countCols++;
+            System.out.printf(SEPARATOR + " A[%2d]=%d ", i, array[i]);
+            if (countCols == 5) {
+                System.out.print(SEPARATOR + "\n");
+                System.out.println(MIDDLE_ROW);
+                countCols = 0;
+            }
+        }
+        System.out.println("\n" + LAST_ROW);
     }
 
     static void taskC1() {

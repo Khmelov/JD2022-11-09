@@ -7,8 +7,11 @@ public class TaskC {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите размерность квадратной матрицы:");
         int n = scanner.nextInt();
-        step1(n);
-        step2(step1(n));
+        int[][] arr = step1(n);
+        step2(arr);
+        int[][] ints = step3(arr);
+        System.out.println("Array for step3");
+        printArray(ints);
     }
 
     private static int[][] step1(int n) {
@@ -80,6 +83,65 @@ public class TaskC {
         }
         System.out.println(sumElements);
         return sumElements;
+    }
+
+    static int[][] step3(int[][] arr) {
+        int max = findMax(arr);
+        boolean[] delRow = new boolean[arr.length];
+        boolean[] delCol = new boolean[arr[0].length];
+        fillDelArray(arr, max, delRow, delCol);
+        int rows = getFalseCount(delRow);
+        int cols = getFalseCount(delCol);
+        return createResult(arr, delRow, delCol, rows, cols);
+
+    }
+
+    private static int findMax(int[][] array) {
+        int max = Integer.MIN_VALUE;
+        for (int[] row : array) {
+            for (int element : row) {
+                if (max < element) {
+                    max = element;
+                }
+            }
+        }
+        return max;
+    }
+
+    private static void fillDelArray(int[][] array, int max, boolean[] delRow, boolean[] delCol) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (array[i][j] == max) {
+                    delRow[i] = true;
+                    delCol[j] = true;
+                }
+            }
+        }
+    }
+
+    private static int getFalseCount(boolean[] delRow) {
+        int rows = 0;
+        for (boolean del : delRow) {
+            if (!del) {
+                rows++;
+            }
+        }
+        return rows;
+    }
+
+    private static int[][] createResult(int[][] array, boolean[] delRow, boolean[] delCol, int rows, int cols) {
+        int[][] result = new int[rows][cols];
+        for (int i = 0, ires = 0; i < array.length; i++) {
+            if (!delRow[i]) {
+                for (int j = 0, jres = 0; j < array[i].length; j++) {
+                    if (!delCol[j]) {
+                        result[ires][jres++] = array[i][j];
+                    }
+                }
+                ires++;
+            }
+        }
+        return result;
     }
 }
 

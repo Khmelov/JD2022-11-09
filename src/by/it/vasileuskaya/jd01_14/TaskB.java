@@ -33,7 +33,8 @@ public class TaskB {
     private static int findCountPunctualMarks(List<String> text) {
         int countPunctualMarks = 0;
         for (String value : text) {
-            String replace = value.replaceAll("[A-ЯЁа-яё\n\s]", "").replace("...", ".");
+            String replace = value.replaceAll("[A-ЯЁа-яё\n\s]", "")
+                    .replace("...", ".");
             countPunctualMarks += replace.length();
         }
         System.out.println(countPunctualMarks);
@@ -56,13 +57,13 @@ public class TaskB {
         try (BufferedReader bufferedReader =
                      new BufferedReader(new FileReader(path))) {
             String line;
-            while ((line = bufferedReader.readLine()) != null) {
+            while (bufferedReader.ready()) {
                 line = bufferedReader.readLine();
                 list.add(line);
                 System.out.println(line);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return list;
     }
