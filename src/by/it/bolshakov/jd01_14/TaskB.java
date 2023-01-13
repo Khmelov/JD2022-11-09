@@ -2,14 +2,11 @@ package by.it.bolshakov.jd01_14;
 
 import java.io.*;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.MatchResult;
-import java.util.stream.Collectors;
 
 import static by.it.bolshakov.jd01_14.TaskA.getFilePath;
-import static by.it.bolshakov.jd01_14.TaskA.printToFile;
 
 public class TaskB {
     public static void main(String[] args) {
