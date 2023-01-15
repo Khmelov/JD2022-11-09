@@ -25,11 +25,11 @@ public class Store extends Thread{
         this.name = name;
         this.dispatcher = dispatcher;
         this.customerQueue = customerQueue;
+        PriceListRepo priceList = new PriceListRepo();
     }
 
     @Override
     public void run() {
-        loadPriceList();
         System.out.println(name+ " opened");
         List<Thread> threads = new ArrayList<>();
             // starts 2 cashiers
@@ -61,19 +61,6 @@ public class Store extends Thread{
             }
         }
         System.out.println(name+ " closed");
-    }
-
-    private void loadPriceList() {
-        Map<String, Double> list = new HashMap<>();
-        list.put("ice-cream", 2.0);
-        list.put("sausages", 4.5);
-        list.put("bread", 1.3);
-        list.put("meat", 9.99);
-        list.put("eggs", 2.01);
-        list.put("sauce", 1.5);
-        list.put("sushi", 10.2);
-        list.put("pizza", 15.0);
-        PriceListRepo.setList(list);
     }
 
     @Override

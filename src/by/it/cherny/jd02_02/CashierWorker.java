@@ -36,8 +36,9 @@ public class CashierWorker implements Runnable{
                     Double totalCustomerAmount = getCustomerAmount(goodList);
 
                     cashier.setTotalRevenue(cashier.getTotalRevenue()+totalCustomerAmount);
-                    System.out.println(customer+" cheque");
-                    System.out.println("Total amount: "+totalCustomerAmount);
+                    System.out.printf("%s cheque from %s store \n", customer, store);
+                    System.out.printf("Total amount: %.2f \n",totalCustomerAmount);
+//                    System.out.println("Total amount: "+totalCustomerAmount);
                     getCheque(goodList.toArray());
                     System.out.println(cashier+" finished service for "+customer);
                     customer.setWaiting(false);
@@ -47,7 +48,8 @@ public class CashierWorker implements Runnable{
                 Thread.onSpinWait();
             }
         }
-        System.out.println("Total revenue "+cashier+" "+cashier.getTotalRevenue());
+        System.out.printf("Total revenue %s from %s store: %.2f \n",cashier,store ,cashier.getTotalRevenue());
+//        System.out.println("Total revenue :"+cashier+" "+cashier.getTotalRevenue());
         System.out.println(cashier+" closed");
     }
 
