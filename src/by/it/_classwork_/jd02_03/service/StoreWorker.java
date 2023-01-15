@@ -30,13 +30,14 @@ public class StoreWorker extends Thread {
         System.out.println(name + " opened");
 
         ExecutorService cashierPool = Executors.newFixedThreadPool(StoreWorker.N_THREADS);
+        try (cashierPool) {
 
-//            cashierPool
-        for (int numberCashier = 1; numberCashier <= StoreWorker.N_THREADS; numberCashier++) {
-            Cashier cashier = new Cashier(numberCashier);
-            CashierWorker cashierWorker = new CashierWorker(cashier, store);
-            cashierPool.execute(cashierWorker);
 
+            for (int numberCashier = 1; numberCashier <= StoreWorker.N_THREADS; numberCashier++) {
+                Cashier cashier = new Cashier(numberCashier);
+                CashierWorker cashierWorker = new CashierWorker(cashier, store);
+                cashierPool.execute(cashierWorker);
+            }
             cashierPool.shutdown();
 
             int indexCustomer = 0;
