@@ -19,6 +19,6 @@ public class ShoppingCart {
     }
 
     public double countTotal () {
-        return cart.stream().map((g) -> PriceListRepo.priceList.get(g)).reduce((g1, g2) -> g1 + g2).orElse(0.0);
+        return cart.stream().map(PriceListRepo.priceList::get).reduce(Double::sum).orElse(0.0);
     }
 }

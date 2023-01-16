@@ -5,7 +5,7 @@ public class Customer {
     private final String name;
 
     public Customer(int number) {
-        this.name = "Customer #" + number;
+        this.name = "Покупатель #" + number;
     }
 
     @Override

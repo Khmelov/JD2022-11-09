@@ -15,7 +15,7 @@ public class Store extends Thread {
 
     @Override
     public void run() {
-        System.out.println(name + " opened");
+        System.out.println(name + " открыт");
         List<Thread> threads = new ArrayList<>();
         int customerIndex = 0;
         for (int second = 0; second < FINISH_TIME; second++) {
@@ -36,7 +36,7 @@ public class Store extends Thread {
             }
 
         }
-        System.out.println(name + " closed");
+        System.out.println(name + " закрыт");
     }
 
     @Override

@@ -19,7 +19,7 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
 
     @Override
     public void enteredStore() {
-        System.out.println(customer + " entered the " + store);
+        System.out.println(customer + " заходит в " + store);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
 
     @Override
     public void goOut() {
-        System.out.println(customer + " leaves the " + store);
+        System.out.println(customer + " уходит из " + store);
     }
 
     @Override
@@ -55,13 +55,12 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
         return cart.countItems();
     }
 
-
     @Override
     public void run() {
         enteredStore();
         takeCart();
         for (int i = 0; i < RandomGenerator.get(MIN_GOODS, MAX_GOODS); i++) {
-            putToCart(chooseGood());
+            System.out.println("В корзине " + customer.toString() + " " + putToCart(chooseGood()) + " товаров");
         }
         System.out.printf("Сумма покупок %s = %.2f\n", customer.toString(), cart.countTotal());
         goOut();
