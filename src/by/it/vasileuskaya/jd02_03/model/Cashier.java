@@ -1,11 +1,10 @@
-package by.it.vasileuskaya.jd02_02;
+package by.it.vasileuskaya.jd02_03.model;
 
 public class Cashier {
     private final String name;
-    private double venue;
+
     public Cashier(int number) {
         this.name = "\tCashier #" + number;
-        this.venue = venue;
     }
 
     @Override
