@@ -34,6 +34,10 @@ public class Customer {
         return goods.size();
     }
 
+    public Map<String, Integer> getGoods() {
+        return goods;
+    }
+
     @Override
     public String toString() {
         return name;

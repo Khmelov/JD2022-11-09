@@ -7,14 +7,9 @@ public class Good {
     private final String name;
     private final int price;
 
-    public Good() {
-        this.name = String.valueOf(RandomUtils.get(MIN_PRICE, MAX_PRICE));
-        this.price = RandomUtils.get(MIN_PRICE, MAX_PRICE);
-    }
-
-    public Good(String name, int price) {
+    public Good(String name, PriceListRepo priceListRepo) {
         this.name = name;
-        this.price = price;
+        this.price = priceListRepo.getGoods().get(name);
     }
 
     public String getName() {

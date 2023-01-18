@@ -6,15 +6,17 @@ import java.util.List;
 public class Store extends Thread {
     public static final String _OPENED_STRING = " opened";
     public static final String _CLOSE_STRING = " close";
+    private static final double SLEEP_BETWEEN_BYERS = 1;
     private final String name;
     private final Manager manager;
     private final CustomerQueue customerQueue;
-    private static final double SLEEP_BETWEEN_BYERS = 1;
+    private final PriceListRepo priceListRepo;
 
     public Store(String name, Manager manager, CustomerQueue customerQueue) {
         this.name = name;
         this.manager = manager;
         this.customerQueue = customerQueue;
+        this.priceListRepo = new PriceListRepo();
     }
 
     public Manager getManager() {
@@ -23,6 +25,10 @@ public class Store extends Thread {
 
     public CustomerQueue getCustomerQueue() {
         return customerQueue;
+    }
+
+    public PriceListRepo getPriceListRepo() {
+        return priceListRepo;
     }
 
     @Override
