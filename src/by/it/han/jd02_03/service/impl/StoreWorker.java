@@ -26,7 +26,7 @@ public class StoreWorker extends Thread {
 
     @Override
     public void run() {
-        System.out.println(store.name() + OPENED);
+        System.out.println(store.getName() + OPENED);
         int indexCustomer = 0;
         ExecutorService cashierPool = Executors.newFixedThreadPool(CASHIER_COUNT);
 
@@ -38,9 +38,9 @@ public class StoreWorker extends Thread {
 
         cashierPool.shutdown();
 
-        while (store.manager().storeIsOpened()) {
+        while (store.getManager().storeIsOpened()) {
             int countCustomer = RandomUtils.get(CUSTOMER_COUNT);
-            for (int j = 0; j < countCustomer && store.manager().storeIsOpened(); j++) {
+            for (int j = 0; j < countCustomer && store.getManager().storeIsOpened(); j++) {
                 Customer customer = new Customer(++indexCustomer, new PriceListRepo());
                 CustomerWorker worker = new CustomerWorker(store, customer);
                 SleeperUtils.getSleep(SLEEP_BETWEEN_BYERS);
@@ -51,11 +51,11 @@ public class StoreWorker extends Thread {
 
         try {
             while (!cashierPool.awaitTermination(TIMEOUT, TimeUnit.MILLISECONDS)) {
-                System.out.println(store.name() + WORKED);
+                System.out.printf(store.getName() + WORKED);
             }
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(store.name() + CLOSED);
+        System.out.printf(store.getName() + CLOSED);
     }
 }

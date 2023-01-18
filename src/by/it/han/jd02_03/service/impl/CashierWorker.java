@@ -8,6 +8,8 @@ import by.it.han.jd02_03.model.Store;
 import by.it.han.jd02_03.util.RandomUtils;
 import by.it.han.jd02_03.util.SleeperUtils;
 
+import java.util.Map;
+
 import static by.it.han.jd02_03.util.StringsConstantUtils.*;
 
 public class CashierWorker implements Runnable {
@@ -19,8 +21,8 @@ public class CashierWorker implements Runnable {
 
     public CashierWorker(Cashier cashier, Store store) {
         this.cashier = cashier;
-        manager = store.manager();
-        customerQueue = store.customerQueue();
+        manager = store.getManager();
+        customerQueue = store.getCustomerQueue();
     }
 
     @Override
@@ -29,11 +31,18 @@ public class CashierWorker implements Runnable {
         while (!manager.storeIsClosed()) {
             Customer customer = customerQueue.poll();
             if (customer != null) {
+                Map<String, Integer> customerGoods = customer.getGoods();
                 synchronized (customer.getMonitor()) {
                     System.out.printf(STARTED_SERVICE, cashier, customer);
                     int timeOut = RandomUtils.get(MIN_TIMEOUT_SERVICE_CUSTOMER, MAX_TIMEOUT_SERVICE_CUSTOMER);
+                    for (Map.Entry<String, Integer> good : customerGoods.entrySet()) {
+                        cashier.addPriceGood(good.getValue());
+                    }
                     SleeperUtils.getSleep(timeOut);
                     System.out.printf(FINISHED_SERVICE, cashier, customer);
+                    for (Map.Entry<String, Integer> good : customerGoods.entrySet()) {
+                        System.out.printf(NAME_AND_PRICE_OF_GOOD, good.getKey(), good.getValue());
+                    }
                     customer.setWaiting(false);
                     customer.notify();
                 }
@@ -41,6 +50,6 @@ public class CashierWorker implements Runnable {
                 Thread.onSpinWait();
             }
         }
-        System.out.printf(CLOSED, cashier);
+        System.out.printf(TOTAL_SUM, cashier, cashier.getTotalSum());
     }
 }
