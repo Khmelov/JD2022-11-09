@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class TaskA {
 
-    public static final int MAX_VALUE = 150;
+    public static final int MAX_VALUE = 15;
     public static final int ROWS = 6;
     public static final int COLS = 4;
     public static final String filename = "matrix.txt";
