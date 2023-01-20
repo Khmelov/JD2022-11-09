@@ -18,4 +18,5 @@ public class InputConsole implements Input {
                 ? null //TODO change with Optional
                 : line;
     }
+
 }
