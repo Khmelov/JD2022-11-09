@@ -40,8 +40,12 @@ public class CashierWorker implements Runnable {
                     }
                     SleeperUtils.getSleep(timeOut);
                     System.out.printf(FINISHED_SERVICE, cashier, customer);
-                    for (Map.Entry<String, Integer> good : customerGoods.entrySet()) {
-                        System.out.printf(NAME_AND_PRICE_OF_GOOD, good.getKey(), good.getValue());
+                    if (!Cashier.isCanPrintCheque()) {
+                        Cashier.setCanPrintCheque(true);
+                        for (Map.Entry<String, Integer> good : customerGoods.entrySet()) {
+                            System.out.printf(NAME_AND_PRICE_OF_GOOD, good.getKey(), good.getValue());
+                        }
+                        Cashier.setCanPrintCheque(false);
                     }
                     customer.setWaiting(false);
                     customer.notify();
