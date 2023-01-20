@@ -30,7 +30,7 @@ public class ShoppingCardWorker implements ShoppingCardAction {
     public int putToCart(Good good, int num) {
         customer.addGood(num);
         System.out.printf(PUT_GOOD, customer, num,
-                good.getName(), good.getPrice(), store);
+                good.name(), store);
         SleeperUtils.getSleep(MIN_TIME_BETWEEN_ADD_TO_CARD, MAX_TIME_BETWEEN_ADD_TO_CARD);
         return customer.getCountGoods();
     }

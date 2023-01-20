@@ -5,6 +5,7 @@ import by.it.han.jd02_03.model.Cashier;
 import by.it.han.jd02_03.model.Customer;
 import by.it.han.jd02_03.model.CustomerQueue;
 import by.it.han.jd02_03.model.Store;
+import by.it.han.jd02_03.service.PrintCheque;
 import by.it.han.jd02_03.util.RandomUtils;
 import by.it.han.jd02_03.util.SleeperUtils;
 
@@ -39,14 +40,9 @@ public class CashierWorker implements Runnable {
                         cashier.addPriceGood(good.getValue());
                     }
                     SleeperUtils.getSleep(timeOut);
+                    PrintCheque printCheque = new PrintCheque(customerGoods, customer);
                     System.out.printf(FINISHED_SERVICE, cashier, customer);
-                    if (!Cashier.isCanPrintCheque()) {
-                        Cashier.setCanPrintCheque(true);
-                        for (Map.Entry<String, Integer> good : customerGoods.entrySet()) {
-                            System.out.printf(NAME_AND_PRICE_OF_GOOD, good.getKey(), good.getValue());
-                        }
-                        Cashier.setCanPrintCheque(false);
-                    }
+                    printCheque.run();
                     customer.setWaiting(false);
                     customer.notify();
                 }

@@ -26,7 +26,7 @@ public class StoreWorker extends Thread {
 
     @Override
     public void run() {
-        System.out.println(store.getName() + OPENED);
+        System.out.printf(OPENED, store.getName());
         int indexCustomer = 0;
         ExecutorService cashierPool = Executors.newFixedThreadPool(CASHIER_COUNT);
 

@@ -18,7 +18,6 @@ public class CustomerWorker extends Thread implements CustomerAction {
     public static final int MAX_GOOD_COUNT = 5;
     private final Manager manager;
     private final CustomerQueue customerQueue;
-    private final PriceListRepo priceListRepo;
 
     public CustomerWorker(Store store, Customer customer) {
         this.store = store;
@@ -26,7 +25,6 @@ public class CustomerWorker extends Thread implements CustomerAction {
         shoppingCardWorker = new ShoppingCardWorker(new ShoppingCard(store, customer));
         manager = store.getManager();
         customerQueue = store.getCustomerQueue();
-        priceListRepo = store.getPriceListRepo();
         manager.addCustomer();
     }
 
@@ -38,7 +36,7 @@ public class CustomerWorker extends Thread implements CustomerAction {
         int count = RandomUtils.get(MIN_GOOD_COUNT, MAX_GOOD_COUNT);
         int num = 0;
         for (int i = 0; i < count;) {
-            shoppingCardWorker.putToCart(new Good(String.valueOf(++i), priceListRepo), ++num);
+            shoppingCardWorker.putToCart(new Good(String.valueOf(++i)), ++num);
         }
         goToQueue();
         goOut();
