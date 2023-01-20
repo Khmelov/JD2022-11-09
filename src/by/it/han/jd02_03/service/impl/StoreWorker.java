@@ -51,11 +51,11 @@ public class StoreWorker extends Thread {
 
         try {
             while (!cashierPool.awaitTermination(TIMEOUT, TimeUnit.MILLISECONDS)) {
-                System.out.printf(store.getName() + WORKED);
+                System.out.printf(WORKED, store.getName());
             }
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        System.out.printf(store.getName() + CLOSED);
+        System.out.printf(CLOSED, store.getName());
     }
 }
