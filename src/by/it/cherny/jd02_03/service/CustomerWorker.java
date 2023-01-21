@@ -8,12 +8,15 @@ import by.it.cherny.jd02_03.util.Sleeper;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.Semaphore;
 
 public class CustomerWorker extends Thread implements CustomerAction {
 
+    private static final Semaphore semaphore = new Semaphore(50);
+
     public static final int MIN_GOOD_CHOOSING_TIMEOUT = 500;
     public static final int MAX_GOOD_CHOOSING_TIMEOUT = 2000;
-    public static final Map<String, Double> PRICE_LIST = PriceListRepo.getList();
+    public final Map<String, Double> PRICE_LIST = PriceListRepo.getList();
     public static final int MIN_CART_GOODS = 2;
     public static final int MAX_CART_GOODS = 5;
     public static final int MIN_OPERATION_TIMEOUT = 100;
@@ -72,6 +75,7 @@ public class CustomerWorker extends Thread implements CustomerAction {
             Sleeper.sleep(choosingTimeout);
         }
         System.out.println(customer+" has finished choosing the product ");
+        Sleeper.sleep(timeout);
         return null;
     }
 
