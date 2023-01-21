@@ -30,7 +30,7 @@ public class StoreWorker extends Thread {
         System.out.println(name + " opened");
 
         ExecutorService cashierPool = Executors.newFixedThreadPool(StoreWorker.N_THREADS);
-        try (cashierPool) {
+//        try (cashierPool) {
 
 
             for (int numberCashier = 1; numberCashier <= StoreWorker.N_THREADS; numberCashier++) {
@@ -49,7 +49,7 @@ public class StoreWorker extends Thread {
                     customerWorker.start();
                 }
                 Sleeper.sleep(StoreWorker.ONE_SECOND);
-            }
+//            }
 
             try {
                 while (!cashierPool.awaitTermination(StoreWorker.ONE_SECOND, TimeUnit.MILLISECONDS)) {
