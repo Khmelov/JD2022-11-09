@@ -1,33 +1,13 @@
-package by.it.cherny.calc;
+package by.it.cherny.calc.entity;
+
+import by.it.cherny.calc.service.Operation;
+import by.it.cherny.calc.exception.CalcException;
+import by.it.cherny.calc.util.Patterns;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
-abstract class Var implements Operation {
-    static final Map<String, Var> vars = new HashMap<>();
-
-    public static Var create(String varName) throws CalcException {
-        if (varName.matches(Patterns.SCALAR)){
-            return new Scalar(varName);
-        }
-        if (varName.matches(Patterns.VECTOR)){
-            return new Vector(varName);
-        }
-        if (varName.matches(Patterns.MATRIX)){
-            return new Matrix(varName);
-        }
-        Var var = vars.get(varName);
-        if (var==null){
-            throw  new CalcException("Variable %s not found".formatted(varName));
-        }
-        return var;
-    }
-
-    public static Var save(String name, Var value) {
-        vars.put(name, value);
-        return value;
-    }
+public abstract class Var implements Operation {
 
     @Override
     public String toString() {

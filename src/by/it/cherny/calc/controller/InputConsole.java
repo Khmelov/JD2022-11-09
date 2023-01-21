@@ -1,4 +1,6 @@
-package by.it.cherny.calc;
+package by.it.cherny.calc.controller;
+
+import by.it.cherny.calc.controller.Input;
 
 import java.util.Scanner;
 

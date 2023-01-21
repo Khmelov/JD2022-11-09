@@ -1,4 +1,4 @@
-package by.it.cherny.calc;
+package by.it.cherny.calc.exception;
 
 public class CalcException extends Exception {
     public CalcException() {

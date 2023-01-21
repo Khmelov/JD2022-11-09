@@ -1,4 +1,7 @@
-package by.it.cherny.calc;
+package by.it.cherny.calc.service;
+
+import by.it.cherny.calc.entity.Var;
+import by.it.cherny.calc.exception.CalcException;
 
 public interface Operation {
     Var add(Var other) throws CalcException;
