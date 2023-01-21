@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class TaskATest {
+public class ParserTest {
     private static final double DELTA = 0.001;
     private Parser parser;
 
