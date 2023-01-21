@@ -2,18 +2,18 @@ package by.it.vasileuskaya.calc;
 
 public class CalcException extends Exception {
     public CalcException() {
-        super("Error: no message");
+        super("ERROR: no message");
     }
 
     public CalcException(String message) {
-        super("Error: " + message);
+        super("ERROR: " + message);
     }
 
     public CalcException(String message, Throwable cause) {
-        super("Error: " + message, cause);
+        super("ERROR: " + message, cause);
     }
 
     public CalcException(Throwable cause) {
-        super("Error: no message", cause);
+        super("ERROR: no message", cause);
     }
 }
