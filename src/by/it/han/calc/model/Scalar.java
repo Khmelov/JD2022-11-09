@@ -23,7 +23,7 @@ public class Scalar extends Var {
     @Override
     public Var add(Var other) {
         if (other instanceof Scalar scalar) {
-            return new Scalar(this.value + scalar.value);
+            return new Scalar(this.value + scalar.getValue());
         } else if (other instanceof Vector vector) {
             double[] result = new double[vector.getValue().length];
             for (int i = 0; i < vector.getValue().length; i++) {
@@ -45,7 +45,7 @@ public class Scalar extends Var {
     @Override
     public Var sub(Var other) {
         if (other instanceof Scalar scalar) {
-            return new Scalar(this.value - scalar.value);
+            return new Scalar(this.value - scalar.getValue());
         } else if (other instanceof Vector vector) {
             double[] result = new double[vector.getValue().length];
             for (int i = 0; i < vector.getValue().length; i++) {
@@ -67,7 +67,7 @@ public class Scalar extends Var {
     @Override
     public Var mul(Var other) {
         if (other instanceof Scalar scalar) {
-            return new Scalar(this.value * scalar.value);
+            return new Scalar(this.value * scalar.getValue());
         } else if (other instanceof Vector vector) {
             vector.mul(this);
         }
@@ -77,7 +77,7 @@ public class Scalar extends Var {
     @Override
     public Var div(Var other) {
         if (other instanceof Scalar scalar && scalar.value != 0) {
-            return new Scalar(this.value / scalar.value);
+            return new Scalar(this.value / scalar.getValue());
         } else if (other instanceof Vector vector) {
             vector.mul(this);
         }

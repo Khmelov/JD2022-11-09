@@ -1,8 +1,8 @@
 package by.it.han.jd02_04;
 
 import by.it.han.calc.exception.CalcException;
-import by.it.han.calc.service.Parser;
 import by.it.han.calc.exception.VarException;
+import by.it.han.calc.service.Parser;
 import by.it.han.calc.service.ResMan;
 import org.junit.Before;
 import org.junit.Test;
@@ -52,6 +52,4 @@ public class ParserTest {
         double excepted = 2.65;
         assertEquals(excepted, actual, DELTA);
     }
-
-
 }

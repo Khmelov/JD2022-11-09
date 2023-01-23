@@ -34,7 +34,7 @@ public class ConsoleRunner {
         Printer printerConsole = new PrinterConsole();
         ResMan resMan = ResMan.INSTANCE;
         setLocal(resMan, scanner);
-        System.out.println(resMan.get(Message.startCalc));
+        PrinterConsole.print(resMan.get(Message.startCalc));
         while (true) {
             String expression = getExpression(inputConsole);
             if (expression == null) break;
@@ -51,7 +51,7 @@ public class ConsoleRunner {
 
     private static void setLocal(ResMan resMan, Scanner scanner) {
         String userLanguage = System.getProperty(USER_LANGUAGE);
-        System.out.println(resMan.get(Message.question));
+        PrinterConsole.print(resMan.get(Message.question));
         String input = scanner.nextLine();
         switch (input) {
             case RU -> resMan.setLocal(new Locale(RU));
