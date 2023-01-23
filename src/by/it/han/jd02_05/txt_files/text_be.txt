@@ -1,0 +1,7 @@
+message.welcome=Вітання!
+message.question=Хочаце ўвесці лакаль з клавіятуры?
+message.printLocal=Увядзіце моўны стандарт (ru, en, be)
+message.noSuchLocale=такой мовы не існуе
+user.firstname=Мікіта
+user.lastname=Ган
+user.answer=да
