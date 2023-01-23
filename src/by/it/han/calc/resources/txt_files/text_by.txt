@@ -1,0 +1,7 @@
+error.noMessage=Памылка: няма паведамлення
+error.message=Памылка:
+error.varUnable=Немагчыма стварыць пераменную
+error.varUnknown=Невядомая пераменная
+error.incorrectData=Некарэктныя значэння
+message.question=Увядзіце лакаль(ru, en, by)
+message.start=Калькулятар запушчаны

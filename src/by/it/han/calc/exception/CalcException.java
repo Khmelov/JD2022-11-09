@@ -1,19 +1,14 @@
 package by.it.han.calc.exception;
 
+import by.it.han.calc.model.Error;
+import by.it.han.calc.service.ResMan;
+
 public class CalcException extends Exception {
-    public CalcException() {
-        super("ERROR: no message");
+    public CalcException(ResMan resMan) {
+        super(resMan.get(Error.noMessage));
     }
 
-    public CalcException(String message) {
-        super("ERROR: " + message);
-    }
-
-    public CalcException(String message, Throwable cause) {
-        super("ERROR: " + message, cause);
-    }
-
-    public CalcException(Throwable cause) {
-        super("ERROR: no message", cause);
+    public CalcException(String message, ResMan resMan) {
+        super(resMan.get(Error.message) + message);
     }
 }

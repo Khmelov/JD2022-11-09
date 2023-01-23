@@ -2,6 +2,7 @@ package by.it.han.calc.service;
 
 import by.it.han.calc.exception.CalcException;
 import by.it.han.calc.exception.VarException;
+import by.it.han.calc.model.Error;
 import by.it.han.calc.model.Var;
 import by.it.han.calc.util.Patterns;
 
@@ -15,6 +16,7 @@ import java.util.regex.Pattern;
 public class Parser {
 
     private final String expression;
+    private final ResMan resMan;
 
     private final Map<String, Integer> mapOperation = Map.of(
             "=", 0,
@@ -24,8 +26,9 @@ public class Parser {
             "/", 2
     );
 
-    public Parser(String expression) {
+    public Parser(String expression, ResMan resMan) {
         this.expression = expression;
+        this.resMan = resMan;
     }
 
     public String getExpression() {
@@ -49,7 +52,7 @@ public class Parser {
             Var tmpResult = calcOneOperation(left, operation, right);
             values.add(index, tmpResult.toString().replace(" ", ""));
         }
-        return Var.create(values.get(0));
+        return Var.create(values.get(0), resMan);
     }
 
     private int findOperationIndex(List<String> operations) {
@@ -66,11 +69,11 @@ public class Parser {
     }
 
     private Var calcOneOperation(String leftStr, String operation, String rightStr) throws CalcException, VarException {
-        Var right = Var.create(rightStr);
+        Var right = Var.create(rightStr, resMan);
         if (operation.equals("=")) {
             return Var.saveVar(leftStr, right);
         }
-        Var left = Var.create(leftStr);
+        Var left = Var.create(leftStr, resMan);
         switch (operation) {
             case "+" -> {
                 return left.add(right);
@@ -85,6 +88,6 @@ public class Parser {
                 return left.div(right);
             }
         }
-        throw new CalcException("incorrect data");
+        throw new CalcException(resMan.get(Error.incorrectData), resMan);
     }
 }
