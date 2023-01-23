@@ -1,4 +1,4 @@
-package by.it.han.calc;
+package by.it.han.calc.model;
 
 import static by.it.han.jd01_03.Helper.multiply;
 import static by.it.han.jd01_07.Matrix.convertToMatrix;

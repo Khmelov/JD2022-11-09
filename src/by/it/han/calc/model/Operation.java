@@ -1,4 +1,4 @@
-package by.it.han.calc;
+package by.it.han.calc.model;
 
 public interface Operation {
 
@@ -18,11 +18,6 @@ public interface Operation {
     }
 
     default Var div(Var other) {
-        System.out.printf("Operation %s / %s is impossible%n", this, other);
-        return null;
-    }
-
-    default Var assignment(Var other) {
         System.out.printf("Operation %s / %s is impossible%n", this, other);
         return null;
     }

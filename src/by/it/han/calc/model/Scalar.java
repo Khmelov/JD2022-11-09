@@ -1,4 +1,4 @@
-package by.it.han.calc;
+package by.it.han.calc.model;
 
 public class Scalar extends Var {
 

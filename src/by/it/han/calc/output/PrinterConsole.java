@@ -1,4 +1,6 @@
-package by.it.han.calc;
+package by.it.han.calc.output;
+
+import by.it.han.calc.model.Var;
 
 import java.util.Map;
 
