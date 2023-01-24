@@ -1,4 +1,4 @@
-package by.it.samatokhin.calc;
+package by.it.samatokhin.calc.controller;
 
 import java.util.Scanner;
 
@@ -10,7 +10,6 @@ public class InputConsole implements Input {
         this.scanner = scanner;
     }
 
-
     @Override
     public String getCommand() {
         String line = scanner.nextLine();
@@ -19,4 +18,5 @@ public class InputConsole implements Input {
                 ? null
                 : line;
     }
+
 }

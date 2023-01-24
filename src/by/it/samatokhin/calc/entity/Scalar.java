@@ -1,6 +1,8 @@
-package by.it.samatokhin.calc;
+package by.it.samatokhin.calc.entity;
 
-class Scalar extends Var {
+import by.it.samatokhin.calc.exception.CalcException;
+
+public class Scalar extends Var {
 
     private final double value;
 
@@ -16,8 +18,13 @@ class Scalar extends Var {
         this.value = otherScalar.value;
     }
 
+    public double getValue() {
+        return value;
+    }
+
     @Override
     public Var add(Var other) throws CalcException {
+        //1 operand == this 2 operand == ????
         if (other instanceof Scalar second) {
             return new Scalar(this.value + second.value);
         } else {
@@ -55,6 +62,6 @@ class Scalar extends Var {
 
     @Override
     public String toString() {
-        return Double.toString(value);
+        return String.valueOf(this.value);
     }
 }

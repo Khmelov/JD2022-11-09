@@ -1,4 +1,7 @@
-package by.it.samatokhin.calc;
+package by.it.samatokhin.calc.view;
+
+import by.it.samatokhin.calc.entity.Var;
+import by.it.samatokhin.calc.exception.CalcException;
 
 public class ConsoleOutput implements Output {
 
@@ -8,7 +11,7 @@ public class ConsoleOutput implements Output {
     }
 
     @Override
-    public void showCalcExeption(CalcException e) {
+    public void showCalcException(CalcException e) {
         System.out.println(e.getMessage());
     }
 }
