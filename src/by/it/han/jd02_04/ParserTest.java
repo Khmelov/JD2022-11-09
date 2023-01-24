@@ -5,12 +5,15 @@ import by.it.han.calc.exception.VarException;
 import by.it.han.calc.service.Parser;
 import by.it.han.calc.service.ResMan;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import java.util.Locale;
 
 import static org.junit.Assert.assertEquals;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ParserTest {
     private static final double DELTA = 0.001;
     private Parser parser;
