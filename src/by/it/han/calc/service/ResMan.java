@@ -7,11 +7,13 @@ public enum ResMan {
 
     INSTANCE;
     private static final String baseName = "by.it.han.calc.resources.language.text";
+    private static final String USER_LANGUAGE = "user.language";
 
     private ResourceBundle resourceBundle;
 
     ResMan() {
-        setLocal(new Locale("en"));
+        String userLanguage = System.getProperty(USER_LANGUAGE);
+        setLocal(new Locale(userLanguage));
     }
 
 

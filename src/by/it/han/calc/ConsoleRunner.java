@@ -17,8 +17,6 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class ConsoleRunner {
-
-    private static final String USER_LANGUAGE = "user.language";
     private static final String SORT_VAR = "sortVar";
     private static final String RU = "ru";
     private static final String EN = "en";
@@ -50,14 +48,12 @@ public class ConsoleRunner {
     }
 
     private static void setLocal(ResMan resMan, Scanner scanner) {
-        String userLanguage = System.getProperty(USER_LANGUAGE);
         PrinterConsole.print(resMan.get(Message.question));
         String input = scanner.nextLine();
         switch (input) {
             case RU -> resMan.setLocal(new Locale(RU));
             case EN -> resMan.setLocal(new Locale(EN));
             case BY -> resMan.setLocal(new Locale(BY));
-            default -> resMan.setLocal(new Locale(userLanguage));
         }
     }
 
