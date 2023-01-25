@@ -32,7 +32,7 @@ public class CashierWorker implements Runnable {
                 }
             } else {
                 Thread.onSpinWait();
-            }
+                }
         }
         System.out.println(cashier + " closed");
     }

@@ -14,7 +14,7 @@ public class CustomerQueue {
         }
     }
 
-    public synchronized Customer poll() {
+    public Customer poll() {
         synchronized (innerMonitor) {
             return customerDeque.pollFirst();
         }

@@ -1,0 +1,7 @@
+error.noMessage=Ошибка:нет сообщения
+error.message=Ошибка:
+error.varUnable=Невозможно создать переменную
+error.varUnknown=Неизвестная переменная
+error.incorrectData=Некорректные значения
+message.question=Введите локаль(ru, en, by)
+message.start=Калькулятор запущен

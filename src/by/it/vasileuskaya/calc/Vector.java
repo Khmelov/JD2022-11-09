@@ -73,14 +73,13 @@ class Vector extends Var {
             }
             return new Vector(temporary);
         }
-        if (other instanceof Vector) {//проверка на размерость
-            Vector vectorTemp = (Vector) other;
+        if (other instanceof Vector vectorTemp && vectorTemp.values.length == this.values.length) {//проверка на размерость
             for (int i = 0; i < temporary.length; i++) {
                 temporary[i] -= vectorTemp.values[i];
             }
             return new Vector(temporary);
         }
-        return super.add(other);
+        return super.sub(other);
     }
 
     @Override
@@ -95,7 +94,6 @@ class Vector extends Var {
         } else {
             if (other instanceof Vector) {//проверка на размерность
                 Vector vectorTemp = (Vector) other;
-                double[] newVector = vectorTemp.values;
                 double result = 0;
                 for (int i = 0; i < temporary.length; i++) {
                     result += temporary[i] * vectorTemp.values[i];
@@ -109,7 +107,7 @@ class Vector extends Var {
     @Override
     public Var div(Var other) throws CalcException {//проверка скаляр=0?
         double[] temporary = values.clone();
-        Var resultDiv = new Vector("0");
+
         if (other instanceof Scalar) {
             Scalar scalarTemp = (Scalar) other;
             for (int i = 0; i < temporary.length; i++) {
@@ -117,7 +115,7 @@ class Vector extends Var {
             }
             return new Vector(temporary);
         } else {
-            return super.mul(other);
+            return super.div(other);
         }
     }
 }

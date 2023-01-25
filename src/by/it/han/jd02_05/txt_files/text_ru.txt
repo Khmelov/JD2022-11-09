@@ -1,0 +1,7 @@
+message.welcome=Привет!
+message.question=Хотите ввести локаль с клавиатуры?
+message.printLocal=Введите локаль (ru, en, be)
+message.noSuchLocale=такой локали не существует
+user.firstname=Никита
+user.lastname=Ган
+user.answer=да
