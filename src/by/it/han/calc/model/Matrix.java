@@ -1,4 +1,4 @@
-package by.it.han.calc;
+package by.it.han.calc.model;
 
 import static by.it.han.jd01_03.Helper.multiply;
 import static by.it.han.jd01_07.Matrix.convertToMatrix;
@@ -27,10 +27,10 @@ public class Matrix extends Var {
     @Override
     public Var add(Var other) {
         double[][] result = new double[this.value.length][this.value[0].length];
-        if (other instanceof Matrix matrix && matrix.value.length == this.value.length) {
+        if (other instanceof Matrix matrix && matrix.getValue().length == this.value.length) {
             for (int i = 0; i < this.value.length; i++) {
                 for (int j = 0; j < this.value[i].length; j++) {
-                    result[i][j] = this.value[i][j] + matrix.value[i][j];
+                    result[i][j] = this.value[i][j] + matrix.getValue()[i][j];
                 }
             }
             return new Matrix(result);
@@ -48,10 +48,10 @@ public class Matrix extends Var {
     @Override
     public Var sub(Var other) {
         double[][] result = new double[this.value.length][this.value[0].length];
-        if (other instanceof Matrix matrix && matrix.value.length == this.value.length) {
+        if (other instanceof Matrix matrix && matrix.getValue().length == this.value.length) {
             for (int i = 0; i < this.value.length; i++) {
                 for (int j = 0; j < this.value[i].length; j++) {
-                    result[i][j] = this.value[i][j] - matrix.value[i][j];
+                    result[i][j] = this.value[i][j] - matrix.getValue()[i][j];
                 }
             }
             return new Matrix(result);
@@ -69,7 +69,7 @@ public class Matrix extends Var {
     @Override
     public Var mul(Var other) {
         double[][] result = new double[this.value.length][this.value[0].length];
-        if (other instanceof Matrix matrix && matrix.value.length == this.value.length) {
+        if (other instanceof Matrix matrix && matrix.getValue().length == this.value.length) {
             result = multiply(this.value, matrix.value);
             return new Matrix(result);
         } else if (other instanceof Scalar scalar) {

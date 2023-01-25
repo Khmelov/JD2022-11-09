@@ -1,4 +1,4 @@
-package by.it.han.calc;
+package by.it.han.calc.model;
 
 import static by.it.han.jd01_07.Vector.convertToVector;
 import static by.it.han.jd01_07.Vector.getString;

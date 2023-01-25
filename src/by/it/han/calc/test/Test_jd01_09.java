@@ -1,4 +1,4 @@
-package by.it.han.calc;
+package by.it.han.calc.test;
 
 
 import by.it.HomeWork;
