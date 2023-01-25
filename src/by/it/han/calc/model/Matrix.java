@@ -1,5 +1,7 @@
 package by.it.han.calc.model;
 
+import by.it.han.calc.exception.VarException;
+
 import static by.it.han.jd01_03.Helper.multiply;
 import static by.it.han.jd01_07.Matrix.convertToMatrix;
 import static by.it.han.jd01_07.Matrix.getString;
@@ -92,9 +94,12 @@ public class Matrix extends Var {
     }
 
     @Override
-    public Var div(Var other) {
+    public Var div(Var other) throws VarException {
         double[][] result = new double[this.value.length][this.value[0].length];
-        if (other instanceof Scalar scalar && scalar.getValue() != 0) {
+        if (other instanceof Scalar scalar) {
+            if (scalar.getValue() == 0.0) {
+                throw new VarException(Var.resMan.get(Error.incorrectData), resMan);
+            }
             for (int i = 0; i < this.value.length; i++) {
                 for (int j = 0; j < this.value[i].length; j++) {
                     result[i][j] = this.value[i][j] / scalar.getValue();

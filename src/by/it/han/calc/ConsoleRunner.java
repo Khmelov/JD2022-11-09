@@ -30,7 +30,7 @@ public class ConsoleRunner {
         Scanner scanner = new Scanner(System.in);
         Input inputConsole = new InputConsole(scanner);
         Printer printerConsole = new PrinterConsole();
-        ResMan resMan = ResMan.INSTANCE;
+        ResMan resMan = Var.resMan;
         setLocal(resMan, scanner);
         PrinterConsole.print(resMan.get(Message.startCalc));
         while (true) {
@@ -43,6 +43,7 @@ public class ConsoleRunner {
             } catch (CalcException | VarException e) {
                 throw new RuntimeException(e);
             }
+
             printValues(printerConsole, result);
         }
     }
