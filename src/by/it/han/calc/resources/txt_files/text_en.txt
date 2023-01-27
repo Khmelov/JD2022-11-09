@@ -1,0 +1,7 @@
+error.noMessage=ERROR: no message
+error.message=ERROR:
+error.varUnable=Unable to create a variable
+error.varUnknown=Unknown variable
+error.incorrectData=IncorrectData
+message.question=Input local(ru, en, by)
+message.start=Calculator started
