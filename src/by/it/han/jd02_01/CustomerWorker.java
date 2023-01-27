@@ -5,8 +5,12 @@ public class CustomerWorker extends Thread implements CustomerAction {
     private final Customer customer;
     private final ShoppingCard shoppingCard;
     public static final double MIN_TIME = 0.5;
-    public static final int MAX_TIME = 2;
+    public static final double MIN_TIME_PENSIONER = MIN_TIME * 1.5;
+    public static final double MAX_TIME = 2;
+    public static final double MAX_TIME_PENSIONER = MAX_TIME * 1.5;
     public static final int MIN_GOOD_COUNT = 2;
+    public static final int MIN_GOOD_COUNT_STUDENT = 0;
+    public static final int MAX_GOOD_COUNT_STUDENT = 2;
     public static final int MAX_GOOD_COUNT = 5;
 
     public CustomerWorker(Store store, Customer customer) {
@@ -20,10 +24,14 @@ public class CustomerWorker extends Thread implements CustomerAction {
         enteredStore();
         shoppingCard.takeCart();
         chooseGood();
-        int count = RandomUtils.get(MIN_GOOD_COUNT, MAX_GOOD_COUNT);
-        int num = 0;
-        for (int i = 0; i < count; i++) {
-            shoppingCard.putToCart(new Good(), ++num);
+        int countGoods;
+        if (customer instanceof Student) {
+            countGoods = RandomUtils.get(MIN_GOOD_COUNT_STUDENT, MAX_GOOD_COUNT_STUDENT);
+        } else {
+            countGoods = RandomUtils.get(MIN_GOOD_COUNT, MAX_GOOD_COUNT);
+        }
+        for (int i = 0; i < countGoods; ) {
+            shoppingCard.putToCart(new Good(), ++i);
         }
         goOut();
     }
@@ -35,7 +43,11 @@ public class CustomerWorker extends Thread implements CustomerAction {
 
     @Override
     public Good chooseGood() {
-        SleeperUtils.getSleep(MIN_TIME, MAX_TIME);
+        if (customer instanceof Pensioner) {
+            SleeperUtils.getSleep(MIN_TIME_PENSIONER, MAX_TIME_PENSIONER);
+        } else {
+            SleeperUtils.getSleep(MIN_TIME, MAX_TIME);
+        }
         System.out.printf("%s in %s choose a good%n", customer, store);
         return new Good();
     }
