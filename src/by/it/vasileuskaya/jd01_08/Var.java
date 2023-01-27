@@ -31,4 +31,5 @@ public abstract class Var implements Operation {
         System.out.printf("Operation %s / %s is impossible%n", this, other);
         return null;
     }
+
 }

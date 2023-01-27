@@ -34,9 +34,14 @@ public class Scalar extends Var {
             Scalar scalarTemp = (Scalar) other;
             Scalar resultVar = new Scalar(this.value + scalarTemp.value);
             return resultVar;
-        } else {
-            return other.add(this);
+        } else if (other instanceof Vector) {
+            Vector vectorTemp = (Vector) other;
+            return vectorTemp.add(this);
+        } else if (other instanceof Matrix) {
+            Matrix matrixTemp = (Matrix) other;
+            return matrixTemp.add(this);
         }
+        return other.add(this);
     }
 
     @Override
