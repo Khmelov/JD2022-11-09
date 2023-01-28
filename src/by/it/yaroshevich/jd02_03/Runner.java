@@ -4,6 +4,7 @@ import by.it.yaroshevich.jd02_03.config.Dispatcher;
 import by.it.yaroshevich.jd02_03.entity.CustomerQueue;
 import by.it.yaroshevich.jd02_03.entity.Store;
 import by.it.yaroshevich.jd02_03.service.StoreWorker;
+import lombok.Builder;
 
 public class Runner {
     public static void main(String[] args) {
