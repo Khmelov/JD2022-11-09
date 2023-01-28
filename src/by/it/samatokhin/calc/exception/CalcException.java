@@ -1,4 +1,4 @@
-package by.it.samatokhin.calc;
+package by.it.samatokhin.calc.exception;
 
 @SuppressWarnings("unused")
 public class CalcException extends Exception {

@@ -8,7 +8,7 @@ import java.util.List;
 // и возможности принтера
 public class PrinterAdapter implements PageListPrinter{
 
-    private Printer printer = new Printer();
+    private final Printer printer = new Printer();
     
     @Override
     public void print(List<String> list) {

@@ -1,5 +1,7 @@
 package by.it.han.calc.model;
 
+import by.it.han.calc.exception.VarException;
+
 import static by.it.han.jd01_07.Vector.convertToVector;
 import static by.it.han.jd01_07.Vector.getString;
 
@@ -76,8 +78,11 @@ public class Vector extends Var {
     }
 
     @Override
-    public Var div(Var other) {
-        if (other instanceof Scalar scalar && scalar.getValue() != 0) {
+    public Var div(Var other) throws VarException {
+        if (other instanceof Scalar scalar) {
+            if (scalar.getValue() == 0.0) {
+                throw new VarException(Var.resMan.get(Error.incorrectData), resMan);
+            }
             double[] cloneValue = this.value.clone();
             for (int i = 0; i < cloneValue.length; i++) {
                 cloneValue[i] /= scalar.getValue();
