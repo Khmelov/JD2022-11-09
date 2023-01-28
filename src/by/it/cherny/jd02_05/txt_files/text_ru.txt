@@ -1,0 +1,4 @@
+message.welcome=Категорически вас приветствую!
+message.question=Как вы?
+user.firstname=Александр
+user.lastname=Черный

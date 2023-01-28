@@ -1,0 +1,4 @@
+message.welcome=Вітання!
+message.question=Як твае справы?
+user.firstname=Аляксандр
+user.lastname=Чорны

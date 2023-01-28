@@ -1,8 +1,10 @@
-package by.it.cherny.calc;
+package by.it.cherny.calc.entity;
+
+import by.it.cherny.calc.exception.CalcException;
 
 import java.util.Arrays;
 
-class Matrix extends Var {
+public class Matrix extends Var {
     private double[][] values;
     public Matrix(double[][] values) {
         this.values = values.clone();

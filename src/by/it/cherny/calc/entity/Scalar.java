@@ -1,6 +1,8 @@
-package by.it.cherny.calc;
+package by.it.cherny.calc.entity;
 
-class Scalar extends Var {
+import by.it.cherny.calc.exception.CalcException;
+
+public class Scalar extends Var {
     private final double value;
 
     public Scalar(double value) {

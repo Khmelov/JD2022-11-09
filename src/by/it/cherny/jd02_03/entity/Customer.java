@@ -1,10 +1,15 @@
 package by.it.cherny.jd02_03.entity;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class Customer {
 
     private final String name;
     private final ShoppingCart shoppingCart;
     private boolean waiting;
+
+//    ExecutorService executors = Executors.newFixedThreadPool(50);
 
     public Customer(int number) {
         if (number%4==0){

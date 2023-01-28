@@ -45,7 +45,7 @@ public class CashierWorker implements Runnable{
                     Double totalCustomerAmount = getCustomerAmount(goodList);
 
                     cashier.setTotalRevenue(cashier.getTotalRevenue()+totalCustomerAmount);
-                    System.out.printf("%s cheque from %s store \n", customer, store);
+                    System.out.printf("\n %s cheque from %s store \n", customer, store);
                     System.out.printf("Total amount: %.2f \n",totalCustomerAmount);
 //                    System.out.println("Total amount: "+totalCustomerAmount);
                     getCheque(goodList.toArray());

@@ -1,8 +1,10 @@
-package by.it.cherny.calc;
+package by.it.cherny.calc.entity;
+
+import by.it.cherny.calc.exception.CalcException;
 
 import java.util.StringJoiner;
 
-class Vector extends Var {
+public class Vector extends Var {
     private final double[] values;
 
     public Vector(double[] values){
