@@ -8,8 +8,8 @@ public class Customer {
     private final PriceListRepo priceListRepo;
     private final Map<String, Integer> goods = new HashMap<>();
 
-    public Customer(int number, PriceListRepo priceListRepo) {
-        this.name = "Customer #" + number;
+    public Customer(String name, int number, PriceListRepo priceListRepo) {
+        this.name = name + number;
         this.priceListRepo = priceListRepo;
     }
 

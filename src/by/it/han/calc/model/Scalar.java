@@ -1,15 +1,13 @@
 package by.it.han.calc.model;
 
+import by.it.han.calc.exception.VarException;
+
 public class Scalar extends Var {
 
     private final double value;
 
     public Scalar(double value) {
         this.value = value;
-    }
-
-    public Scalar(Scalar scalar) {
-        this.value = scalar.value;
     }
 
     public Scalar(String strScalar) {
@@ -75,8 +73,11 @@ public class Scalar extends Var {
     }
 
     @Override
-    public Var div(Var other) {
-        if (other instanceof Scalar scalar && scalar.value != 0) {
+    public Var div(Var other) throws VarException {
+        if (other instanceof Scalar scalar) {
+            if (scalar.getValue() == 0.0) {
+                throw new VarException(Var.resMan.get(Error.incorrectData), resMan);
+            }
             return new Scalar(this.value / scalar.getValue());
         } else if (other instanceof Vector vector) {
             vector.mul(this);

@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class Var implements Operation {
     private static final Map<String, Var> map = new HashMap<>();
+    public static final ResMan resMan = ResMan.INSTANCE;
 
     public static Var create(String strValue, ResMan resMan) throws VarException {
         if (strValue.matches(Patterns.SCALAR)) {

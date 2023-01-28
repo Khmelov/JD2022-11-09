@@ -1,7 +1,7 @@
 package by.it.han.jd02_01;
 
 public class SleeperUtils {
-    public static final int MILLI_SEC = 1000;
+    public static final int MILLI_SEC = 10;
 
     private SleeperUtils() {
 
