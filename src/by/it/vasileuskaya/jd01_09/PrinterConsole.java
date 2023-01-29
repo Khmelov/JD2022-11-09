@@ -1,9 +1,9 @@
 package by.it.vasileuskaya.jd01_09;
 
-public class OutputConsole implements Output {
+public class PrinterConsole implements Printer {
 
     @Override
-    public void showResult(Var var) {
+    public void print(Var var) {
         System.out.println(var);
     }
 }

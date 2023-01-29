@@ -7,12 +7,12 @@ public class ConsoleRunner {
         Scanner scanner = new Scanner(System.in);
         Input input = new InputConsole(scanner);
         Parser parser = new Parser();
-        Output output = new OutputConsole();
+        Printer output = new PrinterConsole();
         for (; ; ) {
             String expression = input.getCommand();
             if (expression != null) {
                 Var result = parser.calc(expression);
-                output.showResult(result);
+                output.print(result);
             } else {
                 break;
             }
