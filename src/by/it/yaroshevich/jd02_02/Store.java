@@ -26,10 +26,14 @@ public class Store extends Thread{
     }
 
     @Override
+    public String toString() {
+        return name;
+    }
+
+    @Override
     public void run() {
         System.out.println(name + " opened");
         List<Thread> threads = new ArrayList<>();
-
         for (int numberCashier = 1; numberCashier <= 2; numberCashier++) {
             Cashier cashier = new Cashier(numberCashier);
             CashierWorker cashierWorker = new CashierWorker(cashier, this);
@@ -37,32 +41,25 @@ public class Store extends Thread{
             threads.add(thread);
             thread.start();
         }
-        
-        
         int indexCustomer = 0;
-        while (dispatcher.storeIsOpened()) {
+        while (dispatcher.storeIsOpen()) {
             int countCustomerPerSecond = RandomGenerator.get(2);
-            for (int n = 0; n < countCustomerPerSecond && dispatcher.storeIsOpened(); n++) {
+            for (int n = 0; n < countCustomerPerSecond && dispatcher.storeIsOpen(); n++) {
                 Customer customer = new Customer(++indexCustomer);
                 CustomerWorker customerWorker = new CustomerWorker(this, customer);
                 threads.add(customerWorker);
                 customerWorker.start();
-            }     
+            }
             Sleeper.sleep(ONE_SECOND);
         }
-        for (Thread thread : threads){
+        for (Thread thread : threads) {
             try {
                 thread.join();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
-
         System.out.println(name + " closed");
     }
 
-    @Override
-    public String toString() {
-        return name;
-    }
 }
