@@ -9,17 +9,14 @@ public class Scalar extends Var {
     }
 
     public Scalar(double value) {
-
         this.value = value;
     }
 
     public Scalar(Scalar scalar) {
-
         this.value = scalar.value;
     }
 
     public Scalar(String strScalar) {
-
         this.value = Double.parseDouble(strScalar);
     }
 
@@ -34,14 +31,8 @@ public class Scalar extends Var {
             Scalar scalarTemp = (Scalar) other;
             Scalar resultVar = new Scalar(this.value + scalarTemp.value);
             return resultVar;
-        } else if (other instanceof Vector) {
-            Vector vectorTemp = (Vector) other;
-            return vectorTemp.add(this);
-        } else if (other instanceof Matrix) {
-            Matrix matrixTemp = (Matrix) other;
-            return matrixTemp.add(this);
         }
-        return other.add(this);
+        return other.add(this);//будет искать метод в предке
     }
 
     @Override
@@ -68,7 +59,7 @@ public class Scalar extends Var {
     }
 
     @Override
-    public Var div(Var other) {
+    public Var div(Var other) {//если веркто или матрица - ошибка
         if (other instanceof Scalar) {
             Scalar scalarTemp = (Scalar) other;
             return new Scalar(this.value / scalarTemp.value);

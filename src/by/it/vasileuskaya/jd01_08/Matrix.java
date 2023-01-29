@@ -16,6 +16,10 @@ public class Matrix extends Var {
         this.value = convertStringToDoubleMatrix(value);
     }
 
+    public double[][] getValue() {
+        return value;
+    }
+
     private double[][] convertStringToDoubleMatrix(String strMatrix) {
         String[] strMatrixInArray = strMatrix
                 .substring(2, strMatrix.length() - 2)
@@ -51,7 +55,7 @@ public class Matrix extends Var {
     }
 
     @Override
-    public Var add(Var other) {
+    public Var add(Var other) {//если вектор - ошибка
         double[][] temporary = value.clone();
         if (other instanceof Scalar scalarTemp) {
             for (int i = 0; i < temporary.length; i++) {
@@ -60,12 +64,13 @@ public class Matrix extends Var {
                 }
             }
             return new Matrix(temporary);
+
         } else if (other instanceof Matrix) {//проверка на размерость
             Matrix matrixTemp = (Matrix) other;
             double[][] result = new double[temporary[0].length][temporary.length];
             for (int i = 0; i < temporary.length; i++) {
                 for (int j = 0; j < temporary[i].length; j++) {
-                    result[i][j] = temporary[i][j] + matrixTemp.value[i][j];
+                    result[i][j] = temporary[i][j] + matrixTemp.getValue()[i][j];
                 }
             }
             return new Matrix(result);
@@ -74,7 +79,7 @@ public class Matrix extends Var {
     }
 
     @Override
-    public Var sub(Var other) {
+    public Var sub(Var other) {//если вектор - ошибка
         double[][] temporary = value.clone();
         if (other instanceof Scalar) {
             Scalar scalarTemp = (Scalar) other;
@@ -89,12 +94,12 @@ public class Matrix extends Var {
             double[][] result = new double[temporary[0].length][temporary.length];
             for (int i = 0; i < temporary.length; i++) {
                 for (int j = 0; j < temporary[i].length; j++) {
-                    result[i][j] = temporary[i][j] - matrixTemp.value[i][j];
+                    result[i][j] = temporary[i][j] - matrixTemp.getValue()[i][j];
                 }
             }
             return new Matrix(result);
         }
-        return super.add(other);
+        return super.sub(other);
     }
 
     @Override
@@ -108,12 +113,25 @@ public class Matrix extends Var {
                 }
             }
             return new Matrix(temporary);
+
+        } else if (other instanceof Vector) {//проверка на размерость
+            Vector vectorTemp = (Vector) other;
+            double[] result = new double[temporary.length];
+            for (int i = 0; i < result.length; i++) {
+                for (int j = 0; j < vectorTemp.getValues().length; j++) {
+                    result[i] += temporary[i][j] * vectorTemp.getValues()[j];
+                }
+            }
+            return new Vector(result);
+
         } else if (other instanceof Matrix) {//проверка на размерость
             Matrix matrixTemp = (Matrix) other;
-            double[][] result = new double[temporary[0].length][temporary.length];
+            double[][] result = new double[temporary.length][matrixTemp.getValue()[0].length];
             for (int i = 0; i < temporary.length; i++) {
-                for (int j = 0; j < temporary[i].length; j++) {
-                    result[i][j] = temporary[i][j] * matrixTemp.value[i][j];
+                for (int j = 0; j < matrixTemp.getValue()[0].length; j++) {
+                    for (int m = 0; m < matrixTemp.getValue().length; m++) {
+                        result[i][j] += temporary[i][m] * matrixTemp.getValue()[m][j];
+                    }
                 }
             }
             return new Matrix(result);
@@ -122,8 +140,8 @@ public class Matrix extends Var {
     }
 
     @Override
-    public Var div(Var other) {
-        double[][] temporary = value.clone();
+    public Var div(Var other) {//если матрица или вектор - ошибка
+        double[][] temporary = value.clone(); // проверка - деление на ноль
         if (other instanceof Scalar) {
             Scalar scalarTemp = (Scalar) other;
             for (int i = 0; i < temporary.length; i++) {
