@@ -47,7 +47,7 @@ public class CustomerWorker extends Thread implements CustomerAction, ShoppingCa
 
     @Override
     public void goOut() {
-        System.out.println(customer + " left the " + store);
+        System.out.println(customer + " leaves the " + store);
 
     }
 
