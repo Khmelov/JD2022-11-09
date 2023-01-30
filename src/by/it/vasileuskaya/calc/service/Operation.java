@@ -1,6 +1,9 @@
-package by.it.vasileuskaya.calc;
+package by.it.vasileuskaya.calc.service;
 
-interface Operation {
+import by.it.vasileuskaya.calc.exception.CalcException;
+import by.it.vasileuskaya.calc.model.Var;
+
+public interface Operation {
     Var add(Var other) throws CalcException;
 
     Var sub(Var other) throws CalcException;

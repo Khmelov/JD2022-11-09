@@ -1,4 +1,4 @@
-package by.it.vasileuskaya.calc;
+package by.it.vasileuskaya.calc.exception;
 
 public class CalcException extends Exception {
     public CalcException() {
