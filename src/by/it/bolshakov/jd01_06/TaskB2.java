@@ -5,13 +5,14 @@ import java.util.Comparator;
 
 public class TaskB2 {
     public static void main(String[] args) {
-        String text = Poem.text.replaceAll("[^а-яёА-ЯЁ.]", " ").replaceAll("\s+", " ");
-        String[] sentences = text.split("[.]");
-        String[] trimmedSentences = new String[sentences.length];
-        for (int i = 0; i < sentences.length; i++) {
-            trimmedSentences[i] = sentences[i].trim();
-        }
-        Arrays.sort(trimmedSentences, Comparator.comparingInt(String::length));
+        //String text = Poem.text.replaceAll("[^а-яёА-ЯЁ.]", " ").replaceAll("...", " ").replaceAll("\s+", " ");
+        String[] sentences = Poem.text.replace("...", "")
+                                .replaceAll("[-,:]", " ")
+                                .replaceAll("\\s+", " ")
+                                .replace('!', '.').split("\\.");
+        String[] trimmedSentences = Arrays.stream(sentences).map(String::trim)
+                                                            .sorted(Comparator.comparingInt(String::length))
+                                                            .toArray(String[]::new);
         for (String sentence: trimmedSentences) {
             System.out.print(sentence+"\n");
         }
