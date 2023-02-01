@@ -18,7 +18,7 @@ public class Dispatcher {
         countIn.incrementAndGet();
     }
 
-    public void leaveCustomer(){
+    public void leftCustomer(){
         countOut.incrementAndGet();
     }
 

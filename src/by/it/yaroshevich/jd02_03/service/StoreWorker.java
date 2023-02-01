@@ -21,16 +21,16 @@ public class StoreWorker extends Thread{
 
     public StoreWorker(Store store) {
         this.store = store;
-        name = store.name();
-        dispatcher = store.dispatcher();
+        name = store.getName();
+        dispatcher = store.getDispatcher();
     }
 
     @Override
     public void run() {
         System.out.println(name + " opened");
 
-        ExecutorService cashierPool = Executors.newFixedThreadPool(StoreWorker.N_THREADS);
-            for (int numberCashier = 1; numberCashier <= 2; numberCashier++) {
+        ExecutorService cashierPool = Executors.newFixedThreadPool(N_THREADS);
+            for (int numberCashier = 1; numberCashier <= N_THREADS; numberCashier++) {
                 Cashier cashier = new Cashier(numberCashier);
                 CashierWorker cashierWorker = new CashierWorker(cashier, store);
                 cashierPool.execute(cashierWorker);
@@ -39,7 +39,7 @@ public class StoreWorker extends Thread{
 
             int indexCustomer = 0;
             while (dispatcher.storeIsOpened()) {
-                int countCustomerPerSecond = RandomGenerator.get(2);
+                int countCustomerPerSecond = RandomGenerator.get(N_THREADS);
                 for (int n = 0; n < countCustomerPerSecond && dispatcher.storeIsOpened(); n++) {
                     Customer customer = new Customer(++indexCustomer);
                     CustomerWorker customerWorker = new CustomerWorker(store, customer);
