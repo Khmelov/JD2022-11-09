@@ -7,19 +7,16 @@ public class Runner {
 
     public static void main(String[] args) {
         for (int i = 0; i < 1000; i++) {
-            getThread(i).start();
+            getThread().start();
         }
 
     }
 
-    private static Thread getThread(int i) {
-        return new Thread("№" + i) {
-            @Override
-            public void run() {
-                SingletonLogger logger = SingletonLogger.getInstance();
-                logger.error(ERROR_MESSAGE);
-                logger.info(INFO_MESSAGE);
-            }
-        };
+    private static Thread getThread() {
+        return new Thread(() -> {
+            SingletonLogger logger = SingletonLogger.getInstance();
+            logger.error(ERROR_MESSAGE);
+            logger.info(INFO_MESSAGE);
+        });
     }
 }
