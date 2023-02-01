@@ -1,17 +1,18 @@
 package by.it.yaroshevich.jd02_01;
-
 public class Good {
 
     private final String name;
-    private final double price;
 
-    public Good(String name, double price) {
+
+    public Good(String name) {
+
         this.name = name;
-        this.price = price;
     }
 
     @Override
     public String toString() {
-        return "Good{" + "name='" + name + '\'' + ", price=" + price + '}';
+
+        return name;
     }
+
 }

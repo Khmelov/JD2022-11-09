@@ -12,10 +12,10 @@ public enum ResMan {
         setLocale(Locale.ENGLISH);
     }
 
-    private static final String basename = "by/it/cherny/jd02_05/language.text";
+    private static final String baseName = "by/it/cherny/jd02_05/language.text";
 
     public void setLocale(Locale locale) {
-        resourceBundle = ResourceBundle.getBundle(basename, locale);
+        resourceBundle = ResourceBundle.getBundle(baseName, locale);
     }
 
     public String get(String key) {
