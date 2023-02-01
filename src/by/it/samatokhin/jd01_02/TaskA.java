@@ -1,7 +1,6 @@
 package by.it.samatokhin.jd01_02;
 
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class TaskA {
