@@ -1,0 +1,7 @@
+database:
+  user: admin
+  password: qwerty
+  url: jdbc:mysql://localhost:3306/test
+logger:
+  path: logger.txt
+  level: [INFO, DEBUG, ERROR]
