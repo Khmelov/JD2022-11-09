@@ -9,24 +9,20 @@ public class TaskB {
     }
 
     private static void step2() {
+        double deltaX = 0.5;
         double b = 0;
-        double a = 0;
-        for (double x = -5.5; x < 2; x+=0.5) {
-            double halfX = x/2.0;
-            if ((halfX> -2) && (halfX<=-1)){
-                b = sin(x*x);
-                a = log(abs(b+2.74));
-            System.out.printf("При x=%.4f a=%f\n",halfX,a);
-            } else if ((halfX>-1)&&(halfX<0.2)) {
-                b = cos(x*x);
-                a = log(abs(b+2.74));
-            System.out.printf("При x=%.4f a=%f\n",halfX,a);
-            } else if (halfX==0.2) {
-                b = atan(x*x);
-                a = log(abs(b+2.74));
-            System.out.printf("При x=%.4f a=%f\n",halfX,a);
+        for (double x = -6 + deltaX; x < 2; x += deltaX) {
+            if (x / 2 == 0.2) {
+                b = 1 / tan(pow(x, 2));
+            } else if (-1 < x / 2 && x / 2 < 0.2) {
+                b = cos(pow(x, 2));
+            } else if (-2 < x / 2 && x / 2 < -1) {
+                b = sin(pow(x, 2));
             } else {
-                System.out.printf("При x=%.4f Невозможно вычислить\n",halfX);
+                System.out.printf("При x/2=%.2f вычисления не определены%n", x / 2);
+            }
+            if (b != 0) {
+                System.out.printf("При x/2=%.2f a=%f%n", x / 2, log10(abs(b + 2.74)));
             }
         }
     }

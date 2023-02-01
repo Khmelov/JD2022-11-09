@@ -6,10 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-public class TaskB {
-    public static final String STRING_COMMENT = "//";
-    public static final String BLOCK_COMMENT_STARTS = "/*";
-    public static final String BLOCK_COMMENT_ENDS = "*/";
+public class TaskB implements COMMENT_DATA{
 
     public static void main(String[] args) {
         // comment1
