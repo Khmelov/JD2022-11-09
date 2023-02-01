@@ -1,8 +1,8 @@
 package by.it.vasileuskaya.jd01_07;
 
 public class Matrix extends Var {
-    private final double[][] value;
 
+    private final double[][] value;
 
     public Matrix(double[][] value) {
         this.value = value;
@@ -17,9 +17,36 @@ public class Matrix extends Var {
     }
 
     private double[][] convertStringToDoubleMatrix(String strMatrix) {
-        String str = strMatrix.replace("{", "").replace("}}", "");
-        String[] matrixStr = str.split("},\s?");
+        String[] strMatrixInArray = strMatrix
+                .substring(2, strMatrix.length() - 2)
+                .split("},\s?\\{");
+        int countColumn = strMatrixInArray[0].split(",\s?").length;
+        int countElementsInRows = strMatrixInArray[0].split(",\s?").length;
+        double[][] matrixDouble = new double[strMatrixInArray.length][countColumn];
+        for (int i = 0; i < matrixDouble.length; i++) {
+            for (int j = 0; j < countElementsInRows; j++) {
+                String[] strArrayTemp = strMatrixInArray[i].split(",\s?");
+                matrixDouble[i][j] = Double.parseDouble(strArrayTemp[j]);
+            }
+        }
+        return matrixDouble;
+    }
 
-        return new double[0][];
+    @Override
+    public String toString() {
+        StringBuilder matrixString = new StringBuilder("{");
+        for (double[] doubles : value) {
+            matrixString.append("{");
+            for (double aDouble : doubles) {
+                matrixString.append(aDouble).append(", ");
+            }
+            matrixString
+                    .delete(matrixString.length() - 2, matrixString.length())
+                    .append("}, ");
+        }
+        matrixString
+                .delete(matrixString.length() - 2, matrixString.length())
+                .append("}");
+        return matrixString.toString();
     }
 }

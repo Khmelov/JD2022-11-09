@@ -1,6 +1,8 @@
-package by.it.vasileuskaya.calc;
+package by.it.vasileuskaya.calc.model;
 
-class Scalar extends Var {
+import by.it.vasileuskaya.calc.exception.CalcException;
+
+public class Scalar extends Var {
     private final double value;
 
 
@@ -50,8 +52,9 @@ class Scalar extends Var {
         if (other instanceof Scalar) {
             Scalar scalarTemp = (Scalar) other;
             return new Scalar(this.value * scalarTemp.value);
+        } else {
+            return other.mul(this);
         }
-        return other.mul(this);
     }
 
     @Override

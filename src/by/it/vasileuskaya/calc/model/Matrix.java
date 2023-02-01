@@ -1,4 +1,6 @@
-package by.it.vasileuskaya.jd01_09;
+package by.it.vasileuskaya.calc.model;
+
+import by.it.vasileuskaya.calc.exception.CalcException;
 
 public class Matrix extends Var {
     private final double[][] value;
@@ -54,7 +56,7 @@ public class Matrix extends Var {
     }
 
     @Override
-    public Var add(Var other) {
+    public Var add(Var other) throws CalcException {
         double[][] temporary = value.clone();
         if (other instanceof Scalar scalarTemp) {
             for (int i = 0; i < temporary.length; i++) {
@@ -66,7 +68,10 @@ public class Matrix extends Var {
 
         } else if (other instanceof Matrix) {//проверка на размерость
             Matrix matrixTemp = (Matrix) other;
-            double[][] result = new double[temporary[0].length][temporary.length];
+            if (temporary.length != matrixTemp.getValue().length || temporary[0].length != matrixTemp.getValue()[0].length) {
+                throw new CalcException("Incorrect size of matrix %s or %s".formatted(this, matrixTemp));
+            }
+            double[][] result = new double[temporary.length][temporary[0].length];
             for (int i = 0; i < temporary.length; i++) {
                 for (int j = 0; j < temporary[i].length; j++) {
                     result[i][j] = temporary[i][j] + matrixTemp.getValue()[i][j];
@@ -78,7 +83,7 @@ public class Matrix extends Var {
     }
 
     @Override
-    public Var sub(Var other) {
+    public Var sub(Var other) throws CalcException {
         double[][] temporary = value.clone();
         if (other instanceof Scalar) {
             Scalar scalarTemp = (Scalar) other;
@@ -90,7 +95,10 @@ public class Matrix extends Var {
             return new Matrix(temporary);
         } else if (other instanceof Matrix) {//проверка на размерость
             Matrix matrixTemp = (Matrix) other;
-            double[][] result = new double[temporary[0].length][temporary.length];
+            if (temporary.length != matrixTemp.getValue().length || temporary[0].length != matrixTemp.getValue()[0].length) {
+                throw new CalcException("Incorrect size of matrix %s or %s".formatted(this, matrixTemp));
+            }
+            double[][] result = new double[temporary.length][temporary[0].length];
             for (int i = 0; i < temporary.length; i++) {
                 for (int j = 0; j < temporary[i].length; j++) {
                     result[i][j] = temporary[i][j] - matrixTemp.getValue()[i][j];
@@ -102,7 +110,7 @@ public class Matrix extends Var {
     }
 
     @Override
-    public Var mul(Var other) {
+    public Var mul(Var other) throws CalcException {
         double[][] temporary = value.clone();
         if (other instanceof Scalar) {
             Scalar scalarTemp = (Scalar) other;
@@ -115,6 +123,9 @@ public class Matrix extends Var {
 
         } else if (other instanceof Vector) {//проверка на размерость
             Vector vectorTemp = (Vector) other;
+            if (temporary[0].length != vectorTemp.getValues().length) {
+                throw new CalcException("Incorrect size of matrix %s or vector %s".formatted(this, vectorTemp));
+            }
             double[] result = new double[temporary.length];
             for (int i = 0; i < result.length; i++) {
                 for (int j = 0; j < vectorTemp.getValues().length; j++) {
@@ -125,6 +136,9 @@ public class Matrix extends Var {
 
         } else if (other instanceof Matrix) {//проверка на размерость
             Matrix matrixTemp = (Matrix) other;
+            if (temporary[0].length != matrixTemp.getValue().length) {
+                throw new CalcException("Incorrect size of matrix %s or %s".formatted(this, matrixTemp));
+            }
             double[][] result = new double[temporary.length][matrixTemp.getValue()[0].length];
             for (int i = 0; i < temporary.length; i++) {
                 for (int j = 0; j < matrixTemp.getValue()[0].length; j++) {
@@ -139,10 +153,13 @@ public class Matrix extends Var {
     }
 
     @Override
-    public Var div(Var other) {
+    public Var div(Var other) throws CalcException {
         double[][] temporary = value.clone(); // проверка - деление на ноль
         if (other instanceof Scalar) {
             Scalar scalarTemp = (Scalar) other;
+            if (scalarTemp.getValue() == 0) {
+                throw new CalcException("Division by zero!");
+            }
             for (int i = 0; i < temporary.length; i++) {
                 for (int j = 0; j < temporary[i].length; j++) {
                     temporary[i][j] /= scalarTemp.getValue();

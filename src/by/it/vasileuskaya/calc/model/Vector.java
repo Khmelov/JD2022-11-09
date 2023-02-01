@@ -1,21 +1,24 @@
-package by.it.vasileuskaya.calc;
+package by.it.vasileuskaya.calc.model;
 
-class Vector extends Var {
+import by.it.vasileuskaya.calc.exception.CalcException;
+
+public class Vector extends Var {
     private final double[] values;
 
     public Vector(double[] value) {
-
         this.values = value;
     }
 
     public Vector(Vector vector) {
-
         this.values = vector.values;
     }
 
     public Vector(String strVector) {
-
         this.values = convertStringToDouble(strVector);
+    }
+
+    public double[] getValues() {
+        return values;
     }
 
     private double[] convertStringToDouble(String strVector) {
@@ -49,11 +52,10 @@ class Vector extends Var {
                 temporary[i] += scalarTemp.getValue();
             }
             return new Vector(temporary);
-        }
-        if (other instanceof Vector) {//проверка на размерость
+        } else if (other instanceof Vector) {//проверка на размерость
             Vector vectorTemp = (Vector) other;
             if (temporary.length != vectorTemp.values.length) {
-                throw new CalcException("Incorrect size %s or %s".formatted(this, vectorTemp));
+                throw new CalcException("Incorrect size of vector %s or %s".formatted(this, vectorTemp));
             }
             for (int i = 0; i < temporary.length; i++) {
                 temporary[i] += vectorTemp.values[i];
@@ -72,8 +74,11 @@ class Vector extends Var {
                 temporary[i] -= scalarTemp.getValue();
             }
             return new Vector(temporary);
-        }
-        if (other instanceof Vector vectorTemp && vectorTemp.values.length == this.values.length) {//проверка на размерость
+        } else if (other instanceof Vector) {//проверка на размерость
+            Vector vectorTemp = (Vector) other;
+            if (temporary.length != vectorTemp.values.length) {
+                throw new CalcException("Incorrect size of vector %s or %s".formatted(this, vectorTemp));
+            }
             for (int i = 0; i < temporary.length; i++) {
                 temporary[i] -= vectorTemp.values[i];
             }
@@ -91,15 +96,16 @@ class Vector extends Var {
                 temporary[i] *= scalarTemp.getValue();
             }
             return new Vector(temporary);
-        } else {
-            if (other instanceof Vector) {//проверка на размерность
-                Vector vectorTemp = (Vector) other;
-                double result = 0;
-                for (int i = 0; i < temporary.length; i++) {
-                    result += temporary[i] * vectorTemp.values[i];
-                }
-                return new Scalar(result);
+        } else if (other instanceof Vector) {//проверка на размерность
+            Vector vectorTemp = (Vector) other;
+            if (temporary.length != vectorTemp.values.length) {
+                throw new CalcException("Incorrect size of vector %s or %s".formatted(this, vectorTemp));
             }
+            double result = 0;
+            for (int i = 0; i < temporary.length; i++) {
+                result += temporary[i] * vectorTemp.values[i];
+            }
+            return new Scalar(result);
         }
         return super.mul(other);
     }
@@ -107,9 +113,11 @@ class Vector extends Var {
     @Override
     public Var div(Var other) throws CalcException {//проверка скаляр=0?
         double[] temporary = values.clone();
-
         if (other instanceof Scalar) {
             Scalar scalarTemp = (Scalar) other;
+            if (scalarTemp.getValue() == 0) {
+                throw new CalcException("Division by zero!");
+            }
             for (int i = 0; i < temporary.length; i++) {
                 temporary[i] /= scalarTemp.getValue();
             }

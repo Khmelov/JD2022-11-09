@@ -9,24 +9,18 @@ public class Runner {
 
     public static void main(String[] args) {
         Var s = new Scalar(3.0);
-        Var s2 = new Scalar(0);
         Var v = new Vector(new double[]{1, 2, 3}); // закомментируйте вектор и/или
-        Var v2 = new Vector(new double[]{2, 3, 4});
         Var m = new Matrix("{{1,2,3},{4,5,6},{7,8,9}}");// матрицу, если вы их не реализовали
         /* Уровень сложности A (калькулятор) */
         print(s.add(s)); //выведет в консоль 6.0
         print(s.sub(s)); //выведет в консоль 0.0
         print(s.mul(s)); //выведет в консоль 9.0
         print(s.div(s)); //выведет в консоль 1.0
-        print(s.sub(v));
-        print(v.sub(s));
+
+        print(s.add(v));
         /* Уровень сложности B (векторные операции) закомментируйте, если не реализовали */
-
-        print(s.div(s2));
-        print(v.div(s2));
-
-        print((v.sub(v2)));
         print(v.add(v)); //выведет в консоль {2.0, 4.0, 6.0}
+        print(v.add(s)); //
         print(v.sub(v)); //выведет в консоль {0.0, 0.0, 0.0}
         print(v.mul(v)); //выведет в консоль 14.0
         print(v.div(v)); //сообщит о невозможности операции

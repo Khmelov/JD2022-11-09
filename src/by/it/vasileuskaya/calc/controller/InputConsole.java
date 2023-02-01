@@ -1,4 +1,4 @@
-package by.it.vasileuskaya.calc;
+package by.it.vasileuskaya.calc.controller;
 
 import java.util.Scanner;
 
@@ -14,7 +14,6 @@ public class InputConsole implements Input {
     public String getCommand() {
         String line = scanner.nextLine();
         line = line.replaceAll("\\s+", "");
-
         return line.equalsIgnoreCase("end")
                 ? null
                 : line;
