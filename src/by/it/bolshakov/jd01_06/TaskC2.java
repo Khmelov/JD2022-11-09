@@ -6,18 +6,17 @@ public class TaskC2 {
 
         String test = getRandomWords(Poem.text);
 
-
-        long startTime1 = System.nanoTime();
+        long startTimeSlow = System.nanoTime();
         String str1 = slow(test);
-        long elapsedTime1 = System.nanoTime() - startTime1;
-        System.out.println("slow "+elapsedTime1/1000000);
+        long endTimeSlow = System.nanoTime() - startTimeSlow;
+        System.out.println("slow "+endTimeSlow/1000000);
 
-        long startTime2 = System.nanoTime();
+        long startTimeFast = System.nanoTime();
         String str2 = fast(test);
-        long elapsedTime2 = System.nanoTime() - startTime2;
-        System.out.println("fast "+elapsedTime2/1000000);
+        long endTimeFast = System.nanoTime() - startTimeFast;
+        System.out.println("fast "+endTimeFast/1000000);
 
-        System.out.println("Отличие в скорости "+(elapsedTime1/elapsedTime2));
+        System.out.println("Отличие в скорости в "+ (endTimeSlow/endTimeFast) + " раза");
     }
 
     private static String getRandomWords(String text) {
