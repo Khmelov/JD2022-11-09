@@ -1,0 +1,4 @@
+message.welcome=Добрай раницы!
+message.question=Як у цябе сення справы?
+user.firstname=Василий
+user.lastname=Пупкин
