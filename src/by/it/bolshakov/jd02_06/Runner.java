@@ -10,7 +10,6 @@ public class Runner {
         }
 
     }
-
     private static Thread getThread(int i) {
         return new Thread("#" + i) {
             @Override

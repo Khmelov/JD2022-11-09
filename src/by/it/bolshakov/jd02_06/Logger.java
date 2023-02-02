@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 
 class Logger implements Log {
 
+    public static final boolean INFO_APPEND_TO_LOG = true;
+    public static final boolean ERROR_APPEND_TO_LOG = true;
     private static final String ERROR = "ERROR:";
     private static final String INFO = "INFO:";
     private volatile static Logger logger;
@@ -28,15 +30,13 @@ class Logger implements Log {
 
     @Override
     public synchronized void info(String message) {
-        boolean append = true;
-        log(append, INFO, message);
+        log(INFO_APPEND_TO_LOG, INFO, message);
         System.out.printf("%s %s%n", INFO, message);
     }
 
     @Override
     public synchronized void error(String message) {
-        boolean append = true;
-        log(append, ERROR, message);
+        log(ERROR_APPEND_TO_LOG, ERROR, message);
         System.err.printf("%s %s%n", ERROR, message);
     }
 
