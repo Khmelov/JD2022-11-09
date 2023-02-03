@@ -13,6 +13,7 @@ public class ShoppingCart implements ShoppingCartAction {
     private final Customer customer;
     private final List<Good> cartList = new ArrayList<>();
 
+
     public ShoppingCart(Customer customer) {
         this.customer = customer;
     }
