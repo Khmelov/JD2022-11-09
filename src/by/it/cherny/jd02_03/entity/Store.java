@@ -7,12 +7,18 @@ public class Store{
     private final String name;
     private final Dispatcher dispatcher;
     private final CustomerQueue customerQueue;
+    private final CartQueue cartQueue;
 
-    public Store(String name, Dispatcher dispatcher, CustomerQueue customerQueue) {
+    public Store(String name, Dispatcher dispatcher, CustomerQueue customerQueue, CartQueue cartQueue) {
         this.name = name;
         this.dispatcher = dispatcher;
         this.customerQueue = customerQueue;
+        this.cartQueue = cartQueue;
         new PriceListRepo();
+    }
+
+    public CartQueue getCartQueue() {
+        return cartQueue;
     }
 
     public String getName() {

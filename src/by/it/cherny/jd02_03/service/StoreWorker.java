@@ -1,6 +1,7 @@
 package by.it.cherny.jd02_03.service;
 
 import by.it.cherny.jd02_03.config.Dispatcher;
+import by.it.cherny.jd02_03.entity.CartQueue;
 import by.it.cherny.jd02_03.util.RandomGenerator;
 import by.it.cherny.jd02_03.util.Sleeper;
 import by.it.cherny.jd02_03.entity.Cashier;
