@@ -17,16 +17,25 @@ public class Converter {
     public static final String INFO_YAML = "info.yaml";
 
     public static void main(String[] args) throws IOException {
-        Info info = getInfoClass();
+        Info info = getInfoClass(new JsonMapper());
         saveToFile(new YAMLMapper(), INFO_YAML, info);
         saveToFile(new XmlMapper(), INFO_XML, info);
         saveToFile(new JsonMapper(), INFO_JSON, info);
     }
 
-    private static Info getInfoClass() throws IOException {
-        YAMLMapper yamlMapper = new YAMLMapper();
-        URL url = Converter.class.getResource(Converter.INFO_YAML);
-        return yamlMapper.readValue(url, Info.class);
+    private static Info getInfoClass(ObjectMapper objectMapper) throws IOException {
+        String fileName = getFileName(objectMapper);
+        URL url = Converter.class.getResource(fileName);
+        return objectMapper.readValue(url, Info.class);
+    }
+
+    private static String getFileName(ObjectMapper objectMapper) {
+        if (objectMapper instanceof XmlMapper) {
+            return INFO_XML;
+        } else if (objectMapper instanceof JsonMapper) {
+            return INFO_JSON;
+        }
+        return INFO_YAML;
     }
 
     private static void saveToFile(ObjectMapper objectMapper, String infoFile, Info info) throws IOException {
