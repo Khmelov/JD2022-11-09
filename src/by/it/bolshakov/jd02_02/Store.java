@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Store extends Thread{
-
-    private static final int FINISH_TIME = 120;
     private static final int ONE_SECOND = 1000;
     private final String name;
     private final Dispatcher dispatcher;
     private final CustomerQueue customerQueue;
+
+    public PriceListRepo catalog;
 
     public Dispatcher getDispatcher() {
         return dispatcher;
@@ -42,7 +42,7 @@ public class Store extends Thread{
         while (dispatcher.storeIsOpened()) {
             int countCustomerPerSecond = RandomGenerator.get(2);
             for (int n = 0; n < countCustomerPerSecond && dispatcher.storeIsOpened(); n++) {
-                Customer customer = new Customer(++indexCustomer);
+                Customer customer = new Customer(++indexCustomer, true);
                 CustomerWorker customerWorker = new CustomerWorker(this, customer);
                 threads.add(customerWorker);
                 customerWorker.start();

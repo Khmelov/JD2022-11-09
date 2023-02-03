@@ -1,5 +1,7 @@
 package by.it.bolshakov.jd02_02;
 
+import java.util.Random;
+
 public class CustomerWorker extends Thread implements CustomerAction {
 
     public static final int MIN_TIMEOUT = 500;
@@ -8,7 +10,7 @@ public class CustomerWorker extends Thread implements CustomerAction {
     private final Store store;
     private final Dispatcher dispatcher;
     private final CustomerQueue customerQueue;
-
+    
     public CustomerWorker(Store store, Customer customer) {
         this.store = store;
         this.customer = customer;
@@ -16,11 +18,18 @@ public class CustomerWorker extends Thread implements CustomerAction {
         customerQueue = store.getCustomerQueue();
         dispatcher.addCustomer();
     }
-
+    
     @Override
     public void run() {
         enteredStore();
-        chooseGood();
+        System.out.println(customer + " started to choose goods ");
+        if (customer.hasCart()){
+            for (int i = 0; i < new Random().nextInt(2, 5); i++) {
+                chooseGood();
+            }
+        }
+        else chooseGood();
+        System.out.println(customer + " finished choose goods ");
         goToQueue();
         goOut();
         dispatcher.leaveCustomer();
@@ -33,10 +42,18 @@ public class CustomerWorker extends Thread implements CustomerAction {
 
     @Override
     public Good chooseGood() {
-        System.out.println(customer + " started to choose goods ");
+        Good good = PriceListRepo
+                .priceList
+                .keySet()
+                .stream()
+                .skip( new Random().nextInt(PriceListRepo.priceList.keySet().size()) )
+                .findFirst()
+                .orElse(null);
+        if (customer.hasCart()) {
+            customer.getCart().addToCart(good);
+        }
         int timeout = RandomGenerator.get(MIN_TIMEOUT, MAX_TIMEOUT);
         Sleeper.sleep(timeout);
-        System.out.println(customer + " finished choose goods ");
         return null;
     }
 
