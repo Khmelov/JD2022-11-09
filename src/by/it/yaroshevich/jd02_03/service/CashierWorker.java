@@ -18,8 +18,8 @@ public class CashierWorker implements Runnable{
 
     public CashierWorker(Cashier cashier, Store store) {
         this.cashier = cashier;
-        dispatcher = store.dispatcher();
-        customerQueue = store.customerQueue();
+        dispatcher = store.getDispatcher();
+        customerQueue = store.getCustomerQueue();
     }
 
     @Override
@@ -28,7 +28,7 @@ public class CashierWorker implements Runnable{
         while (!dispatcher.storeIsClosed()){
             Customer customer = customerQueue.poll();
             if (customer != null){
-                synchronized (customer.getMonitor()) {
+                synchronized (customer) {
                     System.out.println(cashier + " started service for" + customer);
                     int timeOut = RandomGenerator.get(
                             MIN_TIMEOUT_SERVICE_CUSTOMER,
@@ -40,7 +40,7 @@ public class CashierWorker implements Runnable{
                     customer.notify();
                 }
             } else {
-                Sleeper.sleep(100);
+                Thread.onSpinWait();
             }
         }
         System.out.println(cashier + " closed");

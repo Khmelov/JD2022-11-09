@@ -1,0 +1,4 @@
+message.welcome=Good morning!
+message.question=How are you today?
+user.firstname=Vasya
+user.lastname=Pupkin

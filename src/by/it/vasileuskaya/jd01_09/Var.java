@@ -17,7 +17,6 @@ abstract class Var implements Operation {
 
     @Override
     public String toString() {
-
         return "unknown variable";
     }
 

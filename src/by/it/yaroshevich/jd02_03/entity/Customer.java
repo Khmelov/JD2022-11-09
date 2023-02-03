@@ -9,10 +9,6 @@ public class Customer {
         this.name = "Customer #" + number;
     }
 
-    public Object getMonitor(){
-        return this;
-    }
-
     public boolean isWaiting() {
         return waiting;
     }
