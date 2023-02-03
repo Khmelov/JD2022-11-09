@@ -1,6 +1,5 @@
 package by.it.yaroshevich.jd01_03;
 
-
 public class Helper {
     public static double findMin(double[] array) {
         if (array.length > 0) {
@@ -10,6 +9,7 @@ public class Helper {
                     min = num;
                 }
             }
+            System.out.println("Min value in array " + min);
             return min;
         } else {
             return Integer.MIN_VALUE;
@@ -24,6 +24,7 @@ public class Helper {
                     max = num;
                 }
             }
+            System.out.println("Max value in array " + max);
             return max;
         } else {
             return Integer.MAX_VALUE;
@@ -31,48 +32,45 @@ public class Helper {
     }
 
     public static void sort(double[] array) {
-        for (int i = 0; i < array.length - 1; i++) {
-            for (int j = array.length - 1; j > i; j--) {
-                if (array[j - 1] > array[j]) {
-                    double swap = array[j - 1];
-                    array[j - 1] = array[j];
-                    array[j] = swap;
+        boolean checkSort;
+        int countSort = array.length;
+        do {
+            checkSort = false;
+            for (int i = 1; i < countSort; i++) {
+                if (array[i] < array[i - 1]) {
+                    double temporaryValue = array[i];
+                    array[i] = array[i - 1];
+                    array[i - 1] = temporaryValue;
+                    checkSort = true;
                 }
             }
-        }
+            countSort--;
+        } while (checkSort);
+        InOut.printArray(array);
     }
-/*
-    static double[] multiply(double[][] matrix, double[] vector) {
 
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                matrix[i][j] = j + 1;
-            }
-        }
-        for (int i = 0; i < vector.length; i++) {
-            vector[i] = i + 1;
-        }
+    static double[] multiply(double[][] matrix, double[] vector) {
         double[] result = new double[matrix.length];
-        for (int i = 0; i < matrix.length; i++)
-            for (int j = 0; j < vector.length; j++)
-                result[i] = result[i] + matrix[i][j] * vector[j];
+        for (int i = 0; i < result.length; i++) {
+            for (int j = 0; j < vector.length; j++) {
+                result[i] += matrix[i][j] * vector[j];
+            }
+            System.out.println(result[i] + " ");
+        }
         return result;
     }
-}
 
     static double[][] multiply(double[][] matrixLeft, double[][] matrixRight) {
-        double[][] result = new double[matrixLeft.length] [matrixRight[0].length];
+        double[][] result = new double[matrixLeft.length][matrixRight[0].length];
         for (int i = 0; i < matrixLeft.length; i++) {
             for (int j = 0; j < matrixRight[0].length; j++) {
-                for (int k = 0; k < matrixRight.length; k++) {
-
+                for (int l = 0; l < matrixRight.length; l++) {
+                    result[i][j] += matrixLeft[i][l] * matrixRight[l][j];
+                    System.out.println(result[i][j] + " ");
                 }
             }
-
         }
         return result;
     }
-
- */
 }
 
