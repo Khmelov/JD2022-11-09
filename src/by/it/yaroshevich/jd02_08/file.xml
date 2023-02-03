@@ -1,0 +1,15 @@
+<App>
+  <database>
+    <user>admin2</user>
+    <password>qwerty2</password>
+    <url>jdbc:mysql://localhost:3306/test</url>
+  </database>
+  <logger>
+    <path>logger.txt</path>
+    <level>
+      <level>NEW_INFO</level>
+      <level>NEW_DEBUG</level>
+      <level>NEW_ERROR</level>
+    </level>
+  </logger>
+</App>
