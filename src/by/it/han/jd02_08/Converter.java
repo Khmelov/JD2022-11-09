@@ -12,9 +12,9 @@ import java.io.IOException;
 import java.net.URL;
 
 public class Converter {
-    public static final String INFO_JSON = "info.json";
-    public static final String INFO_XML = "info.xml";
-    public static final String INFO_YAML = "info.yaml";
+    private static final String INFO_JSON = "info.json";
+    private static final String INFO_XML = "info.xml";
+    private static final String INFO_YAML = "info.yaml";
 
     public static void main(String[] args) throws IOException {
         Info info = getInfoClass(new JsonMapper());
