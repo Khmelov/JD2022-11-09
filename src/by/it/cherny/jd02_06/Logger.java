@@ -8,8 +8,6 @@ class Logger implements Log {
     private static final String ERROR = "ERROR";
     private static final String INFO = "INFO";
     private final String filename = PathFinder.getFilePath("log.txt", Logger.class);
-    //    public enum Logger implements Log {
-//        INSTANCE;
 
     private Logger() {
     }
