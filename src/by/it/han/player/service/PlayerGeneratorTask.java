@@ -12,7 +12,6 @@ import java.util.concurrent.Callable;
 
 public class PlayerGeneratorTask implements Callable<PlayerGeneratorTask> {
 
-    private static int countName = 0;
     private static final boolean APPEND_FILE = true;
     private static final int MIN_AGE = 20;
     private static final int MAX_AGE = 40;
@@ -42,7 +41,7 @@ public class PlayerGeneratorTask implements Callable<PlayerGeneratorTask> {
     }
 
     public void saveToFile(List<Player> playerList) {
-        String filePath = PatchFinder.getFilePath(++countName + "", PlayerGeneratorTask.class);
+        String filePath = PatchFinder.getFilePath(nameTask + "", PlayerGeneratorTask.class);
         List<Player> players = playerList.stream()
                 .filter(Player::isActive)
                 .toList();
