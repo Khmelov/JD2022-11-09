@@ -1,0 +1,10 @@
+{
+  "man" : {
+    "firstName" : "Nikita",
+    "lastName" : "Han"
+  },
+  "phone" : {
+    "model" : "iPhone",
+    "phoneNumber" : "11236547"
+  }
+}
