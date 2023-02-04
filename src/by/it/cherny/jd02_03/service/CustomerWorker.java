@@ -26,6 +26,7 @@ public class CustomerWorker extends Thread implements CustomerAction {
     private final Dispatcher dispatcher;
     private final CustomerQueue customerQueue;
     private final ShoppingCart shoppingCart;
+    private final CartQueue cartQueue;
 
     public CustomerWorker(Store store, Customer customer) {
         this.store = store;
@@ -33,17 +34,52 @@ public class CustomerWorker extends Thread implements CustomerAction {
         shoppingCart = customer.getShoppingCart();
         dispatcher = store.getDispatcher();
         customerQueue = store.getCustomerQueue();
+        cartQueue = store.getCartQueue();
         dispatcher.addCustomer();
     }
 
     @Override
     public void run() {
         enteredStore();
-        shoppingCart.takeCart();
+        takeCart();
         chooseGood();
         goToQueue();
+        returnCart();
         goOut();
         dispatcher.leaveCustomer();
+    }
+
+    private void takeCart() {
+//    FIXME    if (shoppingCart.getShoppingCartCount()>0){
+//            System.out.println(customer.getName()+" take shopping cart");
+//            shoppingCart.takeCart();
+//            if (isInterrupted()){
+//                cartQueue.removeOne();
+//                boolean interrupted = Thread.interrupted();
+//                System.out.println("Interrupted"+interrupted);
+//            }
+//        } else {
+//            cartQueue.addOne();
+//            interrupt();
+//        }
+        boolean isYield = false;
+        if (shoppingCart.getShoppingCartCount()<=0){
+            cartQueue.addOne(customer);
+            isYield=true;
+        }
+        while(shoppingCart.getShoppingCartCount()<=0){
+//            cartQueue.addOne();
+//            isYield=true;
+            Thread.yield();
+        }
+        if (isYield){
+            cartQueue.removeOne(customer);
+        }
+        shoppingCart.takeCart();
+    }
+
+    private void returnCart() {
+        shoppingCart.returnShoppingCart();
     }
 
     @Override

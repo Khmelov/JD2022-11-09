@@ -22,7 +22,6 @@ public class Customer {
         shoppingCart = new ShoppingCart(this);
     }
 
-
     public Object getMonitor(){
         return this;
     }
