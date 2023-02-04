@@ -8,8 +8,9 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
-public class PlayerGeneratorTask extends Thread {
+public class PlayerGeneratorTask implements Callable<PlayerGeneratorTask> {
 
     private static int countName = 0;
     private static final boolean APPEND_FILE = true;
@@ -31,11 +32,6 @@ public class PlayerGeneratorTask extends Thread {
         return playerList;
     }
 
-    @Override
-    public void run() {
-        appendPlayer();
-    }
-
     public void appendPlayer() {
         for (int i = 0; i < PLAYER_COUNT; i++) {
             int age = RandomUtil.get(MIN_AGE, MAX_AGE);
@@ -55,5 +51,11 @@ public class PlayerGeneratorTask extends Thread {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public PlayerGeneratorTask call() {
+        appendPlayer();
+        return this;
     }
 }
