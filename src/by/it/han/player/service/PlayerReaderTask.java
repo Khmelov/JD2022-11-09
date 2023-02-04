@@ -1,6 +1,7 @@
 package by.it.han.player.service;
 
 import by.it.han.player.model.Player;
+import by.it.han.player.util.PlayerComparator;
 
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class PlayerReaderTask extends Thread {
     private List<Player> getSortedPlayer(List<Player> playerList) {
         return playerList.stream()
                 .filter(player -> player.getAge() > MIN_AGE && player.getAge() < MAX_AGE)
+                .sorted(new PlayerComparator())
                 .toList();
     }
 
